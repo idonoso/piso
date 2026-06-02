@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle Piso</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a2533; font-size: 14px; }
+
+    .top-bar {
+      background: #fff;
+      border-bottom: 1px solid #dde2ea;
+      padding: 12px 24px;
+      display: flex; align-items: center; gap: 16px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      text-decoration: none; color: #2563eb; font-size: 13px; font-weight: 500;
+      padding: 5px 12px; border-radius: 6px; border: 1px solid #dbeafe;
+      background: #f0f4ff; transition: background 0.1s;
+    }
+    .back-btn:hover { background: #dbeafe; }
+    .top-bar h1 { font-size: 15px; font-weight: 700; color: #1a2533; flex: 1; }
+    .portal-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      text-decoration: none; color: #2563eb; font-size: 13px; font-weight: 500;
+      padding: 5px 12px; border-radius: 6px; border: 1px solid #dbeafe;
+      background: #f0f4ff;
+    }
+    .portal-link:hover { background: #dbeafe; }
+
+    .hero {
+      background: #fff;
+      border-bottom: 1px solid #dde2ea;
+      padding: 20px 24px;
+      display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap;
+    }
+    .hero-score { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .score-big {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 800;
+    }
+    .score-big-hi  { background: #d1fae5; color: #065f46; }
+    .score-big-mid { background: #fef3c7; color: #92400e; }
+    .score-big-lo  { background: #fee2e2; color: #991b1b; }
+    .score-big-null { background: #f0f2f5; color: #9aabb8; }
+    .score-label { font-size: 11px; color: #7a8899; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .hero-main { flex: 1; min-width: 200px; }
+    .hero-main .address { font-size: 20px; font-weight: 700; color: #1a2533; }
+    .hero-main .location { font-size: 14px; color: #5a6a7a; margin-top: 4px; }
+    .hero-main .badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+    .hero-prices { display: flex; flex-direction: column; gap: 4px; align-items: flex-end; }
+    .price-main { font-size: 24px; font-weight: 800; color: #1a2533; }
+    .price-obj-line { font-size: 14px; color: #059669; font-weight: 600; }
+    .price-range-line { font-size: 12px; color: #7a8899; }
+    .dto-line { font-size: 13px; color: #dc2626; font-weight: 700; }
+
+    .badge {
+      display: inline-block; padding: 2px 9px; border-radius: 10px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;
+    }
+    .badge-desc    { background: #fee2e2; color: #b91c1c; }
+    .badge-nodisp  { background: #e5e7eb; color: #374151; }
+    .badge-visita  { background: #ede9fe; color: #5b21b6; }
+    .badge-portal  { background: #dbeafe; color: #1d4ed8; }
+    .badge-contact { background: #d1fae5; color: #065f46; }
+
+    .content { max-width: 1400px; margin: 24px auto; padding: 0 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 900px) { .content { grid-template-columns: 1fr; } }
+
+    .card {
+      background: #fff;
+      border: 1px solid #dde2ea;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .card-header {
+      background: #f5f7fa;
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7a8d;
+      border-bottom: 1px solid #dde2ea;
+    }
+    .card-body { padding: 16px; }
+
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .info-row {
+      display: contents;
+    }
+    .info-label {
+      padding: 7px 0;
+      font-size: 12px;
+      color: #7a8899;
+      font-weight: 500;
+      border-bottom: 1px solid #f0f2f5;
+      padding-right: 8px;
+    }
+    .info-value {
+      padding: 7px 0;
+      font-size: 13px;
+      color: #1a2533;
+      border-bottom: 1px solid #f0f2f5;
+      font-weight: 500;
+    }
+    .info-grid > div:nth-last-child(1),
+    .info-grid > div:nth-last-child(2) { border-bottom: none; }
+
+    .cert {
+      display: inline-block; padding: 1px 8px; border-radius: 3px;
+      font-weight: 700; font-size: 13px;
+    }
+    .cert-A { background: #00a651; color: #fff; }
+    .cert-B { background: #50b848; color: #fff; }
+    .cert-C { background: #b0d136; color: #333; }
+    .cert-D { background: #fff200; color: #333; }
+    .cert-E { background: #f7941d; color: #fff; }
+    .cert-F { background: #ed1c24; color: #fff; }
+    .cert-G { background: #7b1010; color: #fff; }
+    .cert-nd { background: #e5e7eb; color: #6b7280; font-size: 11px; }
+
+    .ext-row { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 0; }
+    .ext-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    }
+    .ext-y { background: #d1fae5; color: #065f46; }
+    .ext-n { background: #fee2e2; color: #991b1b; }
+    .ext-u { background: #f0f2f5; color: #9aabb8; }
+
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 6px;
+      padding: 12px;
+    }
+    .photo-gallery img {
+      width: 100%; height: 120px; object-fit: cover;
+      border-radius: 6px; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .photo-gallery img:hover { transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 8px; }
+    .lb-close {
+      position: fixed; top: 16px; right: 20px;
+      color: #fff; font-size: 32px; cursor: pointer;
+      line-height: 1; opacity: 0.8;
+    }
+    .lb-close:hover { opacity: 1; }
+    .lb-nav {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      color: #fff; font-size: 40px; cursor: pointer;
+      background: rgba(0,0,0,0.3); border-radius: 50%;
+      width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+      opacity: 0.7; user-select: none;
+    }
+    .lb-nav:hover { opacity: 1; }
+    .lb-prev { left: 12px; }
+    .lb-next { right: 12px; }
+    .lb-counter { position: fixed; bottom: 20px; color: #fff; font-size: 13px; opacity: 0.7; }
+
+    .prose { font-size: 14px; line-height: 1.65; color: #374151; white-space: pre-wrap; word-break: break-word; }
+    .analysis { font-size: 13px; line-height: 1.7; color: #374151; white-space: pre-wrap; word-break: break-word; }
+
+    .motivo-card { background: #fff5f5; border: 1px solid #fecaca; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+    .motivo-card .mtitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #b91c1c; margin-bottom: 4px; }
+    .motivo-card p { font-size: 13px; color: #7f1d1d; }
+
+    .comment-card { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }
+    .comment-card .ctitle { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #0369a1; margin-bottom: 4px; }
+    .comment-card p { font-size: 13px; color: #0c4a6e; }
+
+    .full-width { grid-column: 1 / -1; }
+
+    .null-val { color: #9aabb8; font-weight: 400; }
+
+    .calef-gas  { color: #ea580c; font-weight: 600; }
+    .calef-elec { color: #7c3aed; font-weight: 600; }
+    .calef-none { color: #dc2626; font-weight: 600; }
+
+    .score-fotos-badge {
+      display: inline-block; padding: 2px 9px; border-radius: 9px;
+      font-weight: 700; font-size: 13px;
+    }
+    .score-hi  { background: #d1fae5; color: #065f46; }
+    .score-mid { background: #fef3c7; color: #92400e; }
+    .score-lo  { background: #fee2e2; color: #991b1b; }
+    .score-null { background: #f0f2f5; color: #9aabb8; }
+
+    .error-box { max-width: 600px; margin: 80px auto; padding: 40px; background: #fff; border-radius: 12px; text-align: center; border: 1px solid #dde2ea; }
+    .error-box h2 { color: #dc2626; margin-bottom: 8px; }
+    .error-box p { color: #5a6a7a; font-size: 14px; }
+    .error-box code { background: #f5f7fa; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a class="back-btn" href="index.html">← Volver al listado</a>
+  <h1 id="topTitle">Cargando…</h1>
+  <a class="portal-link" id="portalLink" href="#" target="_blank">Ver en portal ↗</a>
+</div>
+
+<div id="heroSection" class="hero" style="display:none"></div>
+
+<div class="content" id="content"></div>
+
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" id="lbClose">×</span>
+  <span class="lb-nav lb-prev" id="lbPrev">‹</span>
+  <img id="lbImg" src="" alt="">
+  <span class="lb-nav lb-next" id="lbNext">›</span>
+  <span class="lb-counter" id="lbCounter"></span>
+</div>
+
+<script>
+let lbPhotos = [], lbIdx = 0;
+
+function eur(n) {
+  if (n == null) return '<span class="null-val">—</span>';
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+}
+function val(v, suffix) {
+  if (v == null) return '<span class="null-val">—</span>';
+  return `${v}${suffix || ''}`;
+}
+function fmtDate(d) {
+  if (!d) return '<span class="null-val">—</span>';
+  const [y, m, day] = d.split('-');
+  return `${day}/${m}/${y}`;
+}
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function scoreClass(s) {
+  if (s == null) return 'score-null';
+  if (s >= 5.5) return 'score-hi';
+  if (s >= 4.0) return 'score-mid';
+  return 'score-lo';
+}
+function certEl(c) {
+  if (!c) return '<span class="cert cert-nd">—</span>';
+  const s = c.toLowerCase();
+  if (s.includes('trámite') || s.includes('tramite')) return '<span class="cert cert-nd">En trámite</span>';
+  const letter = c.trim().toUpperCase();
+  if (['A','B','C','D','E','F','G'].includes(letter)) return `<span class="cert cert-${letter}">${letter}</span>`;
+  return `<span class="cert cert-nd">${esc(c)}</span>`;
+}
+function extChip(label, val) {
+  if (val === true)  return `<span class="ext-chip ext-y">✓ ${label}</span>`;
+  if (val === false) return `<span class="ext-chip ext-n">✗ ${label}</span>`;
+  return `<span class="ext-chip ext-u">? ${label}</span>`;
+}
+function calefFmt(s) {
+  if (!s) return '<span class="null-val">—</span>';
+  if (s.includes('Sin calefacción')) return '<span class="calef-none">Sin calefacción</span>';
+  if (s.toLowerCase().includes('gas natural')) return `<span class="calef-gas">${esc(s)}</span>`;
+  if (s.toLowerCase().includes('eléctrica')) return `<span class="calef-elec">${esc(s)}</span>`;
+  return esc(s);
+}
+
+function infoRow(label, valueHtml) {
+  return `<div class="info-label">${label}</div><div class="info-value">${valueHtml}</div>`;
+}
+
+function openLightbox(idx) {
+  lbIdx = idx;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('open');
+}
+function updateLightbox() {
+  document.getElementById('lbImg').src = lbPhotos[lbIdx];
+  document.getElementById('lbCounter').textContent = `${lbIdx + 1} / ${lbPhotos.length}`;
+}
+document.getElementById('lbClose').onclick = () => document.getElementById('lightbox').classList.remove('open');
+document.getElementById('lbPrev').onclick = () => { lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length; updateLightbox(); };
+document.getElementById('lbNext').onclick = () => { lbIdx = (lbIdx + 1) % lbPhotos.length; updateLightbox(); };
+document.getElementById('lightbox').onclick = e => { if (e.target === document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('open'); };
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  { lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length; updateLightbox(); }
+  if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % lbPhotos.length; updateLightbox(); }
+  if (e.key === 'Escape') lb.classList.remove('open');
+});
+
+function renderPiso(p) {
+  const isDesc   = p.descartado === true;
+  const isNoDisp = p.disponible === false;
+  const hasVisita = !!p.fecha_visita;
+
+  document.title = `${p.direccion} — ${p.barrio}`;
+  document.getElementById('topTitle').textContent = `${p.direccion} · ${p.barrio}, ${p.distrito}`;
+
+  const pLink = document.getElementById('portalLink');
+  pLink.href = p.url;
+  pLink.textContent = `Ver en ${p.portal} ↗`;
+
+  // Hero
+  const scoreClass_ = scoreClass(p.puntuacion_general);
+  let badges = '';
+  if (isDesc)    badges += `<span class="badge badge-desc">Descartado</span>`;
+  if (isNoDisp)  badges += `<span class="badge badge-nodisp">No disponible</span>`;
+  if (hasVisita) badges += `<span class="badge badge-visita">Visitado ${fmtDate(p.fecha_visita)}</span>`;
+  if (p.fecha_contacto) badges += `<span class="badge badge-contact">Contactado ${fmtDate(p.fecha_contacto)}</span>`;
+  badges += `<span class="badge badge-portal">${p.portal}</span>`;
+
+  const heroHtml = `
+    <div class="hero-score">
+      <div class="score-big score-big-${scoreClass_.replace('score-','')}">
+        ${p.puntuacion_general != null ? p.puntuacion_general.toFixed(1) : '?'}
+      </div>
+      <span class="score-label">Nota</span>
+    </div>
+    <div class="hero-main">
+      <div class="address">${esc(p.direccion)}</div>
+      <div class="location">${esc(p.barrio)} · ${esc(p.distrito)} · ${esc(p.ciudad)}</div>
+      <div class="badges">${badges}</div>
+    </div>
+    <div class="hero-prices">
+      <div class="price-main">${eur(p.precio)}</div>
+      ${p.precio_m2 ? `<div style="font-size:14px;color:#5a6a7a">${new Intl.NumberFormat('es-ES').format(p.precio_m2)} €/m²</div>` : ''}
+      ${p.precio_objetivo ? `<div class="price-obj-line">Objetivo: ${eur(p.precio_objetivo)}</div>` : ''}
+      ${p.precio_objetivo_min ? `<div class="price-range-line">${eur(p.precio_objetivo_min)} – ${eur(p.precio_objetivo_max)}</div>` : ''}
+      ${p.descuento_estimado_pct != null ? `<div class="dto-line">Descuento estimado: ${p.descuento_estimado_pct}%</div>` : ''}
+    </div>`;
+  document.getElementById('heroSection').innerHTML = heroHtml;
+  document.getElementById('heroSection').style.display = 'flex';
+
+  // Content
+  let html = '';
+
+  // Motivo descarte + comentario
+  if (isDesc && p.motivo_descarte) {
+    html += `<div class="card full-width"><div class="card-body">
+      <div class="motivo-card">
+        <div class="mtitle">Motivo de descarte</div>
+        <p>${esc(p.motivo_descarte)}</p>
+      </div>
+    </div></div>`;
+  }
+  if (p.comentario_personal) {
+    html += `<div class="card full-width"><div class="card-body">
+      <div class="comment-card">
+        <div class="ctitle">Comentario personal</div>
+        <p>${esc(p.comentario_personal)}</p>
+      </div>
+    </div></div>`;
+  }
+
+  // Card: Datos económicos
+  html += `<div class="card">
+    <div class="card-header">Datos económicos</div>
+    <div class="card-body">
+      <div class="info-grid">
+        ${infoRow('Precio', `<strong>${eur(p.precio)}</strong>`)}
+        ${infoRow('Precio / m²', `${p.precio_m2 != null ? new Intl.NumberFormat('es-ES').format(p.precio_m2) + ' €/m²' : '<span class="null-val">—</span>'}`)}
+        ${infoRow('Precio objetivo', p.precio_objetivo ? `<strong style="color:#059669">${eur(p.precio_objetivo)}</strong>` : '<span class="null-val">—</span>')}
+        ${infoRow('Rango objetivo', p.precio_objetivo_min ? `${eur(p.precio_objetivo_min)} – ${eur(p.precio_objetivo_max)}` : '<span class="null-val">—</span>')}
+        ${infoRow('Descuento estimado', p.descuento_estimado_pct != null ? `<strong style="color:#dc2626">${p.descuento_estimado_pct}%</strong>` : '<span class="null-val">—</span>')}
+        ${infoRow('Gastos comunidad', p.gastos_comunidad != null ? `${eur(p.gastos_comunidad)}/mes` : '<span class="null-val">—</span>')}
+        ${infoRow('Honorarios agencia', p.honorarios_agencia ? `<span style="color:#ea580c">${esc(p.honorarios_agencia)}</span>` : '<span class="null-val">No especificados / incluidos</span>')}
+      </div>
+    </div>
+  </div>`;
+
+  // Card: Características
+  html += `<div class="card">
+    <div class="card-header">Características</div>
+    <div class="card-body">
+      <div class="info-grid">
+        ${infoRow('m² útiles', val(p.m2, ' m²'))}
+        ${infoRow('m² construidos', val(p.m2_construidos, ' m²'))}
+        ${infoRow('Habitaciones', val(p.habitaciones))}
+        ${infoRow('Baños', val(p.banos))}
+        ${infoRow('Planta', val(p.planta))}
+        ${infoRow('Orientación', p.orientacion ? esc(p.orientacion) : '<span class="null-val">—</span>')}
+        ${infoRow('Calefacción', calefFmt(p.calefaccion))}
+        ${infoRow('Estado', p.estado ? esc(p.estado) : '<span class="null-val">—</span>')}
+        ${infoRow('Año construcción', val(p.ano_construccion))}
+        ${infoRow('Cert. energético', certEl(p.certificado_energetico))}
+        ${infoRow('Nota general', p.puntuacion_general != null ? `<span class="score-fotos-badge ${scoreClass(p.puntuacion_general)}">${p.puntuacion_general.toFixed(1)}</span>` : '<span class="null-val">—</span>')}
+        ${infoRow('Nota fotos', p.puntuacion_fotos != null ? `<span class="score-fotos-badge ${scoreClass(p.puntuacion_fotos)}">${p.puntuacion_fotos.toFixed(1)}</span>` : '<span class="null-val">—</span>')}
+      </div>
+      <div class="ext-row">
+        ${extChip('Ascensor', p.ascensor)}
+        ${extChip('Exterior', p.exterior)}
+        ${extChip('Terraza', p.terraza)}
+        ${extChip('Garaje', p.garaje)}
+        ${extChip('Trastero', p.trastero)}
+        ${extChip('Aire Acondicionado', p.aire_acondicionado)}
+      </div>
+    </div>
+  </div>`;
+
+  // Card: Fechas y gestión
+  html += `<div class="card">
+    <div class="card-header">Seguimiento</div>
+    <div class="card-body">
+      <div class="info-grid">
+        ${infoRow('Fecha análisis', fmtDate(p.fecha_analisis))}
+        ${infoRow('Fecha contacto', p.fecha_contacto ? `<strong style="color:#15803d">${fmtDate(p.fecha_contacto)}</strong>` : '<span class="null-val">—</span>')}
+        ${infoRow('Fecha visita', p.fecha_visita ? `<strong style="color:#7c3aed">${fmtDate(p.fecha_visita)}</strong>` : '<span class="null-val">—</span>')}
+        ${infoRow('Descartado', isDesc ? `<span style="color:#b91c1c;font-weight:700">Sí</span>` : 'No')}
+        ${isDesc && p.motivo_descarte ? infoRow('Motivo', `<span style="color:#7f1d1d">${esc(p.motivo_descarte)}</span>`) : ''}
+        ${infoRow('Disponible', isNoDisp ? `<span style="color:#374151;font-weight:700">No disponible</span>${p.fecha_no_disponible ? ` <small style="color:#9aabb8">(desde ${fmtDate(p.fecha_no_disponible)})</small>` : ''}` : `<span style="color:#15803d;font-weight:700">Sí</span>`)}
+        ${infoRow('Portal', `<span class="badge badge-portal">${p.portal}</span>`)}
+        ${infoRow('ID', `<code style="font-size:11px;color:#5a6a7a">${esc(p.id)}</code>`)}
+      </div>
+    </div>
+  </div>`;
+
+  // Precio garaje opcional si existe
+  if (p.precio_garaje_opcional != null) {
+    const extras2 = `<div class="info-grid">${infoRow('Garaje opcional', `${eur(p.precio_garaje_opcional)} (adicional)`)}</div>`;
+  }
+
+  // Card: Fotos
+  if (p.urls_fotos && p.urls_fotos.length) {
+    lbPhotos = p.urls_fotos;
+    const photosHtml = p.urls_fotos.map((url, i) =>
+      `<img src="${esc(url)}" alt="Foto ${i+1}" loading="lazy" onclick="openLightbox(${i})">`
+    ).join('');
+    html += `<div class="card full-width">
+      <div class="card-header">Fotos (${p.urls_fotos.length})</div>
+      <div class="photo-gallery">${photosHtml}</div>
+    </div>`;
+  }
+
+  // Card: Descripción
+  if (p.descripcion) {
+    html += `<div class="card full-width">
+      <div class="card-header">Descripción del anuncio</div>
+      <div class="card-body"><p class="prose">${esc(p.descripcion)}</p></div>
+    </div>`;
+  }
+
+  // Card: Notas de análisis
+  if (p.notas_analisis) {
+    html += `<div class="card full-width">
+      <div class="card-header">Notas de análisis</div>
+      <div class="card-body"><p class="analysis">${esc(p.notas_analisis)}</p></div>
+    </div>`;
+  }
+
+  document.getElementById('content').innerHTML = html;
+}
+
+const id = new URLSearchParams(location.search).get('id');
+
+if (!id) {
+  document.getElementById('content').innerHTML = `<div class="error-box full-width"><h2>Sin ID</h2><p>No se especificó ningún piso. <a href="index.html">Volver al listado.</a></p></div>`;
+} else {
+  fetch('./pisos.json')
+    .then(r => { if (!r.ok) throw new Error('No se pudo cargar pisos.json'); return r.json(); })
+    .then(data => {
+      const piso = data.find(p => p.id === id);
+      if (!piso) {
+        document.getElementById('content').innerHTML = `<div class="error-box full-width"><h2>No encontrado</h2><p>El piso <code>${esc(id)}</code> no existe. <a href="index.html">Volver al listado.</a></p></div>`;
+      } else {
+        renderPiso(piso);
+      }
+    })
+    .catch(err => {
+      document.getElementById('content').innerHTML = `<div class="error-box full-width"><h2>Error al cargar</h2><p>${esc(err.message)}<br><small>Sirve los archivos desde un servidor local: <code>python3 -m http.server</code></small></p></div>`;
+    });
+}
+</script>
+</body>
+</html>

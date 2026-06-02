@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Búsqueda Pisos Madrid</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a2533; font-size: 13px; }
+
+    .page-header {
+      background: #fff;
+      padding: 14px 24px 10px;
+      border-bottom: 1px solid #dde2ea;
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: baseline; gap: 16px;
+    }
+    .page-header h1 { font-size: 16px; font-weight: 700; color: #1a2533; }
+    #stats { font-size: 12px; color: #7a8899; }
+
+    .filters {
+      background: #fff;
+      padding: 8px 24px;
+      border-bottom: 1px solid #dde2ea;
+      display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+      position: sticky; top: 44px; z-index: 199;
+    }
+    .filters label { font-size: 12px; color: #6b7a8d; font-weight: 500; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+    .filters input[type=checkbox] { cursor: pointer; }
+    .filters select {
+      padding: 3px 8px; border: 1px solid #d0d8e4; border-radius: 4px;
+      font-size: 12px; background: #fff; cursor: pointer; color: #1a2533;
+    }
+
+    .table-wrap { overflow: auto; height: calc(100vh - 83px); }
+
+    table {
+      width: 100%;
+      min-width: 1600px;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    thead tr th {
+      background: #eef1f6;
+      padding: 7px 10px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7a8d;
+      border-bottom: 2px solid #d0d8e4;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    thead tr th.th-right { text-align: right; }
+
+    tbody tr {
+      border-bottom: 1px solid #eef0f4;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    tbody tr:hover { background: #f0f4ff; }
+
+    tbody tr.descartado { background: #fff5f5; }
+    tbody tr.descartado:hover { background: #ffe8e8; }
+    tbody tr.descartado td { opacity: 0.8; }
+
+    tbody tr.no-disponible { background: #f4f5f7; }
+    tbody tr.no-disponible:hover { background: #eaedf2; }
+    tbody tr.no-disponible td { opacity: 0.7; }
+
+    td {
+      padding: 6px 10px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    td.wrap { white-space: normal; max-width: 200px; }
+
+    .score {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 11px;
+      font-weight: 700;
+      font-size: 13px;
+      min-width: 42px;
+      text-align: center;
+    }
+    .score-hi  { background: #d1fae5; color: #065f46; }
+    .score-mid { background: #fef3c7; color: #92400e; }
+    .score-lo  { background: #fee2e2; color: #991b1b; }
+    .score-null { background: #f0f2f5; color: #9aabb8; }
+
+    .score-sm {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 9px;
+      font-weight: 600;
+      font-size: 11px;
+      min-width: 36px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+    .badge-desc  { background: #fee2e2; color: #b91c1c; }
+    .badge-nodisp { background: #e5e7eb; color: #4b5563; }
+    .badge-visita { background: #ede9fe; color: #5b21b6; }
+
+    .cert {
+      display: inline-block; padding: 1px 7px; border-radius: 3px;
+      font-weight: 700; font-size: 12px; min-width: 26px; text-align: center;
+    }
+    .cert-A { background: #00a651; color: #fff; }
+    .cert-B { background: #50b848; color: #fff; }
+    .cert-C { background: #b0d136; color: #333; }
+    .cert-D { background: #fff200; color: #333; }
+    .cert-E { background: #f7941d; color: #fff; }
+    .cert-F { background: #ed1c24; color: #fff; }
+    .cert-G { background: #7b1010; color: #fff; }
+    .cert-nd { background: #e5e7eb; color: #6b7280; font-size: 10px; }
+
+    .ext-chip {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      margin: 1px;
+    }
+    .ext-y { background: #d1fae5; color: #065f46; }
+    .ext-n { background: #fee2e2; color: #991b1b; }
+    .ext-u { background: #f0f2f5; color: #9aabb8; }
+
+    .price { font-weight: 600; color: #1a2533; }
+    .price-obj { font-weight: 600; color: #059669; }
+    .price-range { font-size: 10px; color: #7a8899; display: block; }
+    .dto { font-weight: 700; color: #dc2626; }
+    .euro-m2 { color: #4b5563; }
+
+    .loc-main { font-weight: 500; color: #1a2533; }
+    .loc-sub { font-size: 11px; color: #7a8899; display: block; }
+
+    .date-set { color: #15803d; font-weight: 600; }
+    .date-visit { color: #7c3aed; font-weight: 700; }
+    .date-null { color: #c8cdd3; }
+
+    .link-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 6px;
+      background: #f0f4ff; color: #2563eb;
+      text-decoration: none; font-size: 12px; font-weight: 700;
+      border: 1px solid #d0dbf5;
+      transition: background 0.1s;
+    }
+    .link-icon:hover { background: #dbeafe; }
+
+    .td-links { display: flex; gap: 4px; align-items: center; }
+
+    .null-val { color: #c8cdd3; }
+    .flag { font-size: 12px; }
+    .td-right { text-align: right; }
+
+    .calef-gas   { color: #ea580c; font-weight: 500; }
+    .calef-elec  { color: #7c3aed; font-weight: 500; }
+    .calef-none  { color: #dc2626; font-weight: 500; }
+
+    .comment-icon { font-size: 12px; cursor: help; }
+
+    .strike { text-decoration: line-through; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Pisos Madrid</h1>
+  <div id="stats"></div>
+</div>
+
+<div class="filters">
+  <label><input type="checkbox" id="hidDesc" checked> Ocultar descartados</label>
+  <label><input type="checkbox" id="hideNoDisp" checked> Ocultar no disponibles</label>
+  <span style="color:#d0d8e4">|</span>
+  <label>Portal:
+    <select id="filterPortal">
+      <option value="">Todos</option>
+      <option value="idealista">Idealista</option>
+      <option value="fotocasa">Fotocasa</option>
+    </select>
+  </label>
+  <label>Nota mín.:
+    <select id="filterNota">
+      <option value="0">Todas</option>
+      <option value="4">≥ 4.0</option>
+      <option value="5">≥ 5.0</option>
+      <option value="6">≥ 6.0</option>
+    </select>
+  </label>
+</div>
+
+<div class="table-wrap">
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th>Nota</th>
+        <th>Fotos</th>
+        <th>F. Contacto</th>
+        <th>F. Visita</th>
+        <th>Estado</th>
+        <th class="th-right">Precio</th>
+        <th class="th-right">P. Objetivo</th>
+        <th class="th-right">Dto%</th>
+        <th class="th-right">€/m²</th>
+        <th class="th-right">m² (útil/c.)</th>
+        <th>H/B</th>
+        <th>Planta</th>
+        <th>Orientación</th>
+        <th>Dirección</th>
+        <th>Extras</th>
+        <th>Cert.E</th>
+        <th>Calef.</th>
+        <th>Año</th>
+        <th class="th-right">Gastos com.</th>
+        <th>Estado piso</th>
+        <th>Agencia</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<script>
+let allPisos = [];
+
+function updateLayout() {
+  const headerH = document.querySelector('.page-header').offsetHeight;
+  const filtersEl = document.querySelector('.filters');
+  filtersEl.style.top = headerH + 'px';
+  const total = headerH + filtersEl.offsetHeight;
+  document.querySelector('.table-wrap').style.height = `calc(100vh - ${total}px)`;
+}
+updateLayout();
+window.addEventListener('resize', updateLayout);
+
+function eur(n) {
+  if (n == null) return '<span class="null-val">—</span>';
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
+}
+function num(n) {
+  if (n == null) return '<span class="null-val">—</span>';
+  return new Intl.NumberFormat('es-ES').format(n);
+}
+function fmtDate(d) {
+  if (!d) return '<span class="date-null">—</span>';
+  const [y, m, day] = d.split('-');
+  return `${day}/${m}/${y.slice(2)}`;
+}
+function scoreClass(s) {
+  if (s == null) return 'score-null';
+  if (s >= 5.5) return 'score-hi';
+  if (s >= 4.0) return 'score-mid';
+  return 'score-lo';
+}
+function certEl(c) {
+  if (!c) return '<span class="cert cert-nd">—</span>';
+  const s = c.toLowerCase();
+  if (s.includes('trámite') || s.includes('tramite')) return '<span class="cert cert-nd">Trám.</span>';
+  const letter = c.trim().toUpperCase();
+  if (['A','B','C','D','E','F','G'].includes(letter)) return `<span class="cert cert-${letter}">${letter}</span>`;
+  return `<span class="cert cert-nd">${c.substring(0,6)}</span>`;
+}
+function extChip(label, val) {
+  const cls = val === true ? 'ext-y' : val === false ? 'ext-n' : 'ext-u';
+  return `<span class="ext-chip ${cls}">${label}</span>`;
+}
+function calefFmt(s) {
+  if (!s) return '<span class="null-val">—</span>';
+  if (s.includes('Sin calefacción')) return '<span class="calef-none">Sin calef.</span>';
+  if (s.includes('Gas natural')) return '<span class="calef-gas">Gas ind.</span>';
+  if (s.includes('Eléctrica') || s.includes('electrica')) return '<span class="calef-elec">Eléctrica</span>';
+  if (s.toLowerCase().includes('gas')) return '<span class="calef-gas">Gas</span>';
+  const short = s.length > 14 ? s.substring(0, 14) + '…' : s;
+  return `<span title="${esc(s)}">${short}</span>`;
+}
+function estadoFmt(s) {
+  if (!s) return '<span class="null-val">—</span>';
+  const lower = s.toLowerCase();
+  if (lower.includes('reformado a medida')) return 'Reformado medida';
+  if (lower.includes('reformado')) return 'Reformado';
+  if (lower.includes('para reformar')) return '<span style="color:#dc2626">A reformar</span>';
+  if (lower.includes('sin reformar')) return 'Sin reformar';
+  if (lower.includes('seminuevo')) return 'Buen est./seminuevo';
+  if (lower.includes('buen estado')) return 'Buen estado';
+  return s.length > 18 ? `<span title="${esc(s)}">${s.substring(0,18)}…</span>` : s;
+}
+function esc(s) {
+  return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+function agenciaFmt(s) {
+  if (!s) return '<span class="null-val">—</span>';
+  return `<span style="color:#ea580c;font-weight:600" title="${esc(s)}">Sí *</span>`;
+}
+
+function renderRow(p) {
+  const isDesc = p.descartado === true;
+  const isNoDisp = p.disponible === false;
+  const hasVisita = !!p.fecha_visita;
+  const hasComent = !!p.comentario_personal;
+
+  const rowCls = isDesc ? 'descartado' : (isNoDisp ? 'no-disponible' : '');
+
+  let estadoBadge = '';
+  if (isDesc) estadoBadge += `<span class="badge badge-desc">Descartado</span> `;
+  if (isNoDisp) estadoBadge += `<span class="badge badge-nodisp">No disponible</span> `;
+  if (hasVisita) estadoBadge += `<span class="badge badge-visita">Visitado</span> `;
+  if (hasComent) estadoBadge += `<span class="comment-icon" title="${esc(p.comentario_personal)}">💬</span> `;
+
+  const contactoHtml = p.fecha_contacto
+    ? `<span class="date-set">${fmtDate(p.fecha_contacto)}</span>`
+    : '<span class="date-null">—</span>';
+  const visitaHtml = p.fecha_visita
+    ? `<span class="date-visit">${fmtDate(p.fecha_visita)}</span>`
+    : '<span class="date-null">—</span>';
+
+  const scoreHtml = p.puntuacion_general != null
+    ? `<span class="score ${scoreClass(p.puntuacion_general)}">${p.puntuacion_general.toFixed(1)}</span>`
+    : '<span class="score score-null">—</span>';
+
+  const fotosHtml = p.puntuacion_fotos != null
+    ? `<span class="score-sm ${scoreClass(p.puntuacion_fotos)}">${p.puntuacion_fotos.toFixed(1)}</span>`
+    : '<span class="null-val">—</span>';
+
+  const m2html = (() => {
+    const u = p.m2;
+    const c = p.m2_construidos;
+    if (u && c && u !== c) return `${u}<small style="color:#9aabb8">/${c}</small>`;
+    if (u) return `${u}`;
+    if (c) return `<span style="color:#9aabb8">${c}</span>`;
+    return '<span class="null-val">—</span>';
+  })();
+
+  const hbHtml = (() => {
+    const h = p.habitaciones != null ? p.habitaciones : '?';
+    const b = p.banos != null ? p.banos : '?';
+    return `${h}H·${b}B`;
+  })();
+
+  const oriHtml = p.orientacion
+    ? `<span title="${esc(p.orientacion)}" style="cursor:help">${p.orientacion.length > 12 ? p.orientacion.substring(0,12)+'…' : p.orientacion}</span>`
+    : '<span class="null-val">—</span>';
+
+  const locHtml = `<span class="loc-main">${esc(p.direccion)}</span><span class="loc-sub">${esc(p.barrio)} · ${esc(p.distrito)}</span>`;
+
+  const extrasHtml = [
+    extChip('Asc', p.ascensor),
+    extChip('Ext', p.exterior),
+    extChip('Terr', p.terraza),
+    extChip('Gar', p.garaje),
+    extChip('Tras', p.trastero),
+    extChip('AC', p.aire_acondicionado),
+  ].join('');
+
+  const precioObj = p.precio_objetivo
+    ? `<span class="price-obj">${eur(p.precio_objetivo)}</span><span class="price-range">${eur(p.precio_objetivo_min)} – ${eur(p.precio_objetivo_max)}</span>`
+    : '<span class="null-val">—</span>';
+
+  const linksHtml = `
+    <div class="td-links">
+      <a class="link-icon" href="${esc(p.url)}" target="_blank" title="Ver en ${esc(p.portal)}" onclick="event.stopPropagation()">↗</a>
+      <a class="link-icon" href="detalle.html?id=${esc(p.id)}" title="Ver detalle" onclick="event.stopPropagation()">☰</a>
+    </div>`;
+
+  const motivo = p.motivo_descarte ? ` title="${esc(p.motivo_descarte)}"` : '';
+
+  return `<tr class="${rowCls}" onclick="location.href='detalle.html?id=${esc(p.id)}'" data-portal="${p.portal||''}" data-nota="${p.puntuacion_general||0}" data-desc="${isDesc?1:0}" data-nodisp="${isNoDisp?1:0}">
+    <td>${scoreHtml}</td>
+    <td>${fotosHtml}</td>
+    <td>${contactoHtml}</td>
+    <td>${visitaHtml}</td>
+    <td${motivo}>${estadoBadge || '<span class="null-val">—</span>'}</td>
+    <td class="td-right"><span class="price">${eur(p.precio)}</span></td>
+    <td class="td-right">${precioObj}</td>
+    <td class="td-right"><span class="dto">${p.descuento_estimado_pct != null ? p.descuento_estimado_pct + '%' : '<span class="null-val">—</span>'}</span></td>
+    <td class="td-right"><span class="euro-m2">${p.precio_m2 != null ? num(p.precio_m2) : '<span class="null-val">—</span>'}</span></td>
+    <td class="td-right">${m2html}</td>
+    <td>${hbHtml}</td>
+    <td>${p.planta || '<span class="null-val">—</span>'}</td>
+    <td>${oriHtml}</td>
+    <td class="wrap">${locHtml}</td>
+    <td>${extrasHtml}</td>
+    <td>${certEl(p.certificado_energetico)}</td>
+    <td>${calefFmt(p.calefaccion)}</td>
+    <td>${p.ano_construccion || '<span class="null-val">—</span>'}</td>
+    <td class="td-right">${p.gastos_comunidad != null ? eur(p.gastos_comunidad) + '<small style="color:#9aabb8">/mes</small>' : '<span class="null-val">—</span>'}</td>
+    <td>${estadoFmt(p.estado)}</td>
+    <td>${agenciaFmt(p.honorarios_agencia)}</td>
+    <td>${linksHtml}</td>
+  </tr>`;
+}
+
+function applyFilters() {
+  const hideDesc   = document.getElementById('hidDesc').checked;
+  const hideNoDisp = document.getElementById('hideNoDisp').checked;
+  const portalF    = document.getElementById('filterPortal').value;
+  const notaF      = parseFloat(document.getElementById('filterNota').value) || 0;
+
+  const rows = document.querySelectorAll('#tbody tr');
+  let visible = 0;
+  rows.forEach(r => {
+    const isDesc   = r.dataset.desc === '1';
+    const isNoDisp = r.dataset.nodisp === '1';
+    const portal   = r.dataset.portal;
+    const nota     = parseFloat(r.dataset.nota) || 0;
+
+    let show = true;
+    if (hideDesc && isDesc) show = false;
+    if (hideNoDisp && isNoDisp) show = false;
+    if (portalF && portal !== portalF) show = false;
+    if (nota < notaF) show = false;
+
+    r.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  const total = allPisos.length;
+  const desc  = allPisos.filter(p => p.descartado).length;
+  const nodisp = allPisos.filter(p => p.disponible === false).length;
+  const notas  = allPisos.filter(p => p.puntuacion_general != null).map(p => p.puntuacion_general);
+  const media  = notas.length ? (notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1) : '—';
+  document.getElementById('stats').textContent = `${visible} de ${total} pisos · ${desc} descartados · ${nodisp} no disponibles · Nota media: ${media}`;
+}
+
+fetch('./pisos.json')
+  .then(r => { if (!r.ok) throw new Error('No se pudo cargar pisos.json'); return r.json(); })
+  .then(data => {
+    allPisos = data.slice().sort((a, b) => (b.puntuacion_general || 0) - (a.puntuacion_general || 0));
+    document.getElementById('tbody').innerHTML = allPisos.map(renderRow).join('');
+    applyFilters();
+
+    ['hidDesc', 'hideNoDisp', 'filterPortal', 'filterNota'].forEach(id => {
+      document.getElementById(id).addEventListener('change', applyFilters);
+    });
+  })
+  .catch(err => {
+    document.getElementById('tbody').innerHTML = `<tr><td colspan="22" style="padding:40px;text-align:center;color:#dc2626">${err.message}<br><small>Sirve los archivos desde un servidor local: <code>python3 -m http.server</code></small></td></tr>`;
+  });
+</script>
+</body>
+</html>
