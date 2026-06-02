@@ -114,9 +114,11 @@
       letter-spacing: 0.3px;
       white-space: nowrap;
     }
-    .badge-desc  { background: #fee2e2; color: #b91c1c; }
-    .badge-nodisp { background: #e5e7eb; color: #4b5563; }
-    .badge-visita { background: #ede9fe; color: #5b21b6; }
+    .badge-nuevo    { background: #dbeafe; color: #1d4ed8; }
+    .badge-contacto { background: #fef3c7; color: #92400e; }
+    .badge-visita   { background: #ede9fe; color: #5b21b6; }
+    .badge-desc     { background: #fee2e2; color: #b91c1c; }
+    .badge-nodisp   { background: #e5e7eb; color: #4b5563; }
 
     .cert {
       display: inline-block; padding: 1px 7px; border-radius: 3px;
@@ -189,8 +191,11 @@
 </div>
 
 <div class="filters">
-  <label><input type="checkbox" id="hidDesc" checked> Ocultar descartados</label>
-  <label><input type="checkbox" id="hideNoDisp" checked> Ocultar no disponibles</label>
+  <label><input type="checkbox" class="fg" value="pendiente_contactar" checked> Nuevos</label>
+  <label><input type="checkbox" class="fg" value="pendiente_visita" checked> Contactados</label>
+  <label><input type="checkbox" class="fg" value="visitado" checked> Visitados</label>
+  <label><input type="checkbox" class="fg" value="descartado"> Descartados</label>
+  <label><input type="checkbox" class="fg" value="no_disponible"> No disponibles</label>
   <span style="color:#d0d8e4">|</span>
   <label>Portal:
     <select id="filterPortal">
@@ -217,7 +222,7 @@
         <th>Fotos</th>
         <th>F. Contacto</th>
         <th>F. Visita</th>
-        <th>Estado</th>
+        <th>Gestión</th>
         <th class="th-right">Precio</th>
         <th class="th-right">P. Objetivo</th>
         <th class="th-right">Dto%</th>
@@ -233,6 +238,7 @@
         <th>Año</th>
         <th class="th-right">Gastos com.</th>
         <th>Estado piso</th>
+        <th>Reforma (visual)</th>
         <th>Agencia</th>
         <th></th>
       </tr>
@@ -308,24 +314,39 @@ function estadoFmt(s) {
 function esc(s) {
   return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
+function reformaVisualFmt(s) {
+  if (!s) return '<span class="null-val">—</span>';
+  if (s === 'listo para entrar') return '<span style="color:#059669;font-weight:600">Listo</span>';
+  if (s === 'reforma parcial') return '<span style="color:#d97706;font-weight:600">Parcial</span>';
+  if (s === 'reforma integral') return '<span style="color:#dc2626;font-weight:600">Integral</span>';
+  return `<span>${s}</span>`;
+}
 function agenciaFmt(s) {
   if (!s) return '<span class="null-val">—</span>';
   return `<span style="color:#ea580c;font-weight:600" title="${esc(s)}">Sí *</span>`;
 }
 
+function gestionBadge(p) {
+  const g = p.gestion;
+  if (!g) return '<span class="null-val">—</span>';
+  const map = {
+    pendiente_contactar: ['badge-nuevo',    'Nuevo'],
+    pendiente_visita:    ['badge-contacto', 'Contactado'],
+    visitado:            ['badge-visita',   'Visitado'],
+    descartado:          ['badge-desc',     'Descartado'],
+    no_disponible:       ['badge-nodisp',   'No disponible'],
+  };
+  const [cls, label] = map[g] || ['', g];
+  const motivo = (g === 'descartado' && p.motivo_descarte)
+    ? ` title="${esc(p.motivo_descarte)}"` : '';
+  return `<span class="badge ${cls}"${motivo}>${label}</span>`;
+}
+
 function renderRow(p) {
-  const isDesc = p.descartado === true;
-  const isNoDisp = p.disponible === false;
-  const hasVisita = !!p.fecha_visita;
+  const g = p.gestion || '';
   const hasComent = !!p.comentario_personal;
 
-  const rowCls = isDesc ? 'descartado' : (isNoDisp ? 'no-disponible' : '');
-
-  let estadoBadge = '';
-  if (isDesc) estadoBadge += `<span class="badge badge-desc">Descartado</span> `;
-  if (isNoDisp) estadoBadge += `<span class="badge badge-nodisp">No disponible</span> `;
-  if (hasVisita) estadoBadge += `<span class="badge badge-visita">Visitado</span> `;
-  if (hasComent) estadoBadge += `<span class="comment-icon" title="${esc(p.comentario_personal)}">💬</span> `;
+  const rowCls = g === 'descartado' ? 'descartado' : g === 'no_disponible' ? 'no-disponible' : '';
 
   const contactoHtml = p.fecha_contacto
     ? `<span class="date-set">${fmtDate(p.fecha_contacto)}</span>`
@@ -382,14 +403,14 @@ function renderRow(p) {
       <a class="link-icon" href="detalle.html?id=${esc(p.id)}" title="Ver detalle" onclick="event.stopPropagation()">☰</a>
     </div>`;
 
-  const motivo = p.motivo_descarte ? ` title="${esc(p.motivo_descarte)}"` : '';
+  const comentHtml = hasComent ? ` <span class="comment-icon" title="${esc(p.comentario_personal)}">💬</span>` : '';
 
-  return `<tr class="${rowCls}" onclick="location.href='detalle.html?id=${esc(p.id)}'" data-portal="${p.portal||''}" data-nota="${p.puntuacion_general||0}" data-desc="${isDesc?1:0}" data-nodisp="${isNoDisp?1:0}">
+  return `<tr class="${rowCls}" onclick="location.href='detalle.html?id=${esc(p.id)}'" data-portal="${p.portal||''}" data-nota="${p.puntuacion_general||0}" data-gestion="${g}">
     <td>${scoreHtml}</td>
     <td>${fotosHtml}</td>
     <td>${contactoHtml}</td>
     <td>${visitaHtml}</td>
-    <td${motivo}>${estadoBadge || '<span class="null-val">—</span>'}</td>
+    <td>${gestionBadge(p)}${comentHtml}</td>
     <td class="td-right"><span class="price">${eur(p.precio)}</span></td>
     <td class="td-right">${precioObj}</td>
     <td class="td-right"><span class="dto">${p.descuento_estimado_pct != null ? p.descuento_estimado_pct + '%' : '<span class="null-val">—</span>'}</span></td>
@@ -405,28 +426,26 @@ function renderRow(p) {
     <td>${p.ano_construccion || '<span class="null-val">—</span>'}</td>
     <td class="td-right">${p.gastos_comunidad != null ? eur(p.gastos_comunidad) + '<small style="color:#9aabb8">/mes</small>' : '<span class="null-val">—</span>'}</td>
     <td>${estadoFmt(p.estado)}</td>
+    <td>${reformaVisualFmt(p.estado_reforma_visual)}</td>
     <td>${agenciaFmt(p.honorarios_agencia)}</td>
     <td>${linksHtml}</td>
   </tr>`;
 }
 
 function applyFilters() {
-  const hideDesc   = document.getElementById('hidDesc').checked;
-  const hideNoDisp = document.getElementById('hideNoDisp').checked;
+  const selectedGs = new Set(Array.from(document.querySelectorAll('.fg:checked')).map(cb => cb.value));
   const portalF    = document.getElementById('filterPortal').value;
   const notaF      = parseFloat(document.getElementById('filterNota').value) || 0;
 
   const rows = document.querySelectorAll('#tbody tr');
   let visible = 0;
   rows.forEach(r => {
-    const isDesc   = r.dataset.desc === '1';
-    const isNoDisp = r.dataset.nodisp === '1';
-    const portal   = r.dataset.portal;
-    const nota     = parseFloat(r.dataset.nota) || 0;
+    const gestion = r.dataset.gestion || '';
+    const portal  = r.dataset.portal;
+    const nota    = parseFloat(r.dataset.nota) || 0;
 
     let show = true;
-    if (hideDesc && isDesc) show = false;
-    if (hideNoDisp && isNoDisp) show = false;
+    if (!selectedGs.has(gestion)) show = false;
     if (portalF && portal !== portalF) show = false;
     if (nota < notaF) show = false;
 
@@ -434,12 +453,12 @@ function applyFilters() {
     if (show) visible++;
   });
 
-  const total = allPisos.length;
-  const desc  = allPisos.filter(p => p.descartado).length;
-  const nodisp = allPisos.filter(p => p.disponible === false).length;
-  const notas  = allPisos.filter(p => p.puntuacion_general != null).map(p => p.puntuacion_general);
-  const media  = notas.length ? (notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1) : '—';
-  document.getElementById('stats').textContent = `${visible} de ${total} pisos · ${desc} descartados · ${nodisp} no disponibles · Nota media: ${media}`;
+  const total    = allPisos.length;
+  const byGestion = g => allPisos.filter(p => p.gestion === g).length;
+  const notas    = allPisos.filter(p => p.puntuacion_general != null).map(p => p.puntuacion_general);
+  const media    = notas.length ? (notas.reduce((a, b) => a + b, 0) / notas.length).toFixed(1) : '—';
+  document.getElementById('stats').textContent =
+    `${visible} de ${total} pisos · ${byGestion('pendiente_contactar')} nuevos · ${byGestion('descartado')} descartados · ${byGestion('no_disponible')} no disponibles · Nota media: ${media}`;
 }
 
 fetch('./pisos.json')
@@ -449,12 +468,13 @@ fetch('./pisos.json')
     document.getElementById('tbody').innerHTML = allPisos.map(renderRow).join('');
     applyFilters();
 
-    ['hidDesc', 'hideNoDisp', 'filterPortal', 'filterNota'].forEach(id => {
+    document.querySelectorAll('.fg').forEach(cb => cb.addEventListener('change', applyFilters));
+    ['filterPortal', 'filterNota'].forEach(id => {
       document.getElementById(id).addEventListener('change', applyFilters);
     });
   })
   .catch(err => {
-    document.getElementById('tbody').innerHTML = `<tr><td colspan="22" style="padding:40px;text-align:center;color:#dc2626">${err.message}<br><small>Sirve los archivos desde un servidor local: <code>python3 -m http.server</code></small></td></tr>`;
+    document.getElementById('tbody').innerHTML = `<tr><td colspan="23" style="padding:40px;text-align:center;color:#dc2626">${err.message}<br><small>Sirve los archivos desde un servidor local: <code>python3 -m http.server</code></small></td></tr>`;
   });
 </script>
 </body>
