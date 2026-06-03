@@ -193,6 +193,7 @@
 <div class="filters">
   <label><input type="checkbox" class="fg" value="pendiente_contactar" checked> Nuevos</label>
   <label><input type="checkbox" class="fg" value="pendiente_visita" checked> Contactados</label>
+  <label><input type="checkbox" class="fg" value="visita_programada" checked> Visita programada</label>
   <label><input type="checkbox" class="fg" value="visitado" checked> Visitados</label>
   <label><input type="checkbox" class="fg" value="descartado"> Descartados</label>
   <label><input type="checkbox" class="fg" value="no_disponible"> No disponibles</label>
@@ -332,6 +333,7 @@ function gestionBadge(p) {
   const map = {
     pendiente_contactar: ['badge-nuevo',    'Nuevo'],
     pendiente_visita:    ['badge-contacto', 'Contactado'],
+    visita_programada:   ['badge-visita',   'Visita 📅'],
     visitado:            ['badge-visita',   'Visitado'],
     descartado:          ['badge-desc',     'Descartado'],
     no_disponible:       ['badge-nodisp',   'No disponible'],

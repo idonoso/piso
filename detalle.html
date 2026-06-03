@@ -204,6 +204,71 @@
     .error-box h2 { color: #dc2626; margin-bottom: 8px; }
     .error-box p { color: #5a6a7a; font-size: 14px; }
     .error-box code { background: #f5f7fa; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+
+    .visita-card {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border: 1px solid #c4b5fd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .visita-card .card-header {
+      background: #7c3aed;
+      color: #fff;
+      border-bottom: none;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px;
+    }
+    .visita-meta {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #5b21b6;
+      font-weight: 600;
+      border-bottom: 1px solid #ddd6fe;
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .preguntas-list {
+      list-style: none;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .preguntas-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #1a2533;
+      background: #fff;
+      border: 1px solid #ede9fe;
+      cursor: pointer;
+      transition: background 0.1s;
+      user-select: none;
+    }
+    .preguntas-list li:hover { background: #f5f3ff; }
+    .preguntas-list li.checked {
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+      color: #15803d;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+    .pregunta-cb {
+      width: 18px; height: 18px; min-width: 18px;
+      border: 2px solid #c4b5fd;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700;
+      color: #7c3aed;
+      margin-top: 1px;
+    }
+    .preguntas-list li.checked .pregunta-cb {
+      background: #16a34a;
+      border-color: #16a34a;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -228,6 +293,13 @@
 
 <script>
 let lbPhotos = [], lbIdx = 0;
+
+function togglePregunta(i) {
+  const li = document.getElementById('pq' + i);
+  const cb = document.getElementById('cb' + i);
+  li.classList.toggle('checked');
+  cb.textContent = li.classList.contains('checked') ? '✓' : '✓';
+}
 
 function eur(n) {
   if (n == null) return '<span class="null-val">—</span>';
@@ -314,7 +386,7 @@ function renderPiso(p) {
   let badges = '';
   if (isDesc)    badges += `<span class="badge badge-desc">Descartado</span>`;
   if (isNoDisp)  badges += `<span class="badge badge-nodisp">No disponible</span>`;
-  if (hasVisita) badges += `<span class="badge badge-visita">Visitado ${fmtDate(p.fecha_visita)}</span>`;
+  if (hasVisita) badges += `<span class="badge badge-visita">Visita ${fmtDate(p.fecha_visita)}${p.hora_visita ? ' ' + p.hora_visita + 'h' : ''}</span>`;
   if (p.fecha_contacto) badges += `<span class="badge badge-contact">Contactado ${fmtDate(p.fecha_contacto)}</span>`;
   badges += `<span class="badge badge-portal">${p.portal}</span>`;
 
@@ -445,6 +517,27 @@ function renderPiso(p) {
     html += `<div class="card full-width">
       <div class="card-header">Descripción del anuncio</div>
       <div class="card-body"><p class="prose">${esc(p.descripcion)}</p></div>
+    </div>`;
+  }
+
+  // Card: Preguntas para la visita
+  if (p.preguntas_visita && p.preguntas_visita.length) {
+    const visitaInfo = p.fecha_visita
+      ? `📅 Visita: ${fmtDate(p.fecha_visita)}${p.hora_visita ? ' a las ' + p.hora_visita + 'h' : ''}`
+      : '📅 Visita pendiente';
+    const numInfo = p.comentario_personal && p.comentario_personal.includes('Número:')
+      ? ' · 📞 ' + p.comentario_personal.replace(/.*Número:\s*/, 'Nº ')
+      : '';
+    const items = p.preguntas_visita.map((q, i) =>
+      `<li id="pq${i}" onclick="togglePregunta(${i})">
+        <span class="pregunta-cb" id="cb${i}">✓</span>
+        ${esc(q)}
+      </li>`
+    ).join('');
+    html += `<div class="card visita-card full-width">
+      <div class="card-header">🏠 Checklist para la visita (${p.preguntas_visita.length} preguntas)</div>
+      <div class="visita-meta">${visitaInfo}${numInfo}</div>
+      <ul class="preguntas-list" id="preguntasList">${items}</ul>
     </div>`;
   }
 
