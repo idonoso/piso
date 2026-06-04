@@ -226,14 +226,21 @@
       border-bottom: 1px solid #ddd6fe;
       display: flex; gap: 16px; flex-wrap: wrap;
     }
-    .preguntas-list {
+    .visita-section-title {
+      padding: 8px 16px 4px;
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .visita-section-title.preguntas-title { color: #6d28d9; }
+    .visita-section-title.comprobaciones-title { color: #0e7490; border-top: 1px solid #ddd6fe; margin-top: 4px; padding-top: 12px; }
+    .visita-items-list {
       list-style: none;
-      padding: 12px 16px;
+      padding: 4px 16px 12px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 5px;
     }
-    .preguntas-list li {
+    .visita-items-list li {
       display: flex;
       align-items: flex-start;
       gap: 10px;
@@ -242,29 +249,31 @@
       font-size: 13px;
       color: #1a2533;
       background: #fff;
-      border: 1px solid #ede9fe;
       cursor: pointer;
       transition: background 0.1s;
       user-select: none;
     }
-    .preguntas-list li:hover { background: #f5f3ff; }
-    .preguntas-list li.checked {
+    .visita-items-list.preguntas-list li { border: 1px solid #ede9fe; }
+    .visita-items-list.preguntas-list li:hover { background: #f5f3ff; }
+    .visita-items-list.comprobaciones-list li { border: 1px solid #cffafe; }
+    .visita-items-list.comprobaciones-list li:hover { background: #ecfeff; }
+    .visita-items-list li.checked {
       background: #f0fdf4;
-      border-color: #bbf7d0;
+      border-color: #bbf7d0 !important;
       color: #15803d;
       text-decoration: line-through;
       opacity: 0.7;
     }
     .pregunta-cb {
       width: 18px; height: 18px; min-width: 18px;
-      border: 2px solid #c4b5fd;
       border-radius: 4px;
       display: flex; align-items: center; justify-content: center;
       font-size: 11px; font-weight: 700;
-      color: #7c3aed;
       margin-top: 1px;
     }
-    .preguntas-list li.checked .pregunta-cb {
+    .preguntas-list .pregunta-cb { border: 2px solid #c4b5fd; color: #7c3aed; }
+    .comprobaciones-list .pregunta-cb { border: 2px solid #a5f3fc; color: #0e7490; }
+    .visita-items-list li.checked .pregunta-cb {
       background: #16a34a;
       border-color: #16a34a;
       color: #fff;
@@ -294,11 +303,9 @@
 <script>
 let lbPhotos = [], lbIdx = 0;
 
-function togglePregunta(i) {
-  const li = document.getElementById('pq' + i);
-  const cb = document.getElementById('cb' + i);
+function toggleItem(id) {
+  const li = document.getElementById(id);
   li.classList.toggle('checked');
-  cb.textContent = li.classList.contains('checked') ? '✓' : '✓';
 }
 
 function eur(n) {
@@ -520,25 +527,55 @@ function renderPiso(p) {
     </div>`;
   }
 
-  // Card: Preguntas para la visita
-  if (p.preguntas_visita && p.preguntas_visita.length) {
-    const visitaInfo = p.fecha_visita
-      ? `📅 Visita: ${fmtDate(p.fecha_visita)}${p.hora_visita ? ' a las ' + p.hora_visita + 'h' : ''}`
-      : '📅 Visita pendiente';
-    const numInfo = p.comentario_personal && p.comentario_personal.includes('Número:')
-      ? ' · 📞 ' + p.comentario_personal.replace(/.*Número:\s*/, 'Nº ')
-      : '';
-    const items = p.preguntas_visita.map((q, i) =>
-      `<li id="pq${i}" onclick="togglePregunta(${i})">
-        <span class="pregunta-cb" id="cb${i}">✓</span>
-        ${esc(q)}
-      </li>`
-    ).join('');
-    html += `<div class="card visita-card full-width">
-      <div class="card-header">🏠 Checklist para la visita (${p.preguntas_visita.length} preguntas)</div>
-      <div class="visita-meta">${visitaInfo}${numInfo}</div>
-      <ul class="preguntas-list" id="preguntasList">${items}</ul>
-    </div>`;
+  // Card: Preguntas y comprobaciones para la visita
+  if (p.preguntas_visita) {
+    // Soporte formato nuevo {preguntas, comprobaciones} y formato legacy array
+    const preguntas = Array.isArray(p.preguntas_visita)
+      ? p.preguntas_visita
+      : (p.preguntas_visita.preguntas || []);
+    const comprobaciones = Array.isArray(p.preguntas_visita)
+      ? []
+      : (p.preguntas_visita.comprobaciones || []);
+    const total = preguntas.length + comprobaciones.length;
+
+    if (total > 0) {
+      const visitaInfo = p.fecha_visita
+        ? `📅 Visita: ${fmtDate(p.fecha_visita)}${p.hora_visita ? ' a las ' + p.hora_visita + 'h' : ''}`
+        : '📅 Visita pendiente';
+      const numInfo = p.comentario_personal && p.comentario_personal.includes('Número:')
+        ? ' · 📞 ' + p.comentario_personal.replace(/.*Número:\s*/, 'Nº ')
+        : '';
+
+      let innerHtml = '';
+
+      if (preguntas.length) {
+        const items = preguntas.map((q, i) => {
+          const uid = `pq-p-${i}`;
+          return `<li id="${uid}" onclick="toggleItem('${uid}')">
+            <span class="pregunta-cb">✓</span>${esc(q)}
+          </li>`;
+        }).join('');
+        innerHtml += `<div class="visita-section-title preguntas-title">🗣 Preguntas al vendedor / agente (${preguntas.length})</div>
+          <ul class="visita-items-list preguntas-list">${items}</ul>`;
+      }
+
+      if (comprobaciones.length) {
+        const items = comprobaciones.map((q, i) => {
+          const uid = `pq-c-${i}`;
+          return `<li id="${uid}" onclick="toggleItem('${uid}')">
+            <span class="pregunta-cb">✓</span>${esc(q)}
+          </li>`;
+        }).join('');
+        innerHtml += `<div class="visita-section-title comprobaciones-title">🔍 Comprobaciones in situ (${comprobaciones.length})</div>
+          <ul class="visita-items-list comprobaciones-list">${items}</ul>`;
+      }
+
+      html += `<div class="card visita-card full-width">
+        <div class="card-header">🏠 Checklist para la visita · ${total} ítems</div>
+        <div class="visita-meta">${visitaInfo}${numInfo}</div>
+        ${innerHtml}
+      </div>`;
+    }
   }
 
   // Card: Notas de análisis

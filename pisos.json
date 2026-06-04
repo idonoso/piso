@@ -1040,23 +1040,46 @@
     "precio_objetivo_min": 234000,
     "precio_objetivo_max": 247000,
     "notas_analisis": "FOTOS (4.5/10)\n0 fotos con IA — todas son fotos reales. Suelo tarima clara nueva en toda la vivienda (confirmado en descripción).\n• SALÓN: luminoso, puerta corredera al balcón/terraza visible, mueble TV clásico, paredes gotelet blancas, radiador.\n• COCINA: muy básica — muebles blancos sencillos, alicatado blanco metro, caldera gas visible, lavadora integrada. No renovada en profundidad.\n• DORMITORIOS: 3 habitaciones en 60m² implica habitaciones muy pequeñas. Foto 4 muestra dormitorio tan pequeño que apenas cabe una bicicleta elíptica. Dormitorio 2 con armario naranja clásico.\n• BAÑO: plato ducha con varilla, mueble lavabo moderno, azulejos blancos sencillos, funcional.\n• VISTAS: parking y bloques de ladrillo rojo años 70 — entorno típico Madrid periférico.\n• SORPRESA POSITIVA: zonas comunes del edificio completamente renovadas (ascensor nuevo, pasillos muy limpios y modernos).\n• Bonificaciones: suelo tarima nuevo (+0.3), terraza insinuada (+0.3), zonas comunes renovadas (+0.3). Penalizaciones: cocina básica sin renovar (-0.5), habitaciones muy pequeñas percibidas (-0.5), fotos amateur/exposición media (-0.5).\n\nCARACTERÍSTICAS (5.5/10)\n• Base 5; 1ª planta exterior (-0.5); TERRAZA (+1.0 — único del grupo)\n• 3 habitaciones, calefacción gas individual, año 1972 (edificio antiguo), sin AC\n\nUBICACIÓN (4.0/10)\n• Barrio Pavones, Distrito Moratalaz — ligeramente mejor imagen que Vinateros pero misma zona periférica\n• 10 min del metro e intercambiador de autobuses\n\nPRECIO\n• 4.333 €/m² — el precio/m² más bajo del grupo junto a Fontarrón\n• Para buen estado en Pavones se esperaría 3.800-4.000 €/m² → ~10% por encima (-0.5).\n\nNEGOCIACIÓN (7%)\nPrecio objetivo: ~242.000 € (rango 234.000 – 247.000 €)\n\nPUNTOS FUERTES\n• Único piso del grupo con TERRAZA, 3 habitaciones\n• Precio más bajo (260k), precio/m² competitivo, suelo tarima nuevo\n• Zonas comunes muy bien renovadas, agencia local\n\nPUNTOS DÉBILES\n• Habitaciones muy pequeñas (3 en 60m² = espacios muy reducidos)\n• Cocina sin reformar, 1ª planta, sin AC\n• Edificio de 1972, vistas poco atractivas (parking)",
-    "preguntas_visita": [
-      "¿Hay rejas en las ventanas del salón o dormitorios por ser 1ª planta?",
-      "¿Cuánto ruido llega de la calle (coches, vecinos)?",
-      "¿Cuánto mide exactamente cada habitación? (son 3 en 60m²)",
-      "¿La terraza es totalmente privada o compartida con algún vecino?",
-      "¿Cuánto mide la terraza aproximadamente?",
-      "¿Entra sol directo en el salón o en alguna habitación?",
-      "¿La cocina se puede reformar sin problema estructural? ¿Hay espacio para ampliarla?",
-      "¿Hay aire acondicionado o preinstalación? (no consta en el anuncio)",
-      "¿Hay trastero incluido en el precio?",
-      "¿Cuánto son los gastos de comunidad mensuales?",
-      "¿Hay alguna derrama pendiente o aprobada en la comunidad?",
-      "¿Cuánto tiempo llevan en venta y por qué venden?",
-      "¿El edificio tiene ITE pasada? ¿En buen estado la fachada y zonas comunes?",
-      "¿Las ventanas son las originales de 1972 o han sido cambiadas?",
-      "¿Qué electrodomésticos se incluyen en la venta?"
-    ]
+    "preguntas_visita": {
+      "preguntas": [
+        "¿La vivienda tiene alguna carga hipotecaria, embargo u otra carga registral?",
+        "¿Hay derramas pendientes o aprobadas en la comunidad? (el ascensor y escaleras nuevas sugieren derramas recientes)",
+        "¿Ha pasado la ITE el edificio? El edificio es de 1972, ¿cuándo fue la última inspección?",
+        "¿La calefacción es realmente individual de gas? El radiador del salón parece de hierro fundido antiguo, propio de calefacción central de comunidad.",
+        "¿Cuánto es el IBI anual?",
+        "¿Cuánto son los gastos de comunidad? (el ascensor nuevo y renovación de escaleras sugieren cuota elevada)",
+        "¿De qué año es la instalación eléctrica? ¿Tiene cuadro con diferencial y magnetotérmicos?",
+        "¿De qué año es la instalación de fontanería? ¿Son tuberías de cobre, PVC o plomo?",
+        "¿Cuándo fue la última reforma y qué se reformó?",
+        "¿Por qué venden? ¿Cuánto tiempo llevan en venta?",
+        "En las fotos no se ve placa de cocina ni extractor. ¿Hay fuegos? ¿Hay salida de humos homologada?",
+        "¿Hay espacio o instalación para lavavajillas?",
+        "¿Cuánto miden exactamente las tres habitaciones (útil, sin armarios)? La más pequeña parece no caber ni una cama individual.",
+        "¿La terraza es el balcón del salón o hay una terraza adicional? ¿Cuánto mide?",
+        "¿Hay trastero y está incluido en el precio?",
+        "¿Hay honorarios de agencia adicionales al precio?",
+        "¿Cuándo estará disponible el certificado energético?",
+        "¿Los muebles van incluidos en el precio de venta?",
+        "¿La calefacción tiene termostato automático o es manual? ¿Hay termostato por estancias o uno central?"
+      ],
+      "comprobaciones": [
+        "Comprobar el radiador del salón: tocar si está caliente, ver si tiene llave de paso individual o parece ser de comunidad.",
+        "Buscar la placa de cocina (fuegos) y el extractor — en las fotos no son visibles. Si no hay salida de humos, es obra.",
+        "Medir las tres habitaciones con metro o app, especialmente la más pequeña (la de la bicicleta elíptica).",
+        "Buscar humedades en las esquinas de techos, bajo las ventanas y en el baño (gotelé puede ocultar manchas).",
+        "Comprobar si el balcón del salón es la terraza anunciada y medir su superficie real.",
+        "Revisar el cuadro eléctrico: año, si tiene diferencial y magnetotérmicos, número de circuitos.",
+        "Abrir los grifos del baño: comprobar presión del agua y tiempo hasta que sale caliente.",
+        "Revisar la silicona de la ducha y las juntas del plato: buscar moho o sellado deteriorado.",
+        "Pedir silencio 1 minuto en la 1ª planta y anotar ruidos de calle, vecinos y ascensor.",
+        "Comprobar las ventanas de aluminio: pasar la mano por el marco buscando corrientes de aire.",
+        "La puerta de entrada es de madera maciza antigua — comprobar si tiene cerradura de seguridad actualizada.",
+        "Fotografiar el cuadro eléctrico y la caldera de gas para ver modelo y año.",
+        "Comprobar si hay tendedero o espacio habilitado para tender (no aparece en las fotos).",
+        "Revisar el estado de la tarima: juntas levantadas, suelo que cruje, zonas con movimiento.",
+        "Verificar el estado de las zonas comunes y preguntar al portero o vecino cuándo se hicieron las obras."
+      ]
+    }
   },
   {
     "id": "idealista_111445219",
@@ -1111,7 +1134,48 @@
     "precio_objetivo_min": 260000,
     "precio_objetivo_max": 275000,
     "notas_analisis": "FOTOS (7.5/10)\n0 fotos con IA — todas son fotos reales del piso habitado con mobiliario.\n• SALÓN: paredes beige, suelo laminado gris claro nuevo, luz natural excelente con vistas a vegetación verde del parque — confirma la orientación al parque con árboles visibles.\n• COCINA: muy bien reformada, muebles blancos con detalles amarillos, encimera de cuarzo gris, placa de inducción, lavavajillas integrado, focos de techo.\n• DORMITORIO PRINCIPAL: pequeño, suelo laminado, vista al parque, armario blanco, tendedero en techo (elemento negativo visual).\n• BAÑO: reformado con azulejos grises modernos, ducha con mampara, mueble de madera, toallero radiador — estrecho pero bien ejecutado.\n• DORMITORIO 2: habitación de niño verde menta, cama nido, algo desordenado.\n• FACHADA: confirma 1ª planta con reja de seguridad visible, jardín con flores frente al edificio (confirma el parque).\n• Bonificaciones: luz natural/vistas parque (+1.5), cocina renovada (+1.0), baño renovado (+0.5), suelo nuevo (+0.3). Penalizaciones: tendedero en dormitorio (-0.3), algo de desorden (-0.3).\n\nCARACTERÍSTICAS (4.5/10)\n• Base 5; 1ª planta exterior con ascensor (-0.5 por ser planta baja); 60m² (neutro)\n• Reformado (neutro); sin terraza ni garaje; sin AC mencionado\n\nUBICACIÓN (4.0/10)\n• Vinateros, Moratalaz — zona periférica. Metro Artilleros a 5 min a pie (mejor comunicación del grupo).\n• El piso da al parque, no a la calle — tranquilidad y vistas verdes incluso en 1ª planta.\n\nPRECIO\n• 4.817 €/m² — el precio/m² más alto de los pisos analizados\n• Para reforma de calidad media en Vinateros se esperaría 3.800-4.000 €/m² → >20% por encima (-1.0).\n\nNEGOCIACIÓN (7%)\nPrecio objetivo: ~269.000 € (rango 260.000 – 275.000 €)\n• El precio elevado da bastante margen\n\nPUNTOS FUERTES\n• Fotos reales sin IA, cocina muy bien reformada\n• Metro Artilleros a 5 min, vistas al parque, suelo nuevo uniforme\n• Inmobiliaria local (Inmobiliaria Pavones = conocen el barrio)\n\nPUNTOS DÉBILES\n• 1ª planta (reja en ventana visible en fachada)\n• Precio más caro/m² del grupo, solo 1 baño\n• Sin AC confirmado, 60m² construidos sin útiles especificados\n• Habitaciones pequeñas",
-    "hora_visita": "19:15"
+    "hora_visita": "19:15",
+    "preguntas_visita": {
+      "preguntas": [
+        "¿La vivienda tiene alguna carga hipotecaria, embargo u otra carga registral?",
+        "¿Hay derramas pendientes o aprobadas en la comunidad?",
+        "¿Ha pasado la ITE el edificio? ¿De qué año es el edificio? (no consta en el anuncio)",
+        "¿Cuánto es el IBI anual?",
+        "¿Cuánto son los gastos de comunidad?",
+        "¿De qué año es la instalación eléctrica? ¿Tiene cuadro con diferencial y magnetotérmicos?",
+        "¿De qué año es la instalación de fontanería? ¿Son tuberías de cobre, PVC o plomo?",
+        "¿Cuándo fue la última reforma? ¿Qué incluye exactamente lo que se ha reformado?",
+        "¿Por qué venden? ¿Cuánto tiempo llevan en venta?",
+        "Las rejas de las ventanas vistas en la fachada, ¿están en todas las ventanas del piso? ¿Son fijas o abatibles de seguridad (con llave)?",
+        "El baño no parece tener ventana al exterior. ¿Tiene ventilación mecánica? ¿Ha habido humedades?",
+        "El tendedero del dormitorio principal está anclado al techo. ¿Puede retirarse? ¿Hay otro espacio para tender?",
+        "¿Hay AC o preinstalación para instalar split?",
+        "¿Hay trastero y está incluido en el precio?",
+        "¿Hay plaza de garaje disponible o en alquiler en el edificio?",
+        "¿Hay honorarios de agencia adicionales al precio? (el precio/m² es >20% sobre la media de zona)",
+        "¿Hay margen de negociación sobre el precio?",
+        "¿Cuándo estará disponible el certificado energético?",
+        "¿Los muebles van incluidos en el precio de venta?",
+        "¿La calefacción tiene termostato automático o es manual? ¿Hay termostato por estancias o uno central?"
+      ],
+      "comprobaciones": [
+        "Revisar la parte baja de las paredes (primeros 50cm) buscando humedad por capilaridad — es planta 1ª.",
+        "Comprobar si las rejas son fijas o abatibles de seguridad, y si incluyen llave. Una reja fija es peligrosa en caso de incendio.",
+        "Medir el dormitorio principal: comprobar si cabe una cama de 150 con mesitas a ambos lados con el tendedero presente.",
+        "Entrar al baño y oler: si no hay ventana exterior, buscar señales de humedad en el techo y esquinas del techo.",
+        "Verificar si hay algún espacio exterior (balcón, patio, terraza) — no aparece nada en el anuncio ni en las fotos.",
+        "Comprobar si el tendedero del dormitorio puede retirarse o si está empotrado en la estructura.",
+        "Buscar humedades en esquinas de techos y bajo ventanas en todas las habitaciones.",
+        "Abrir los grifos: comprobar presión del agua y tiempo hasta que sale caliente.",
+        "Pedir silencio 1 minuto: el piso da al parque (positivo) pero 1ª planta puede tener ruido de peatones.",
+        "Comprobar si el pasillo es tan estrecho como parece en las fotos y si la distribución resulta cómoda en la práctica.",
+        "Revisar el cuadro eléctrico: número de circuitos, diferencial, año de instalación.",
+        "Verificar si la cocina tiene extractor o solo rejilla de ventilación hacia patio.",
+        "Comprobar el estado del laminado del suelo en todo el piso: hinchazón, juntas levantadas.",
+        "Fotografiar el cuadro eléctrico y las instalaciones visibles (bajo el fregadero, caja de registro) para ver materiales.",
+        "Observar desde dentro cómo se ve el parque y si la 1ª planta genera sensación de estar en semisótano o hay buena altura respecto a la acera."
+      ]
+    }
   },
   {
     "id": "idealista_111443416",
