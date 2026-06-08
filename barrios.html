@@ -169,9 +169,24 @@
     #seg-tooltip .tip-row { display: flex; justify-content: space-between; gap: 12px; }
     #seg-tooltip .tip-motivo { color: #94a3b8; margin-top: 6px; font-size: 10px; line-height: 1.5; }
 
-    .td-right { text-align: right; }
+    .td-right  { text-align: right; }
+    .td-center { text-align: center; }
     .null-val  { color: #c8cdd3; }
+
+    thead th[data-sort] { cursor: pointer; user-select: none; }
+    thead th[data-sort]:hover { background: #e2e7f0; }
+    thead th.sort-asc::after  { content: ' ▲'; font-size: 9px; }
+    thead th.sort-desc::after { content: ' ▼'; font-size: 9px; }
     .seg-nota  { font-size: 10px; color: #9aabb8; padding: 10px 24px; }
+
+    tfoot tr td {
+      padding: 7px 12px;
+      background: #eef1f6;
+      border-top: 2px solid #d0d8e4;
+      font-weight: 700;
+      font-size: 12px;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -193,26 +208,30 @@
     <thead>
       <tr>
         <th style="width:28px"></th>
-        <th style="width:36px">Nº</th>
-        <th>Nombre</th>
-        <th style="width:80px">Seg. absoluta</th>
-        <th style="width:90px">Seg. per-cápita</th>
-        <th class="th-right" style="width:80px">Personas<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
-        <th class="th-right" style="width:90px">Patrimonio<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
-        <th class="th-right" style="width:70px">Drogas<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
-        <th class="th-right" style="width:70px">Armas<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
-        <th class="th-right" style="width:90px">Accidentes<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
-        <th class="th-right" style="width:90px">Pers./10K·año</th>
-        <th class="th-right" style="width:90px">Patrim./10K·año</th>
-        <th class="th-right" style="width:90px">Drogas/10K·año</th>
-        <th class="th-right" style="width:90px">Armas/10K·año</th>
-        <th class="th-right" style="width:90px">Acc./10K·año</th>
-        <th class="th-right" style="width:110px">Población</th>
-        <th class="th-right" style="width:110px">Superficie</th>
-        <th class="th-right" style="width:110px">Densidad</th>
+        <th data-sort="num"        style="width:36px">Nº</th>
+        <th data-sort="nombre"     style="width:110px">Nombre</th>
+        <th data-sort="pob"        style="width:110px">Población</th>
+        <th data-sort="sup"        style="width:110px">Superficie</th>
+        <th data-sort="den"        >Densidad</th>
+        <th data-sort="indice_final" style="width:90px;text-align:center;background:#eef3ff">Índice<br><span style="font-weight:400;font-size:11px">combinado</span></th>
+        <th data-sort="personas"   style="width:100px;text-align:center">Personas<br><span style="font-weight:400;font-size:11px">/10K hab·año</span></th>
+        <th data-sort="patrimonio" style="width:100px;text-align:center">Patrimonio<br><span style="font-weight:400;font-size:11px">/10K hab·año</span></th>
+        <th data-sort="drogas"     style="width:100px;text-align:center">Drogas<br><span style="font-weight:400;font-size:11px">/10K hab·año</span></th>
+        <th data-sort="armas"      style="width:100px;text-align:center">Armas<br><span style="font-weight:400;font-size:11px">/10K hab·año</span></th>
+        <th data-sort="accidentes" style="width:100px;text-align:center">Accidentes<br><span style="font-weight:400;font-size:11px">/10K hab·año</span></th>
+        <th data-sort="detenidos"  style="width:100px;text-align:center">Detenidos<br><span style="font-weight:400;font-size:11px">/10K hab·año</span></th>
+        <th data-sort="criminalidad" style="width:110px;text-align:center">Índice<br><span style="font-weight:400;font-size:11px">10K hab·año</span></th>
+        <th data-sort="abs_personas"   style="width:80px;text-align:center;border-left:2px solid #d0d8e4">Personas<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
+        <th data-sort="abs_patrimonio" style="width:80px;text-align:center">Patrimonio<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
+        <th data-sort="abs_drogas"     style="width:80px;text-align:center">Drogas<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
+        <th data-sort="abs_armas"      style="width:80px;text-align:center">Armas<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
+        <th data-sort="abs_accidentes" style="width:80px;text-align:center">Accidentes<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
+        <th data-sort="abs_detenidos"  style="width:80px;text-align:center">Detenidos<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
+        <th data-sort="indice_abs" style="width:90px;text-align:center">Índice<br><span style="font-weight:400;font-size:11px">media/mes</span></th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
+    <tfoot id="tfoot"></tfoot>
   </table>
   <p class="seg-nota">* Seguridad calculada a partir de estadísticas policiales del Ayuntamiento de Madrid. Datos absolutos, no per-cápita. Población y superficie a 01/01/2025.</p>
 </div>
@@ -299,6 +318,14 @@ function barrioNum(distNum, i) {
 
 function calcIndicePc(secByKey) {
   const PESOS = [0.30, 0.20, 0.20, 0.25, 0.05];
+  const PESOS_IC = {delitos_personas:1.00, delitos_patrimonio:0.25, drogas:1.00, armas:2.00, accidentes_victimas:0.10, detenidos:1.00};
+
+  const avgDetenidos = sec => {
+    if (!sec?.meses) return 0;
+    const vals = Object.values(sec.meses);
+    return vals.reduce((s, m) => s + (m.detalles?.detenidos ?? 0), 0) / vals.length;
+  };
+
   const getVals = (det, pob) => [
     det.delitos_personas    * 12 / pob * 10000,
     det.delitos_patrimonio  * 12 / pob * 10000,
@@ -312,7 +339,14 @@ function calcIndicePc(secByKey) {
     const sec = secByKey[normKey(d.nombre)];
     const g   = GEODATA[d.num];
     if (!sec || !g?.pob) return null;
-    return { key: normKey(d.nombre), vals: getVals(sec.detalles, g.pob) };
+    const avgDet = avgDetenidos(sec);
+    return {
+      key:    normKey(d.nombre),
+      vals:   getVals(sec.detalles, g.pob),
+      det10k: avgDet * 12 / g.pob * 10000,
+      avgDet: avgDet,
+      det:    sec.detalles,
+    };
   }).filter(Boolean);
 
   // Normalizar cada métrica entre 0 y 1
@@ -325,20 +359,83 @@ function calcIndicePc(secByKey) {
     });
   }
 
-  // Calcular índice y guardarlo en secByKey
+  // Calcular índice, per10k e indice_criminalidad para cada distrito
   entries.forEach((e, j) => {
     const inseg = norms[j].reduce((s, n, i) => s + n * PESOS[i], 0);
     secByKey[e.key].indice_pc = Math.round((10 - inseg * 10) * 10) / 10;
+
+    secByKey[e.key].per10k = {
+      delitos_personas:    e.vals[0],
+      delitos_patrimonio:  e.vals[1],
+      drogas:              e.vals[2],
+      armas:               e.vals[3],
+      accidentes_victimas: e.vals[4],
+      detenidos:           e.det10k,
+    };
+
+    const pc = secByKey[e.key].per10k;
+    secByKey[e.key].indice_criminalidad =
+      pc.delitos_personas    * PESOS_IC.delitos_personas +
+      pc.delitos_patrimonio  * PESOS_IC.delitos_patrimonio +
+      pc.drogas              * PESOS_IC.drogas +
+      pc.armas               * PESOS_IC.armas +
+      pc.accidentes_victimas * PESOS_IC.accidentes_victimas +
+      pc.detenidos           * PESOS_IC.detenidos;
+    secByKey[e.key].avg_detenidos = e.avgDet;
+
+    const det = e.det;
+    const indAbs =
+      det.delitos_personas    * 1.00 +
+      det.delitos_patrimonio  * 0.25 +
+      det.drogas              * 1.00 +
+      det.armas               * 2.00 +
+      det.accidentes_victimas * 0.10 +
+      e.avgDet                * 1.00;
+    secByKey[e.key].indice_abs   = indAbs;
+    secByKey[e.key].indice_final = (secByKey[e.key].indice_criminalidad + indAbs) / 2;
   });
 }
 
-function buildTable(secByKey) {
-  calcIndicePc(secByKey);
-  // Sort by security index descending (fallback: district number)
+// Estado de ordenación
+let _secByKey = {};
+let _sortCol  = 'indice_final';
+let _sortDir  = 1;
+const parseSup = s => parseFloat(s.replace(/\./g, '').replace(',', '.'));
+
+function getSortVal(d, col) {
+  const g   = GEODATA[d.num] || {};
+  const sec = _secByKey[normKey(d.nombre)];
+  switch (col) {
+    case 'num':        return parseInt(d.num);
+    case 'nombre':     return d.nombre;
+    case 'pob':        return g.pob ?? 0;
+    case 'sup':        return parseSup(g.sup ?? '0');
+    case 'den':        return g.den ?? 0;
+    case 'personas':   return sec?.per10k?.delitos_personas    ?? 0;
+    case 'patrimonio': return sec?.per10k?.delitos_patrimonio  ?? 0;
+    case 'drogas':     return sec?.per10k?.drogas              ?? 0;
+    case 'armas':      return sec?.per10k?.armas               ?? 0;
+    case 'accidentes': return sec?.per10k?.accidentes_victimas ?? 0;
+    case 'detenidos':      return sec?.per10k?.detenidos           ?? 0;
+    case 'criminalidad':   return sec?.indice_criminalidad        ?? 0;
+    case 'abs_personas':   return sec?.detalles?.delitos_personas    ?? 0;
+    case 'abs_patrimonio': return sec?.detalles?.delitos_patrimonio  ?? 0;
+    case 'abs_drogas':     return sec?.detalles?.drogas              ?? 0;
+    case 'abs_armas':      return sec?.detalles?.armas               ?? 0;
+    case 'abs_accidentes': return sec?.detalles?.accidentes_victimas ?? 0;
+    case 'abs_detenidos':  return sec?.avg_detenidos                 ?? 0;
+    case 'indice_abs':     return sec?.indice_abs                    ?? 0;
+    case 'indice_final':   return sec?.indice_final                  ?? 0;
+    default:               return sec?.indice_pc ?? 5;
+  }
+}
+
+function renderRows() {
   const sorted = [...DISTRITOS].sort((a, b) => {
-    const sa = secByKey[normKey(a.nombre)]?.indice_pc ?? 5;
-    const sb = secByKey[normKey(b.nombre)]?.indice_pc ?? 5;
-    return sb - sa;
+    const va = getSortVal(a, _sortCol);
+    const vb = getSortVal(b, _sortCol);
+    const cmp = typeof va === 'string' ? va.localeCompare(vb, 'es') : va - vb;
+    return cmp * _sortDir;
   });
 
   const tbody = document.getElementById('tbody');
@@ -346,93 +443,149 @@ function buildTable(secByKey) {
 
   sorted.forEach(d => {
     const g   = GEODATA[d.num] || {};
-    const sec = secByKey[normKey(d.nombre)];
-
-    // --- District row ---
+    const sec = _secByKey[normKey(d.nombre)];
     const dRow = document.createElement('tr');
     dRow.className = 'd-row';
     dRow.dataset.num = d.num;
 
-    // Badge HTML
-    const nul = '<span class="null-val">—</span>';
-    let badgeHTML = nul;
-    let det = null;
-    if (sec) {
-      det = sec.detalles;
-      badgeHTML = `<span class="seg-badge ${segClase(sec.indice)}">${sec.indice.toFixed(1)}</span>`;
-    }
-
-    // Valores normalizados: mensual × 12 meses / población × 1000 hab
-    function norm1k(val) {
-      if (!det || !g.pob) return nul;
-      return ((val * 12) / g.pob * 10000).toFixed(2);
-    }
+    const nul  = '<span class="null-val">—</span>';
+    const pc   = sec?.per10k;
+    const f10k = val => val != null ? val.toFixed(2) : nul;
 
     dRow.innerHTML = `
       <td><span class="d-toggle" data-num="${d.num}">▶</span></td>
       <td><span class="d-num">${d.num}</span></td>
       <td><span class="d-nombre">${d.nombre}</span></td>
-      <td>${badgeHTML}</td>
-      <td>${sec?.indice_pc != null ? `<span class="seg-badge ${segClase(sec.indice_pc)}">${sec.indice_pc.toFixed(1)}</span>` : nul}</td>
-      <td class="td-right">${det ? det.delitos_personas   : nul}</td>
-      <td class="td-right">${det ? det.delitos_patrimonio : nul}</td>
-      <td class="td-right">${det ? det.drogas             : nul}</td>
-      <td class="td-right">${det ? det.armas              : nul}</td>
-      <td class="td-right">${det ? det.accidentes_victimas: nul}</td>
-      <td class="td-right">${norm1k(det?.delitos_personas)}</td>
-      <td class="td-right">${norm1k(det?.delitos_patrimonio)}</td>
-      <td class="td-right">${norm1k(det?.drogas)}</td>
-      <td class="td-right">${norm1k(det?.armas)}</td>
-      <td class="td-right">${norm1k(det?.accidentes_victimas)}</td>
-      <td class="td-right">${g.pob ? fmtPob(g.pob)        : nul}</td>
-      <td class="td-right">${g.sup ? g.sup + ' Ha'         : nul}</td>
-      <td class="td-right">${g.den != null ? g.den + ' hab./Ha' : nul}</td>`;
+      <td>${g.pob ? fmtPob(g.pob)        : nul}</td>
+      <td>${g.sup ? g.sup + ' Ha'         : nul}</td>
+      <td>${g.den != null ? g.den + ' hab./Ha' : nul}</td>
+      <td class="td-center" style="background:#eef3ff"><strong>${sec?.indice_final != null ? sec.indice_final.toFixed(1) : nul}</strong></td>
+      <td class="td-center">${f10k(pc?.delitos_personas)}</td>
+      <td class="td-center">${f10k(pc?.delitos_patrimonio)}</td>
+      <td class="td-center">${f10k(pc?.drogas)}</td>
+      <td class="td-center">${f10k(pc?.armas)}</td>
+      <td class="td-center">${f10k(pc?.accidentes_victimas)}</td>
+      <td class="td-center">${f10k(pc?.detenidos)}</td>
+      <td class="td-center"><strong>${sec?.indice_criminalidad != null ? sec.indice_criminalidad.toFixed(2) : nul}</strong></td>
+      <td class="td-center" style="border-left:2px solid #d0d8e4">${sec?.detalles?.delitos_personas    != null ? sec.detalles.delitos_personas    : nul}</td>
+      <td class="td-center">${sec?.detalles?.delitos_patrimonio  != null ? sec.detalles.delitos_patrimonio  : nul}</td>
+      <td class="td-center">${sec?.detalles?.drogas              != null ? sec.detalles.drogas              : nul}</td>
+      <td class="td-center">${sec?.detalles?.armas               != null ? sec.detalles.armas               : nul}</td>
+      <td class="td-center">${sec?.detalles?.accidentes_victimas != null ? sec.detalles.accidentes_victimas : nul}</td>
+      <td class="td-center">${sec?.avg_detenidos != null ? Math.round(sec.avg_detenidos) : nul}</td>
+      <td class="td-center"><strong>${sec?.indice_abs != null ? sec.indice_abs.toFixed(1) : nul}</strong></td>`;
 
     tbody.appendChild(dRow);
 
-    // Badge tooltip (solo el índice desagregado)
-    if (sec) {
-      const tipHTML = `
-        <strong>Seguridad: ${sec.indice.toFixed(1)} / 10</strong>
-        <div class="tip-row" style="margin-top:6px"><span>Personas</span><span>${det.delitos_personas}</span></div>
-        <div class="tip-row"><span>Patrimonio</span><span>${det.delitos_patrimonio}</span></div>
-        <div class="tip-row"><span>Drogas</span><span>${det.drogas}</span></div>
-        <div class="tip-row"><span>Armas</span><span>${det.armas}</span></div>
-        <div class="tip-row"><span>Acc. c/víctimas</span><span>${det.accidentes_victimas}</span></div>
-        <div class="tip-motivo">${sec.motivo}</div>`;
-      const badge = dRow.querySelector('.seg-badge');
-      badge.addEventListener('mouseenter', () => showTip(badge, tipHTML));
-      badge.addEventListener('mouseleave', hideTip);
-    }
-
-    // Toggle click
     dRow.querySelector('.d-toggle').addEventListener('click', e => {
       e.stopPropagation();
       toggleDistrict(d.num);
     });
 
-    // --- Barrio rows ---
     d.barrios.forEach((nombre, i) => {
       const isLast    = i === d.barrios.length - 1;
       const connector = isLast ? '└──' : '├──';
       const bNum      = barrioNum(d.num, i);
-
       const bRow = document.createElement('tr');
       bRow.className = 'b-row hidden';
       bRow.dataset.dist   = d.num;
       bRow.dataset.nombre = nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-
       bRow.innerHTML = `
         <td></td>
         <td><span class="b-num">${bNum}</span></td>
-        <td colspan="16">
+        <td colspan="19">
           <span class="b-tree">
             <span class="b-connector">${connector}</span>
             ${nombre}
           </span>
         </td>`;
-
       tbody.appendChild(bRow);
+    });
+  });
+
+  // Indicadores visuales en cabecera
+  document.querySelectorAll('thead th[data-sort]').forEach(th => {
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.dataset.sort === _sortCol) {
+      th.classList.add(_sortDir === 1 ? 'sort-asc' : 'sort-desc');
+    }
+  });
+}
+
+function buildTable(secByKey) {
+  _secByKey = secByKey;
+  calcIndicePc(_secByKey);
+  renderRows();
+
+  // Fila total (se construye una sola vez)
+  const totalPob = Object.values(GEODATA).reduce((s, g) => s + g.pob, 0);
+  const totalSup = Object.values(GEODATA).reduce((s, g) => s + parseSup(g.sup), 0);
+  const totalDen = Math.round(totalPob / totalSup);
+  const fmt10kTotal = metric => {
+    const sum = DISTRITOS.reduce((s, d) => s + (_secByKey[normKey(d.nombre)]?.detalles?.[metric] ?? 0), 0);
+    return (sum * 12 / totalPob * 10000).toFixed(2);
+  };
+  const detTotal = () => {
+    const sum = DISTRITOS.reduce((s, d) => {
+      const sec = _secByKey[normKey(d.nombre)];
+      if (!sec?.meses) return s;
+      const vals = Object.values(sec.meses);
+      return s + vals.reduce((a, m) => a + (m.detalles?.detenidos ?? 0), 0) / vals.length;
+    }, 0);
+    return (sum * 12 / totalPob * 10000).toFixed(2);
+  };
+
+  const PESOS_IC = {delitos_personas:1.00, delitos_patrimonio:0.25, drogas:1.00, armas:2.00, accidentes_victimas:0.10, detenidos:1.00};
+  const totalCriminalidad = (() => {
+    const pcTotales = {};
+    Object.keys(PESOS_IC).forEach(k => {
+      const metric = k === 'detenidos' ? null : k;
+      if (metric) {
+        const sum = DISTRITOS.reduce((s, d) => s + (_secByKey[normKey(d.nombre)]?.detalles?.[metric] ?? 0), 0);
+        pcTotales[k] = sum * 12 / totalPob * 10000;
+      } else {
+        const sum = DISTRITOS.reduce((s, d) => {
+          const sec = _secByKey[normKey(d.nombre)];
+          if (!sec?.meses) return s;
+          const vals = Object.values(sec.meses);
+          return s + vals.reduce((a, m) => a + (m.detalles?.detenidos ?? 0), 0) / vals.length;
+        }, 0);
+        pcTotales[k] = sum * 12 / totalPob * 10000;
+      }
+    });
+    return Object.entries(PESOS_IC).reduce((s, [k, w]) => s + (pcTotales[k] ?? 0) * w, 0).toFixed(2);
+  })();
+
+  document.getElementById('tfoot').innerHTML = `<tr>
+    <td></td><td></td>
+    <td>Total Madrid</td>
+    <td>${fmtPob(totalPob)}</td>
+    <td>${totalSup.toLocaleString('es-ES', {minimumFractionDigits:2, maximumFractionDigits:2})} Ha</td>
+    <td>${totalDen} hab./Ha</td>
+    <td class="td-center" style="background:#eef3ff"><strong>${(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.indice_final??0),0)/DISTRITOS.length).toFixed(1)}</strong></td>
+    <td class="td-center">${fmt10kTotal('delitos_personas')}</td>
+    <td class="td-center">${fmt10kTotal('delitos_patrimonio')}</td>
+    <td class="td-center">${fmt10kTotal('drogas')}</td>
+    <td class="td-center">${fmt10kTotal('armas')}</td>
+    <td class="td-center">${fmt10kTotal('accidentes_victimas')}</td>
+    <td class="td-center">${detTotal()}</td>
+    <td class="td-center"><strong>${totalCriminalidad}</strong></td>
+    <td class="td-center" style="border-left:2px solid #b0bac6">${Math.round(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.detalles?.delitos_personas??0),0))}</td>
+    <td class="td-center">${Math.round(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.detalles?.delitos_patrimonio??0),0))}</td>
+    <td class="td-center">${Math.round(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.detalles?.drogas??0),0))}</td>
+    <td class="td-center">${Math.round(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.detalles?.armas??0),0))}</td>
+    <td class="td-center">${Math.round(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.detalles?.accidentes_victimas??0),0))}</td>
+    <td class="td-center">${Math.round(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.avg_detenidos??0),0))}</td>
+    <td class="td-center"><strong>${(DISTRITOS.reduce((s,d)=>s+(_secByKey[normKey(d.nombre)]?.indice_abs??0),0)/DISTRITOS.length).toFixed(1)}</strong></td>
+  </tr>`;
+
+  // Click en cabeceras para ordenar
+  document.querySelectorAll('thead th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.sort;
+      _sortDir = (_sortCol === col) ? _sortDir * -1 : (col === 'nombre' ? 1 : -1);
+      _sortCol = col;
+      renderRows();
     });
   });
 

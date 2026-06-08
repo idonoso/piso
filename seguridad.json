@@ -1,254 +1,1808 @@
 [
   {
-    "distrito": "HORTALEZA",
+    "distrito": "RETIRO",
     "indice": 9.5,
     "detalles": {
-      "delitos_personas": 1,
-      "delitos_patrimonio": 4,
-      "drogas": 26,
+      "delitos_personas": 3,
+      "delitos_patrimonio": 5,
+      "drogas": 4,
       "armas": 0,
-      "accidentes_victimas": 34
+      "accidentes_victimas": 36
     },
-    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 4,
+          "drogas": 6,
+          "armas": 0,
+          "accidentes_victimas": 32,
+          "detenidos": 11
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 4,
+          "drogas": 2,
+          "armas": 0,
+          "accidentes_victimas": 38,
+          "detenidos": 16
+        },
+        "indice": 9.5,
+        "motivo": "Destaca por: muchos accidentes con víctimas (38). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 7,
+          "drogas": 2,
+          "armas": 0,
+          "accidentes_victimas": 35,
+          "detenidos": 9
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 3,
+          "drogas": 5,
+          "armas": 0,
+          "accidentes_victimas": 30,
+          "detenidos": 11
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 6,
+          "drogas": 5,
+          "armas": 0,
+          "accidentes_victimas": 35,
+          "detenidos": 8
+        },
+        "indice": 9.7,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 6,
+          "drogas": 6,
+          "armas": 1,
+          "accidentes_victimas": 47,
+          "detenidos": 18
+        },
+        "indice": 8.8,
+        "motivo": "Destaca por: muchos accidentes con víctimas (47). Puntos positivos: escasa actividad con drogas."
+      }
+    }
   },
   {
-    "distrito": "CHAMBERÍ",
-    "indice": 9.4,
+    "distrito": "VICÁLVARO",
+    "indice": 9.5,
     "detalles": {
-      "delitos_personas": 4,
+      "delitos_personas": 3,
       "delitos_patrimonio": 7,
-      "drogas": 7,
-      "armas": 0,
-      "accidentes_victimas": 31
-    },
-    "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
-  },
-  {
-    "distrito": "MORATALAZ",
-    "indice": 9.3,
-    "detalles": {
-      "delitos_personas": 2,
-      "delitos_patrimonio": 20,
-      "drogas": 9,
+      "drogas": 5,
       "armas": 0,
       "accidentes_victimas": 17
     },
-    "motivo": "Destaca por: muchos delitos contra el patrimonio (20 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 0,
+          "delitos_patrimonio": 2,
+          "drogas": 2,
+          "armas": 0,
+          "accidentes_victimas": 16,
+          "detenidos": 16
+        },
+        "indice": 10.0,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 5,
+          "drogas": 1,
+          "armas": 0,
+          "accidentes_victimas": 19,
+          "detenidos": 11
+        },
+        "indice": 9.8,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 7,
+          "drogas": 6,
+          "armas": 0,
+          "accidentes_victimas": 14,
+          "detenidos": 14
+        },
+        "indice": 9.7,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 14,
+          "drogas": 11,
+          "armas": 1,
+          "accidentes_victimas": 15,
+          "detenidos": 13
+        },
+        "indice": 8.3,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (14 casos)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 5,
+          "drogas": 7,
+          "armas": 1,
+          "accidentes_victimas": 17,
+          "detenidos": 15
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 11,
+          "drogas": 5,
+          "armas": 1,
+          "accidentes_victimas": 20,
+          "detenidos": 15
+        },
+        "indice": 8.9,
+        "motivo": "Distrito tranquilo con escasa actividad con drogas."
+      }
+    }
+  },
+  {
+    "distrito": "BARAJAS",
+    "indice": 9.4,
+    "detalles": {
+      "delitos_personas": 2,
+      "delitos_patrimonio": 5,
+      "drogas": 17,
+      "armas": 1,
+      "accidentes_victimas": 12
+    },
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 11,
+          "drogas": 3,
+          "armas": 1,
+          "accidentes_victimas": 16,
+          "detenidos": 10
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 4,
+          "drogas": 9,
+          "armas": 0,
+          "accidentes_victimas": 14,
+          "detenidos": 8
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 0,
+          "delitos_patrimonio": 2,
+          "drogas": 3,
+          "armas": 0,
+          "accidentes_victimas": 8,
+          "detenidos": 4
+        },
+        "indice": 10.0,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 7,
+          "drogas": 13,
+          "armas": 1,
+          "accidentes_victimas": 11,
+          "detenidos": 9
+        },
+        "indice": 9.0,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 5,
+          "drogas": 32,
+          "armas": 1,
+          "accidentes_victimas": 17,
+          "detenidos": 8
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 3,
+          "drogas": 43,
+          "armas": 2,
+          "accidentes_victimas": 9,
+          "detenidos": 11
+        },
+        "indice": 8.8,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (43 casos). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio."
+      }
+    }
+  },
+  {
+    "distrito": "MORATALAZ",
+    "indice": 9.2,
+    "detalles": {
+      "delitos_personas": 2,
+      "delitos_patrimonio": 23,
+      "drogas": 6,
+      "armas": 1,
+      "accidentes_victimas": 25
+    },
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (22 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 0,
+          "delitos_patrimonio": 22,
+          "drogas": 2,
+          "armas": 1,
+          "accidentes_victimas": 38,
+          "detenidos": 13
+        },
+        "indice": 9.2,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (22 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 22,
+          "drogas": 4,
+          "armas": 1,
+          "accidentes_victimas": 34,
+          "detenidos": 13
+        },
+        "indice": 8.6,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (22 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 0,
+          "delitos_patrimonio": 15,
+          "drogas": 4,
+          "armas": 1,
+          "accidentes_victimas": 21,
+          "detenidos": 8
+        },
+        "indice": 9.4,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (15 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 31,
+          "drogas": 7,
+          "armas": 0,
+          "accidentes_victimas": 26,
+          "detenidos": 20
+        },
+        "indice": 8.6,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (31 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 26,
+          "drogas": 7,
+          "armas": 2,
+          "accidentes_victimas": 15,
+          "detenidos": 24
+        },
+        "indice": 8.6,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (26 casos). Puntos positivos: escasa actividad con drogas."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 20,
+          "drogas": 9,
+          "armas": 0,
+          "accidentes_victimas": 17,
+          "detenidos": 11
+        },
+        "indice": 9.3,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (20 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      }
+    }
   },
   {
     "distrito": "ARGANZUELA",
     "indice": 9.1,
     "detalles": {
       "delitos_personas": 4,
-      "delitos_patrimonio": 3,
-      "drogas": 9,
+      "delitos_patrimonio": 5,
+      "drogas": 11,
       "armas": 1,
-      "accidentes_victimas": 33
+      "accidentes_victimas": 32
     },
-    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
-  },
-  {
-    "distrito": "VICÁLVARO",
-    "indice": 8.9,
-    "detalles": {
-      "delitos_personas": 6,
-      "delitos_patrimonio": 11,
-      "drogas": 5,
-      "armas": 1,
-      "accidentes_victimas": 20
-    },
-    "motivo": "Distrito tranquilo con escasa actividad con drogas."
-  },
-  {
-    "distrito": "BARAJAS",
-    "indice": 8.8,
-    "detalles": {
-      "delitos_personas": 3,
-      "delitos_patrimonio": 3,
-      "drogas": 43,
-      "armas": 2,
-      "accidentes_victimas": 9
-    },
-    "motivo": "Destaca por: elevada actividad relacionada con drogas (43 casos). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio."
-  },
-  {
-    "distrito": "RETIRO",
-    "indice": 8.8,
-    "detalles": {
-      "delitos_personas": 5,
-      "delitos_patrimonio": 6,
-      "drogas": 6,
-      "armas": 1,
-      "accidentes_victimas": 47
-    },
-    "motivo": "Destaca por: muchos accidentes con víctimas (47). Puntos positivos: escasa actividad con drogas."
+    "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 9,
+          "drogas": 22,
+          "armas": 0,
+          "accidentes_victimas": 42,
+          "detenidos": 29
+        },
+        "indice": 8.7,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (22 casos)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 4,
+          "drogas": 10,
+          "armas": 1,
+          "accidentes_victimas": 31,
+          "detenidos": 31
+        },
+        "indice": 8.7,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 0,
+          "delitos_patrimonio": 7,
+          "drogas": 9,
+          "armas": 2,
+          "accidentes_victimas": 26,
+          "detenidos": 22
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 5,
+          "drogas": 9,
+          "armas": 0,
+          "accidentes_victimas": 29,
+          "detenidos": 29
+        },
+        "indice": 9.3,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 4,
+          "drogas": 5,
+          "armas": 0,
+          "accidentes_victimas": 34,
+          "detenidos": 29
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 3,
+          "drogas": 9,
+          "armas": 1,
+          "accidentes_victimas": 33,
+          "detenidos": 36
+        },
+        "indice": 9.1,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      }
+    }
   },
   {
     "distrito": "TETUÁN",
-    "indice": 8.8,
+    "indice": 9.1,
     "detalles": {
-      "delitos_personas": 3,
+      "delitos_personas": 4,
       "delitos_patrimonio": 3,
-      "drogas": 18,
-      "armas": 2,
-      "accidentes_victimas": 31
-    },
-    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
-  },
-  {
-    "distrito": "LATINA",
-    "indice": 8.7,
-    "detalles": {
-      "delitos_personas": 8,
-      "delitos_patrimonio": 5,
-      "drogas": 16,
+      "drogas": 12,
       "armas": 0,
-      "accidentes_victimas": 49
+      "accidentes_victimas": 33
     },
-    "motivo": "Destaca por: alta criminalidad contra personas (8 casos), muchos accidentes con víctimas (49). Puntos positivos: pocos delitos contra el patrimonio."
+    "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 2,
+          "drogas": 11,
+          "armas": 0,
+          "accidentes_victimas": 40,
+          "detenidos": 43
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 0,
+          "drogas": 8,
+          "armas": 0,
+          "accidentes_victimas": 31,
+          "detenidos": 30
+        },
+        "indice": 9.5,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 13,
+          "delitos_patrimonio": 6,
+          "drogas": 10,
+          "armas": 0,
+          "accidentes_victimas": 32,
+          "detenidos": 45
+        },
+        "indice": 8.2,
+        "motivo": "Destaca por: alta criminalidad contra personas (13 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 6,
+          "drogas": 15,
+          "armas": 0,
+          "accidentes_victimas": 29,
+          "detenidos": 23
+        },
+        "indice": 9.0,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 2,
+          "drogas": 9,
+          "armas": 1,
+          "accidentes_victimas": 36,
+          "detenidos": 33
+        },
+        "indice": 9.3,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 3,
+          "drogas": 18,
+          "armas": 2,
+          "accidentes_victimas": 31,
+          "detenidos": 35
+        },
+        "indice": 8.8,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      }
+    }
   },
   {
-    "distrito": "MONCLOA - ARAVACA",
-    "indice": 8.4,
+    "distrito": "CHAMBERÍ",
+    "indice": 8.9,
     "detalles": {
       "delitos_personas": 5,
-      "delitos_patrimonio": 11,
-      "drogas": 40,
+      "delitos_patrimonio": 4,
+      "drogas": 13,
       "armas": 1,
-      "accidentes_victimas": 42
+      "accidentes_victimas": 32
     },
-    "motivo": "Destaca por: elevada actividad relacionada con drogas (40 casos)."
-  },
-  {
-    "distrito": "CHAMARTÍN",
-    "indice": 8.0,
-    "detalles": {
-      "delitos_personas": 7,
-      "delitos_patrimonio": 8,
-      "drogas": 56,
-      "armas": 1,
-      "accidentes_victimas": 51
-    },
-    "motivo": "Destaca por: elevada actividad relacionada con drogas (56 casos), muchos accidentes con víctimas (51)."
-  },
-  {
-    "distrito": "SALAMANCA",
-    "indice": 7.9,
-    "detalles": {
-      "delitos_personas": 5,
-      "delitos_patrimonio": 26,
-      "drogas": 6,
-      "armas": 2,
-      "accidentes_victimas": 56
-    },
-    "motivo": "Destaca por: muchos delitos contra el patrimonio (26 casos), muchos accidentes con víctimas (56). Puntos positivos: escasa actividad con drogas."
-  },
-  {
-    "distrito": "VILLA DE VALLECAS",
-    "indice": 7.9,
-    "detalles": {
-      "delitos_personas": 11,
-      "delitos_patrimonio": 9,
-      "drogas": 16,
-      "armas": 2,
-      "accidentes_victimas": 28
-    },
-    "motivo": "Destaca por: alta criminalidad contra personas (11 casos)."
-  },
-  {
-    "distrito": "VILLAVERDE",
-    "indice": 7.7,
-    "detalles": {
-      "delitos_personas": 9,
-      "delitos_patrimonio": 3,
-      "drogas": 15,
-      "armas": 4,
-      "accidentes_victimas": 22
-    },
-    "motivo": "Destaca por: alta criminalidad contra personas (9 casos), alta tenencia de armas (4 casos). Puntos positivos: pocos delitos contra el patrimonio."
+    "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 4,
+          "drogas": 10,
+          "armas": 0,
+          "accidentes_victimas": 37,
+          "detenidos": 21
+        },
+        "indice": 9.1,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 3,
+          "drogas": 9,
+          "armas": 0,
+          "accidentes_victimas": 36,
+          "detenidos": 14
+        },
+        "indice": 9.5,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 5,
+          "drogas": 19,
+          "armas": 0,
+          "accidentes_victimas": 27,
+          "detenidos": 21
+        },
+        "indice": 9.0,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (19 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 2,
+          "drogas": 14,
+          "armas": 1,
+          "accidentes_victimas": 27,
+          "detenidos": 8
+        },
+        "indice": 8.5,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 8,
+          "delitos_patrimonio": 6,
+          "drogas": 20,
+          "armas": 3,
+          "accidentes_victimas": 34,
+          "detenidos": 18
+        },
+        "indice": 7.8,
+        "motivo": "Destaca por: alta criminalidad contra personas (8 casos), alta tenencia de armas (3 casos)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 7,
+          "drogas": 7,
+          "armas": 0,
+          "accidentes_victimas": 31,
+          "detenidos": 37
+        },
+        "indice": 9.4,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+      }
+    }
   },
   {
     "distrito": "USERA",
-    "indice": 7.6,
+    "indice": 8.4,
     "detalles": {
       "delitos_personas": 5,
-      "delitos_patrimonio": 5,
-      "drogas": 49,
-      "armas": 4,
+      "delitos_patrimonio": 6,
+      "drogas": 24,
+      "armas": 2,
       "accidentes_victimas": 29
     },
-    "motivo": "Destaca por: elevada actividad relacionada con drogas (49 casos), alta tenencia de armas (4 casos). Puntos positivos: pocos delitos contra el patrimonio."
+    "motivo": "Niveles intermedios en todas las categorías.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 6,
+          "drogas": 17,
+          "armas": 0,
+          "accidentes_victimas": 30,
+          "detenidos": 33
+        },
+        "indice": 8.9,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 11,
+          "drogas": 6,
+          "armas": 2,
+          "accidentes_victimas": 31,
+          "detenidos": 20
+        },
+        "indice": 8.4,
+        "motivo": "Distrito tranquilo con escasa actividad con drogas."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 5,
+          "drogas": 10,
+          "armas": 2,
+          "accidentes_victimas": 29,
+          "detenidos": 42
+        },
+        "indice": 8.5,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 4,
+          "drogas": 39,
+          "armas": 3,
+          "accidentes_victimas": 31,
+          "detenidos": 34
+        },
+        "indice": 7.7,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (39 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 5,
+          "drogas": 26,
+          "armas": 0,
+          "accidentes_victimas": 23,
+          "detenidos": 34
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con pocos delitos contra el patrimonio."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 5,
+          "drogas": 49,
+          "armas": 4,
+          "accidentes_victimas": 29,
+          "detenidos": 35
+        },
+        "indice": 7.6,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (49 casos), alta tenencia de armas (4 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      }
+    }
   },
   {
-    "distrito": "SAN BLAS - CANILLEJAS",
-    "indice": 7.6,
+    "distrito": "SALAMANCA",
+    "indice": 8.4,
     "detalles": {
-      "delitos_personas": 7,
-      "delitos_patrimonio": 13,
-      "drogas": 12,
-      "armas": 4,
-      "accidentes_victimas": 33
+      "delitos_personas": 4,
+      "delitos_patrimonio": 20,
+      "drogas": 6,
+      "armas": 1,
+      "accidentes_victimas": 56
     },
-    "motivo": "Destaca por: muchos delitos contra el patrimonio (13 casos), alta tenencia de armas (4 casos)."
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (20 casos), muchos accidentes con víctimas (56). Puntos positivos: escasa actividad con drogas.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 24,
+          "drogas": 3,
+          "armas": 0,
+          "accidentes_victimas": 63,
+          "detenidos": 25
+        },
+        "indice": 8.9,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (24 casos), muchos accidentes con víctimas (63). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 13,
+          "drogas": 11,
+          "armas": 3,
+          "accidentes_victimas": 62,
+          "detenidos": 35
+        },
+        "indice": 7.8,
+        "motivo": "Destaca por: alta tenencia de armas (3 casos), muchos accidentes con víctimas (62). Puntos positivos: baja criminalidad violenta."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 12,
+          "drogas": 3,
+          "armas": 0,
+          "accidentes_victimas": 55,
+          "detenidos": 23
+        },
+        "indice": 9.2,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (12 casos), muchos accidentes con víctimas (55). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 14,
+          "drogas": 8,
+          "armas": 2,
+          "accidentes_victimas": 52,
+          "detenidos": 21
+        },
+        "indice": 7.4,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (14 casos), muchos accidentes con víctimas (52). Puntos positivos: escasa actividad con drogas."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 33,
+          "drogas": 3,
+          "armas": 0,
+          "accidentes_victimas": 49,
+          "detenidos": 36
+        },
+        "indice": 8.7,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (33 casos), muchos accidentes con víctimas (49). Puntos positivos: escasa actividad con drogas."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 26,
+          "drogas": 6,
+          "armas": 2,
+          "accidentes_victimas": 56,
+          "detenidos": 37
+        },
+        "indice": 7.9,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (26 casos), muchos accidentes con víctimas (56). Puntos positivos: escasa actividad con drogas."
+      }
+    }
   },
   {
-    "distrito": "CIUDAD LINEAL",
-    "indice": 6.9,
+    "distrito": "MONCLOA - ARAVACA",
+    "indice": 8.3,
     "detalles": {
-      "delitos_personas": 7,
-      "delitos_patrimonio": 13,
-      "drogas": 30,
-      "armas": 5,
-      "accidentes_victimas": 46
+      "delitos_personas": 6,
+      "delitos_patrimonio": 9,
+      "drogas": 32,
+      "armas": 1,
+      "accidentes_victimas": 42
     },
-    "motivo": "Destaca por: muchos delitos contra el patrimonio (13 casos), alta tenencia de armas (5 casos)."
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (32 casos).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 14,
+          "drogas": 18,
+          "armas": 2,
+          "accidentes_victimas": 51,
+          "detenidos": 17
+        },
+        "indice": 8.4,
+        "motivo": "Destaca por: alta tenencia de armas (2 casos). Puntos positivos: baja criminalidad violenta."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 6,
+          "drogas": 5,
+          "armas": 0,
+          "accidentes_victimas": 41,
+          "detenidos": 14
+        },
+        "indice": 8.8,
+        "motivo": "Destaca por: alta criminalidad contra personas (6 casos), muchos accidentes con víctimas (41). Puntos positivos: escasa actividad con drogas."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 8,
+          "drogas": 16,
+          "armas": 1,
+          "accidentes_victimas": 37,
+          "detenidos": 22
+        },
+        "indice": 8.8,
+        "motivo": "Niveles intermedios en todas las categorías."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 7,
+          "drogas": 44,
+          "armas": 2,
+          "accidentes_victimas": 38,
+          "detenidos": 23
+        },
+        "indice": 8.0,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (44 casos). Puntos positivos: baja criminalidad violenta."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 13,
+          "delitos_patrimonio": 7,
+          "drogas": 71,
+          "armas": 1,
+          "accidentes_victimas": 41,
+          "detenidos": 23
+        },
+        "indice": 7.3,
+        "motivo": "Destaca por: alta criminalidad contra personas (13 casos), elevada actividad relacionada con drogas (71 casos)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 11,
+          "drogas": 40,
+          "armas": 1,
+          "accidentes_victimas": 42,
+          "detenidos": 28
+        },
+        "indice": 8.4,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (40 casos)."
+      }
+    }
+  },
+  {
+    "distrito": "HORTALEZA",
+    "indice": 8.3,
+    "detalles": {
+      "delitos_personas": 2,
+      "delitos_patrimonio": 5,
+      "drogas": 19,
+      "armas": 3,
+      "accidentes_victimas": 30
+    },
+    "motivo": "Destaca por: alta tenencia de armas (3 casos). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 6,
+          "drogas": 13,
+          "armas": 3,
+          "accidentes_victimas": 37,
+          "detenidos": 25
+        },
+        "indice": 8.1,
+        "motivo": "Destaca por: alta tenencia de armas (3 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 5,
+          "drogas": 11,
+          "armas": 2,
+          "accidentes_victimas": 26,
+          "detenidos": 27
+        },
+        "indice": 8.8,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 4,
+          "drogas": 11,
+          "armas": 1,
+          "accidentes_victimas": 28,
+          "detenidos": 17
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 5,
+          "drogas": 16,
+          "armas": 7,
+          "accidentes_victimas": 25,
+          "detenidos": 21
+        },
+        "indice": 6.9,
+        "motivo": "Destaca por: alta tenencia de armas (7 casos). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 6,
+          "drogas": 39,
+          "armas": 5,
+          "accidentes_victimas": 31,
+          "detenidos": 27
+        },
+        "indice": 7.7,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (39 casos), alta tenencia de armas (5 casos). Puntos positivos: baja criminalidad violenta."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 4,
+          "drogas": 26,
+          "armas": 0,
+          "accidentes_victimas": 34,
+          "detenidos": 21
+        },
+        "indice": 9.5,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      }
+    }
   },
   {
     "distrito": "FUENCARRAL - EL PARDO",
-    "indice": 6.8,
+    "indice": 8.1,
     "detalles": {
-      "delitos_personas": 1,
-      "delitos_patrimonio": 6,
-      "drogas": 40,
-      "armas": 8,
-      "accidentes_victimas": 41
+      "delitos_personas": 3,
+      "delitos_patrimonio": 7,
+      "drogas": 25,
+      "armas": 3,
+      "accidentes_victimas": 42
     },
-    "motivo": "Destaca por: elevada actividad relacionada con drogas (40 casos), alta tenencia de armas (8 casos). Puntos positivos: baja criminalidad violenta."
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (24 casos), muchos accidentes con víctimas (42). Puntos positivos: baja criminalidad violenta.",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 9,
+          "drogas": 17,
+          "armas": 2,
+          "accidentes_victimas": 52,
+          "detenidos": 37
+        },
+        "indice": 8.4,
+        "motivo": "Destaca por: alta tenencia de armas (2 casos), muchos accidentes con víctimas (52). Puntos positivos: baja criminalidad violenta."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 6,
+          "drogas": 23,
+          "armas": 0,
+          "accidentes_victimas": 38,
+          "detenidos": 36
+        },
+        "indice": 8.7,
+        "motivo": "Destaca por: alta criminalidad contra personas (6 casos), elevada actividad relacionada con drogas (23 casos), muchos accidentes con víctimas (38)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 10,
+          "drogas": 14,
+          "armas": 0,
+          "accidentes_victimas": 50,
+          "detenidos": 30
+        },
+        "indice": 9.0,
+        "motivo": "Destaca por: muchos accidentes con víctimas (50)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 10,
+          "drogas": 12,
+          "armas": 1,
+          "accidentes_victimas": 34,
+          "detenidos": 21
+        },
+        "indice": 8.6,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 2,
+          "delitos_patrimonio": 3,
+          "drogas": 43,
+          "armas": 5,
+          "accidentes_victimas": 39,
+          "detenidos": 28
+        },
+        "indice": 7.7,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (43 casos), alta tenencia de armas (5 casos). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 6,
+          "drogas": 40,
+          "armas": 8,
+          "accidentes_victimas": 41,
+          "detenidos": 24
+        },
+        "indice": 6.8,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (40 casos), alta tenencia de armas (8 casos). Puntos positivos: baja criminalidad violenta."
+      }
+    }
+  },
+  {
+    "distrito": "SAN BLAS - CANILLEJAS",
+    "indice": 8.0,
+    "detalles": {
+      "delitos_personas": 5,
+      "delitos_patrimonio": 15,
+      "drogas": 13,
+      "armas": 2,
+      "accidentes_victimas": 36
+    },
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (14 casos).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 6,
+          "delitos_patrimonio": 13,
+          "drogas": 14,
+          "armas": 1,
+          "accidentes_victimas": 29,
+          "detenidos": 32
+        },
+        "indice": 8.5,
+        "motivo": "Niveles intermedios en todas las categorías."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 10,
+          "drogas": 12,
+          "armas": 2,
+          "accidentes_victimas": 37,
+          "detenidos": 21
+        },
+        "indice": 8.3,
+        "motivo": "Niveles intermedios en todas las categorías."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 9,
+          "drogas": 14,
+          "armas": 1,
+          "accidentes_victimas": 44,
+          "detenidos": 29
+        },
+        "indice": 8.8,
+        "motivo": "Niveles intermedios en todas las categorías."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 12,
+          "drogas": 9,
+          "armas": 5,
+          "accidentes_victimas": 31,
+          "detenidos": 28
+        },
+        "indice": 6.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (7 casos), alta tenencia de armas (5 casos). Puntos positivos: escasa actividad con drogas."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 31,
+          "drogas": 18,
+          "armas": 1,
+          "accidentes_victimas": 45,
+          "detenidos": 31
+        },
+        "indice": 8.4,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (31 casos), muchos accidentes con víctimas (45)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 13,
+          "drogas": 12,
+          "armas": 4,
+          "accidentes_victimas": 33,
+          "detenidos": 33
+        },
+        "indice": 7.6,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (13 casos), alta tenencia de armas (4 casos)."
+      }
+    }
+  },
+  {
+    "distrito": "VILLAVERDE",
+    "indice": 7.9,
+    "detalles": {
+      "delitos_personas": 6,
+      "delitos_patrimonio": 6,
+      "drogas": 14,
+      "armas": 3,
+      "accidentes_victimas": 24
+    },
+    "motivo": "Destaca por: alta tenencia de armas (3 casos).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 5,
+          "drogas": 10,
+          "armas": 0,
+          "accidentes_victimas": 26,
+          "detenidos": 35
+        },
+        "indice": 8.9,
+        "motivo": "Destaca por: alta criminalidad contra personas (7 casos). Puntos positivos: pocos delitos contra el patrimonio y escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 4,
+          "drogas": 13,
+          "armas": 5,
+          "accidentes_victimas": 19,
+          "detenidos": 31
+        },
+        "indice": 7.1,
+        "motivo": "Destaca por: alta tenencia de armas (5 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 5,
+          "drogas": 17,
+          "armas": 7,
+          "accidentes_victimas": 25,
+          "detenidos": 22
+        },
+        "indice": 7.4,
+        "motivo": "Destaca por: alta tenencia de armas (7 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 6,
+          "drogas": 16,
+          "armas": 0,
+          "accidentes_victimas": 26,
+          "detenidos": 26
+        },
+        "indice": 9.2,
+        "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 8,
+          "delitos_patrimonio": 13,
+          "drogas": 12,
+          "armas": 2,
+          "accidentes_victimas": 29,
+          "detenidos": 41
+        },
+        "indice": 8.1,
+        "motivo": "Destaca por: alta criminalidad contra personas (8 casos)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 9,
+          "delitos_patrimonio": 3,
+          "drogas": 15,
+          "armas": 4,
+          "accidentes_victimas": 22,
+          "detenidos": 29
+        },
+        "indice": 7.7,
+        "motivo": "Destaca por: alta criminalidad contra personas (9 casos), alta tenencia de armas (4 casos). Puntos positivos: pocos delitos contra el patrimonio."
+      }
+    }
+  },
+  {
+    "distrito": "CIUDAD LINEAL",
+    "indice": 7.6,
+    "detalles": {
+      "delitos_personas": 6,
+      "delitos_patrimonio": 11,
+      "drogas": 17,
+      "armas": 3,
+      "accidentes_victimas": 49
+    },
+    "motivo": "Destaca por: muchos accidentes con víctimas (49).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 9,
+          "delitos_patrimonio": 8,
+          "drogas": 19,
+          "armas": 0,
+          "accidentes_victimas": 56,
+          "detenidos": 44
+        },
+        "indice": 8.2,
+        "motivo": "Destaca por: alta criminalidad contra personas (9 casos), muchos accidentes con víctimas (56)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 1,
+          "delitos_patrimonio": 8,
+          "drogas": 13,
+          "armas": 2,
+          "accidentes_victimas": 48,
+          "detenidos": 47
+        },
+        "indice": 8.5,
+        "motivo": "Destaca por: muchos accidentes con víctimas (48). Puntos positivos: baja criminalidad violenta."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 11,
+          "drogas": 12,
+          "armas": 4,
+          "accidentes_victimas": 50,
+          "detenidos": 34
+        },
+        "indice": 7.9,
+        "motivo": "Destaca por: alta tenencia de armas (4 casos), muchos accidentes con víctimas (50)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 12,
+          "delitos_patrimonio": 14,
+          "drogas": 9,
+          "armas": 2,
+          "accidentes_victimas": 40,
+          "detenidos": 41
+        },
+        "indice": 6.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (12 casos), muchos delitos contra el patrimonio (14 casos), muchos accidentes con víctimas (40). Puntos positivos: escasa actividad con drogas."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 3,
+          "delitos_patrimonio": 13,
+          "drogas": 21,
+          "armas": 3,
+          "accidentes_victimas": 55,
+          "detenidos": 43
+        },
+        "indice": 8.1,
+        "motivo": "Destaca por: alta tenencia de armas (3 casos), muchos accidentes con víctimas (55). Puntos positivos: baja criminalidad violenta."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 13,
+          "drogas": 30,
+          "armas": 5,
+          "accidentes_victimas": 46,
+          "detenidos": 35
+        },
+        "indice": 6.9,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (13 casos), alta tenencia de armas (5 casos)."
+      }
+    }
+  },
+  {
+    "distrito": "LATINA",
+    "indice": 7.4,
+    "detalles": {
+      "delitos_personas": 8,
+      "delitos_patrimonio": 9,
+      "drogas": 19,
+      "armas": 3,
+      "accidentes_victimas": 37
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (8 casos).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 8,
+          "drogas": 20,
+          "armas": 1,
+          "accidentes_victimas": 35,
+          "detenidos": 60
+        },
+        "indice": 8.6,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (20 casos)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 9,
+          "delitos_patrimonio": 7,
+          "drogas": 16,
+          "armas": 2,
+          "accidentes_victimas": 35,
+          "detenidos": 65
+        },
+        "indice": 7.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (9 casos), elevada actividad relacionada con drogas (16 casos)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 10,
+          "delitos_patrimonio": 9,
+          "drogas": 17,
+          "armas": 0,
+          "accidentes_victimas": 25,
+          "detenidos": 50
+        },
+        "indice": 8.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (10 casos)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 12,
+          "delitos_patrimonio": 9,
+          "drogas": 23,
+          "armas": 5,
+          "accidentes_victimas": 35,
+          "detenidos": 67
+        },
+        "indice": 5.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (12 casos), alta tenencia de armas (5 casos)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 16,
+          "drogas": 23,
+          "armas": 8,
+          "accidentes_victimas": 42,
+          "detenidos": 76
+        },
+        "indice": 6.1,
+        "motivo": "Destaca por: alta tenencia de armas (8 casos), muchos accidentes con víctimas (42)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 8,
+          "delitos_patrimonio": 5,
+          "drogas": 16,
+          "armas": 0,
+          "accidentes_victimas": 49,
+          "detenidos": 78
+        },
+        "indice": 8.7,
+        "motivo": "Destaca por: alta criminalidad contra personas (8 casos), muchos accidentes con víctimas (49). Puntos positivos: pocos delitos contra el patrimonio."
+      }
+    }
+  },
+  {
+    "distrito": "VILLA DE VALLECAS",
+    "indice": 7.2,
+    "detalles": {
+      "delitos_personas": 8,
+      "delitos_patrimonio": 16,
+      "drogas": 26,
+      "armas": 3,
+      "accidentes_victimas": 24
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (7 casos), muchos delitos contra el patrimonio (16 casos), elevada actividad relacionada con drogas (25 casos), alta tenencia de armas (3 casos).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 22,
+          "drogas": 23,
+          "armas": 2,
+          "accidentes_victimas": 23,
+          "detenidos": 18
+        },
+        "indice": 8.2,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (22 casos), elevada actividad relacionada con drogas (23 casos), alta tenencia de armas (2 casos)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 11,
+          "delitos_patrimonio": 19,
+          "drogas": 16,
+          "armas": 3,
+          "accidentes_victimas": 32,
+          "detenidos": 30
+        },
+        "indice": 6.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (11 casos), muchos delitos contra el patrimonio (19 casos), elevada actividad relacionada con drogas (16 casos), alta tenencia de armas (3 casos)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 8,
+          "delitos_patrimonio": 17,
+          "drogas": 36,
+          "armas": 5,
+          "accidentes_victimas": 30,
+          "detenidos": 25
+        },
+        "indice": 7.1,
+        "motivo": "Destaca por: alta criminalidad contra personas (8 casos), muchos delitos contra el patrimonio (17 casos), elevada actividad relacionada con drogas (36 casos), alta tenencia de armas (5 casos)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 13,
+          "drogas": 36,
+          "armas": 6,
+          "accidentes_victimas": 15,
+          "detenidos": 31
+        },
+        "indice": 6.3,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (36 casos), alta tenencia de armas (6 casos)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 17,
+          "drogas": 27,
+          "armas": 2,
+          "accidentes_victimas": 18,
+          "detenidos": 37
+        },
+        "indice": 8.2,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (17 casos)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 11,
+          "delitos_patrimonio": 9,
+          "drogas": 16,
+          "armas": 2,
+          "accidentes_victimas": 28,
+          "detenidos": 41
+        },
+        "indice": 7.9,
+        "motivo": "Destaca por: alta criminalidad contra personas (11 casos)."
+      }
+    }
+  },
+  {
+    "distrito": "CHAMARTÍN",
+    "indice": 7.1,
+    "detalles": {
+      "delitos_personas": 8,
+      "delitos_patrimonio": 11,
+      "drogas": 86,
+      "armas": 2,
+      "accidentes_victimas": 51
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (7 casos), elevada actividad relacionada con drogas (86 casos), muchos accidentes con víctimas (50).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 16,
+          "delitos_patrimonio": 11,
+          "drogas": 48,
+          "armas": 0,
+          "accidentes_victimas": 58,
+          "detenidos": 43
+        },
+        "indice": 7.0,
+        "motivo": "Destaca por: alta criminalidad contra personas (16 casos), elevada actividad relacionada con drogas (48 casos), muchos accidentes con víctimas (58)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 18,
+          "drogas": 135,
+          "armas": 2,
+          "accidentes_victimas": 56,
+          "detenidos": 45
+        },
+        "indice": 6.4,
+        "motivo": "Destaca por: muchos delitos contra el patrimonio (18 casos), elevada actividad relacionada con drogas (135 casos), muchos accidentes con víctimas (56)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 5,
+          "delitos_patrimonio": 9,
+          "drogas": 77,
+          "armas": 2,
+          "accidentes_victimas": 45,
+          "detenidos": 30
+        },
+        "indice": 7.8,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (77 casos), muchos accidentes con víctimas (45)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 4,
+          "delitos_patrimonio": 12,
+          "drogas": 86,
+          "armas": 2,
+          "accidentes_victimas": 53,
+          "detenidos": 23
+        },
+        "indice": 7.0,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (86 casos), muchos accidentes con víctimas (53)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 9,
+          "delitos_patrimonio": 9,
+          "drogas": 117,
+          "armas": 3,
+          "accidentes_victimas": 42,
+          "detenidos": 34
+        },
+        "indice": 6.7,
+        "motivo": "Destaca por: alta criminalidad contra personas (9 casos), elevada actividad relacionada con drogas (117 casos), alta tenencia de armas (3 casos), muchos accidentes con víctimas (42)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 8,
+          "drogas": 56,
+          "armas": 1,
+          "accidentes_victimas": 51,
+          "detenidos": 23
+        },
+        "indice": 8.0,
+        "motivo": "Destaca por: elevada actividad relacionada con drogas (56 casos), muchos accidentes con víctimas (51)."
+      }
+    }
   },
   {
     "distrito": "CARABANCHEL",
-    "indice": 6.2,
+    "indice": 6.1,
     "detalles": {
-      "delitos_personas": 14,
-      "delitos_patrimonio": 24,
+      "delitos_personas": 13,
+      "delitos_patrimonio": 14,
       "drogas": 20,
-      "armas": 4,
-      "accidentes_victimas": 60
+      "armas": 3,
+      "accidentes_victimas": 55
     },
-    "motivo": "Destaca por: alta criminalidad contra personas (14 casos), muchos delitos contra el patrimonio (24 casos), alta tenencia de armas (4 casos), muchos accidentes con víctimas (60)."
+    "motivo": "Destaca por: alta criminalidad contra personas (13 casos), alta tenencia de armas (3 casos), muchos accidentes con víctimas (55).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 7,
+          "delitos_patrimonio": 16,
+          "drogas": 10,
+          "armas": 2,
+          "accidentes_victimas": 66,
+          "detenidos": 74
+        },
+        "indice": 7.8,
+        "motivo": "Destaca por: alta criminalidad contra personas (7 casos), muchos delitos contra el patrimonio (16 casos), alta tenencia de armas (2 casos), muchos accidentes con víctimas (66). Puntos positivos: escasa actividad con drogas."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 13,
+          "delitos_patrimonio": 14,
+          "drogas": 16,
+          "armas": 3,
+          "accidentes_victimas": 47,
+          "detenidos": 88
+        },
+        "indice": 6.2,
+        "motivo": "Destaca por: alta criminalidad contra personas (13 casos), muchos delitos contra el patrimonio (14 casos), elevada actividad relacionada con drogas (16 casos), alta tenencia de armas (3 casos), muchos accidentes con víctimas (47)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 21,
+          "delitos_patrimonio": 12,
+          "drogas": 19,
+          "armas": 6,
+          "accidentes_victimas": 51,
+          "detenidos": 79
+        },
+        "indice": 5.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (21 casos), muchos delitos contra el patrimonio (12 casos), elevada actividad relacionada con drogas (19 casos), alta tenencia de armas (6 casos), muchos accidentes con víctimas (51)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 16,
+          "delitos_patrimonio": 12,
+          "drogas": 25,
+          "armas": 3,
+          "accidentes_victimas": 45,
+          "detenidos": 86
+        },
+        "indice": 5.3,
+        "motivo": "Destaca por: alta criminalidad contra personas (16 casos), muchos accidentes con víctimas (45)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 9,
+          "delitos_patrimonio": 9,
+          "drogas": 32,
+          "armas": 1,
+          "accidentes_victimas": 62,
+          "detenidos": 84
+        },
+        "indice": 7.8,
+        "motivo": "Destaca por: alta criminalidad contra personas (9 casos), muchos accidentes con víctimas (62)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 14,
+          "delitos_patrimonio": 24,
+          "drogas": 20,
+          "armas": 4,
+          "accidentes_victimas": 60,
+          "detenidos": 87
+        },
+        "indice": 6.2,
+        "motivo": "Destaca por: alta criminalidad contra personas (14 casos), muchos delitos contra el patrimonio (24 casos), alta tenencia de armas (4 casos), muchos accidentes con víctimas (60)."
+      }
+    }
   },
   {
     "distrito": "PUENTE DE VALLECAS",
-    "indice": 5.3,
+    "indice": 3.0,
     "detalles": {
-      "delitos_personas": 17,
-      "delitos_patrimonio": 23,
-      "drogas": 63,
-      "armas": 5,
-      "accidentes_victimas": 51
+      "delitos_personas": 22,
+      "delitos_patrimonio": 28,
+      "drogas": 68,
+      "armas": 6,
+      "accidentes_victimas": 47
     },
-    "motivo": "Destaca por: alta criminalidad contra personas (17 casos), muchos delitos contra el patrimonio (23 casos), elevada actividad relacionada con drogas (63 casos), alta tenencia de armas (5 casos), muchos accidentes con víctimas (51)."
+    "motivo": "Destaca por: alta criminalidad contra personas (21 casos), muchos delitos contra el patrimonio (28 casos), elevada actividad relacionada con drogas (67 casos), alta tenencia de armas (6 casos), muchos accidentes con víctimas (46).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 19,
+          "delitos_patrimonio": 29,
+          "drogas": 78,
+          "armas": 8,
+          "accidentes_victimas": 57,
+          "detenidos": 107
+        },
+        "indice": 3.5,
+        "motivo": "Destaca por: alta criminalidad contra personas (19 casos), muchos delitos contra el patrimonio (29 casos), elevada actividad relacionada con drogas (78 casos), alta tenencia de armas (8 casos), muchos accidentes con víctimas (57)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 23,
+          "delitos_patrimonio": 37,
+          "drogas": 58,
+          "armas": 5,
+          "accidentes_victimas": 34,
+          "detenidos": 109
+        },
+        "indice": 3.1,
+        "motivo": "Destaca por: alta criminalidad contra personas (23 casos), muchos delitos contra el patrimonio (37 casos), elevada actividad relacionada con drogas (58 casos), alta tenencia de armas (5 casos)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 28,
+          "delitos_patrimonio": 23,
+          "drogas": 75,
+          "armas": 8,
+          "accidentes_victimas": 47,
+          "detenidos": 105
+        },
+        "indice": 3.6,
+        "motivo": "Destaca por: alta criminalidad contra personas (28 casos), muchos delitos contra el patrimonio (23 casos), elevada actividad relacionada con drogas (75 casos), alta tenencia de armas (8 casos), muchos accidentes con víctimas (47)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 18,
+          "delitos_patrimonio": 31,
+          "drogas": 42,
+          "armas": 7,
+          "accidentes_victimas": 42,
+          "detenidos": 100
+        },
+        "indice": 2.6,
+        "motivo": "Destaca por: alta criminalidad contra personas (18 casos), muchos delitos contra el patrimonio (31 casos), elevada actividad relacionada con drogas (42 casos), alta tenencia de armas (7 casos), muchos accidentes con víctimas (42)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 25,
+          "delitos_patrimonio": 25,
+          "drogas": 91,
+          "armas": 5,
+          "accidentes_victimas": 50,
+          "detenidos": 84
+        },
+        "indice": 4.0,
+        "motivo": "Destaca por: alta criminalidad contra personas (25 casos), muchos delitos contra el patrimonio (25 casos), elevada actividad relacionada con drogas (91 casos), alta tenencia de armas (5 casos), muchos accidentes con víctimas (50)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 17,
+          "delitos_patrimonio": 23,
+          "drogas": 63,
+          "armas": 5,
+          "accidentes_victimas": 51,
+          "detenidos": 111
+        },
+        "indice": 5.3,
+        "motivo": "Destaca por: alta criminalidad contra personas (17 casos), muchos delitos contra el patrimonio (23 casos), elevada actividad relacionada con drogas (63 casos), alta tenencia de armas (5 casos), muchos accidentes con víctimas (51)."
+      }
+    }
   },
   {
     "distrito": "CENTRO",
-    "indice": 2.0,
+    "indice": 0.9,
     "detalles": {
-      "delitos_personas": 30,
-      "delitos_patrimonio": 82,
-      "drogas": 203,
-      "armas": 2,
-      "accidentes_victimas": 47
+      "delitos_personas": 21,
+      "delitos_patrimonio": 101,
+      "drogas": 206,
+      "armas": 5,
+      "accidentes_victimas": 42
     },
-    "motivo": "Destaca por: alta criminalidad contra personas (30 casos), muchos delitos contra el patrimonio (82 casos), elevada actividad relacionada con drogas (203 casos), muchos accidentes con víctimas (47)."
+    "motivo": "Destaca por: alta criminalidad contra personas (20 casos), muchos delitos contra el patrimonio (101 casos), elevada actividad relacionada con drogas (205 casos), alta tenencia de armas (4 casos).",
+    "meses": {
+      "2025-11": {
+        "detalles": {
+          "delitos_personas": 25,
+          "delitos_patrimonio": 149,
+          "drogas": 172,
+          "armas": 3,
+          "accidentes_victimas": 52,
+          "detenidos": 181
+        },
+        "indice": 1.7,
+        "motivo": "Destaca por: alta criminalidad contra personas (25 casos), muchos delitos contra el patrimonio (149 casos), elevada actividad relacionada con drogas (172 casos), alta tenencia de armas (3 casos), muchos accidentes con víctimas (52)."
+      },
+      "2025-12": {
+        "detalles": {
+          "delitos_personas": 17,
+          "delitos_patrimonio": 75,
+          "drogas": 181,
+          "armas": 6,
+          "accidentes_victimas": 33,
+          "detenidos": 142
+        },
+        "indice": 1.1,
+        "motivo": "Destaca por: alta criminalidad contra personas (17 casos), muchos delitos contra el patrimonio (75 casos), elevada actividad relacionada con drogas (181 casos), alta tenencia de armas (6 casos)."
+      },
+      "2026-01": {
+        "detalles": {
+          "delitos_personas": 15,
+          "delitos_patrimonio": 121,
+          "drogas": 236,
+          "armas": 10,
+          "accidentes_victimas": 37,
+          "detenidos": 121
+        },
+        "indice": 1.6,
+        "motivo": "Destaca por: alta criminalidad contra personas (15 casos), muchos delitos contra el patrimonio (121 casos), elevada actividad relacionada con drogas (236 casos), alta tenencia de armas (10 casos)."
+      },
+      "2026-02": {
+        "detalles": {
+          "delitos_personas": 18,
+          "delitos_patrimonio": 51,
+          "drogas": 192,
+          "armas": 4,
+          "accidentes_victimas": 40,
+          "detenidos": 122
+        },
+        "indice": 1.2,
+        "motivo": "Destaca por: alta criminalidad contra personas (18 casos), muchos delitos contra el patrimonio (51 casos), elevada actividad relacionada con drogas (192 casos), alta tenencia de armas (4 casos), muchos accidentes con víctimas (40)."
+      },
+      "2026-03": {
+        "detalles": {
+          "delitos_personas": 20,
+          "delitos_patrimonio": 129,
+          "drogas": 251,
+          "armas": 4,
+          "accidentes_victimas": 40,
+          "detenidos": 166
+        },
+        "indice": 2.1,
+        "motivo": "Destaca por: alta criminalidad contra personas (20 casos), muchos delitos contra el patrimonio (129 casos), elevada actividad relacionada con drogas (251 casos), alta tenencia de armas (4 casos)."
+      },
+      "2026-04": {
+        "detalles": {
+          "delitos_personas": 30,
+          "delitos_patrimonio": 82,
+          "drogas": 203,
+          "armas": 2,
+          "accidentes_victimas": 47,
+          "detenidos": 128
+        },
+        "indice": 2.0,
+        "motivo": "Destaca por: alta criminalidad contra personas (30 casos), muchos delitos contra el patrimonio (82 casos), elevada actividad relacionada con drogas (203 casos), muchos accidentes con víctimas (47)."
+      }
+    }
   }
 ]
