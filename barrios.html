@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distritos y Barrios de Madrid</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a2533; font-size: 13px; }
+
+    .page-header {
+      background: #fff;
+      padding: 14px 24px 10px;
+      border-bottom: 1px solid #dde2ea;
+      position: sticky; top: 0; z-index: 200;
+      display: flex; align-items: baseline; gap: 16px;
+    }
+    .page-header h1 { font-size: 16px; font-weight: 700; color: #1a2533; }
+    .page-header a { font-size: 12px; color: #2563eb; text-decoration: none; }
+    .page-header a:hover { text-decoration: underline; }
+    #stats { font-size: 12px; color: #7a8899; margin-left: auto; }
+
+    .toolbar {
+      background: #fff;
+      padding: 8px 24px;
+      border-bottom: 1px solid #dde2ea;
+      position: sticky; top: 44px; z-index: 199;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .toolbar input {
+      padding: 5px 12px;
+      border: 1px solid #d0d8e4;
+      border-radius: 4px;
+      font-size: 12px;
+      width: 240px;
+      color: #1a2533;
+      outline: none;
+    }
+    .toolbar input:focus { border-color: #2563eb; }
+    .toolbar button {
+      padding: 4px 12px;
+      font-size: 11px;
+      border: 1px solid #d0d8e4;
+      border-radius: 4px;
+      background: #fff;
+      color: #4b5563;
+      cursor: pointer;
+    }
+    .toolbar button:hover { background: #f0f4ff; border-color: #b0c0e0; }
+
+    .table-wrap {
+      overflow: auto;
+      height: calc(100vh - 88px);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+    }
+
+    thead th {
+      background: #eef1f6;
+      padding: 7px 12px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7a8d;
+      border-bottom: 2px solid #d0d8e4;
+      white-space: nowrap;
+      position: sticky; top: 0; z-index: 100;
+    }
+    thead th.th-right { text-align: right; }
+
+    /* Fila de distrito */
+    tr.d-row td {
+      padding: 7px 12px;
+      border-bottom: 1px solid #eef0f4;
+      background: #fff;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    tr.d-row:hover td { background: #f5f7ff; }
+
+    .d-toggle {
+      cursor: pointer;
+      font-size: 10px;
+      color: #9aabb8;
+      user-select: none;
+      padding: 0 4px;
+      transition: transform 0.15s;
+      display: inline-block;
+    }
+    .d-toggle.open { transform: rotate(90deg); }
+
+    .d-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: #9aabb8;
+    }
+    .d-nombre {
+      font-weight: 700;
+      color: #1a2533;
+    }
+
+    /* Fila de barrio */
+    tr.b-row td {
+      padding: 3px 12px;
+      border-bottom: 1px solid #f5f6f8;
+      background: #fafbfc;
+      vertical-align: middle;
+      white-space: nowrap;
+      font-size: 12px;
+      color: #4b5563;
+    }
+    tr.b-row:last-of-type td { border-bottom: 1px solid #eef0f4; }
+    tr.b-row:hover td { background: #f0f4ff; }
+    tr.b-row.hidden { display: none; }
+
+    .b-tree {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .b-connector {
+      color: #d0d8e4;
+      font-size: 11px;
+      font-family: monospace;
+      flex-shrink: 0;
+    }
+    .b-num {
+      font-size: 10px;
+      color: #b0bac6;
+      min-width: 28px;
+    }
+
+    /* Badge seguridad */
+    .seg-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 9px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: help;
+      white-space: nowrap;
+    }
+    .seg-verde    { background: #d1fae5; color: #065f46; }
+    .seg-amarillo { background: #fef3c7; color: #92400e; }
+    .seg-rojo     { background: #fee2e2; color: #991b1b; }
+
+    #seg-tooltip {
+      display: none;
+      position: fixed;
+      background: #1a2533;
+      color: #f0f4ff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 11px;
+      line-height: 1.6;
+      width: 220px;
+      z-index: 9999;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      pointer-events: none;
+    }
+    #seg-tooltip strong { font-weight: 700; color: #fff; }
+    #seg-tooltip .tip-row { display: flex; justify-content: space-between; gap: 12px; }
+    #seg-tooltip .tip-motivo { color: #94a3b8; margin-top: 6px; font-size: 10px; line-height: 1.5; }
+
+    .td-right { text-align: right; }
+    .null-val  { color: #c8cdd3; }
+    .seg-nota  { font-size: 10px; color: #9aabb8; padding: 10px 24px; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Distritos y Barrios de Madrid</h1>
+  <a href="index.html">← Volver a pisos</a>
+  <div id="stats"></div>
+</div>
+
+<div class="toolbar">
+  <input type="text" id="search" placeholder="Buscar distrito o barrio…" autocomplete="off">
+  <button id="btn-expand">Expandir todo</button>
+  <button id="btn-collapse">Colapsar todo</button>
+</div>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28px"></th>
+        <th style="width:36px">Nº</th>
+        <th>Nombre</th>
+        <th style="width:80px">Seg. absoluta</th>
+        <th style="width:90px">Seg. per-cápita</th>
+        <th class="th-right" style="width:80px">Personas<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
+        <th class="th-right" style="width:90px">Patrimonio<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
+        <th class="th-right" style="width:70px">Drogas<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
+        <th class="th-right" style="width:70px">Armas<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
+        <th class="th-right" style="width:90px">Accidentes<br><span style="font-weight:400;text-transform:none;letter-spacing:0">/mes</span></th>
+        <th class="th-right" style="width:90px">Pers./10K·año</th>
+        <th class="th-right" style="width:90px">Patrim./10K·año</th>
+        <th class="th-right" style="width:90px">Drogas/10K·año</th>
+        <th class="th-right" style="width:90px">Armas/10K·año</th>
+        <th class="th-right" style="width:90px">Acc./10K·año</th>
+        <th class="th-right" style="width:110px">Población</th>
+        <th class="th-right" style="width:110px">Superficie</th>
+        <th class="th-right" style="width:110px">Densidad</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <p class="seg-nota">* Seguridad calculada a partir de estadísticas policiales del Ayuntamiento de Madrid. Datos absolutos, no per-cápita. Población y superficie a 01/01/2025.</p>
+</div>
+
+<div id="seg-tooltip"></div>
+
+<script>
+const DISTRITOS = [
+  { num:'01', nombre:'Centro',               barrios:['Palacio','Embajadores','Cortes','Justicia','Universidad','Sol'] },
+  { num:'02', nombre:'Arganzuela',            barrios:['Imperial','Acacias','Chopera','Legazpi','Delicias','Palos de la Frontera','Atocha'] },
+  { num:'03', nombre:'Retiro',                barrios:['Pacífico','Adelfas','Estrella','Ibiza','Los Jerónimos','Niño Jesús'] },
+  { num:'04', nombre:'Salamanca',             barrios:['Recoletos','Goya','Fuente del Berro','Guindalera','Lista','Castellana'] },
+  { num:'05', nombre:'Chamartín',             barrios:['El Viso','Prosperidad','Ciudad Jardín','Hispanoamérica','Nueva España','Castilla'] },
+  { num:'06', nombre:'Tetuán',                barrios:['Bellas Vistas','Cuatro Caminos','Castillejos','Almenara','Valdeacederas','Berruguete'] },
+  { num:'07', nombre:'Chamberí',              barrios:['Gaztambide','Arapiles','Trafalgar','Almagro','Ríos Rosas','Vallehermoso'] },
+  { num:'08', nombre:'Fuencarral-El Pardo',   barrios:['El Pardo','Fuentelarreina','Peñagrande','Pilar','La Paz','Valverde','Mirasierra','El Goloso'] },
+  { num:'09', nombre:'Moncloa-Aravaca',       barrios:['Casa de Campo','Argüelles','Ciudad Universitaria','Valdezarza','Valdemarín','El Plantío','Aravaca'] },
+  { num:'10', nombre:'Latina',                barrios:['Los Cármenes','Puerta del Ángel','Lucero','Aluche','Campamento','Cuatro Vientos','Águilas'] },
+  { num:'11', nombre:'Carabanchel',           barrios:['Comillas','Opañel','San Isidro','Vista Alegre','Puerta Bonita','Buenavista','Abrantes'] },
+  { num:'12', nombre:'Usera',                 barrios:['Orcasitas','Orcasur','San Fermín','Almendrales','Moscardó','Zofío','Pradolongo'] },
+  { num:'13', nombre:'Puente de Vallecas',    barrios:['Entrevías','San Diego','Palomeras Bajas','Palomeras Sureste','Portazgo','Numancia'] },
+  { num:'14', nombre:'Moratalaz',             barrios:['Pavones','Horcajo','Marroquina','Media Legua','Fontarrón','Vinateros'] },
+  { num:'15', nombre:'Ciudad Lineal',         barrios:['Ventas','Pueblo Nuevo','Quintana','La Concepción','San Pascual','San Juan Bautista','Colina','Atalaya','Costillares'] },
+  { num:'16', nombre:'Hortaleza',             barrios:['Palomas','Piovera','Canillas','Pinar del Rey','Apóstol Santiago','Valdefuentes'] },
+  { num:'17', nombre:'Villaverde',            barrios:['Villaverde Alto – Casco Histórico','San Cristóbal','Butarque','Los Rosales','Ángeles'] },
+  { num:'18', nombre:'Villa de Vallecas',     barrios:['Casco Histórico de Vallecas','Santa Eugenia','Ensanche de Vallecas'] },
+  { num:'19', nombre:'Vicálvaro',             barrios:['Casco Histórico de Vicálvaro','Valdebernardo','Valderrivas','El Cañaveral'] },
+  { num:'20', nombre:'San Blas-Canillejas',   barrios:['Simancas','Hellín','Amposta','Arcos','Rosas','Rejas','Canillejas','El Salvador'] },
+  { num:'21', nombre:'Barajas',               barrios:['Alameda de Osuna','Aeropuerto','Casco Histórico de Barajas','Timón','Corralejos'] },
+];
+
+const GEODATA = {
+  '01': { sup:'522,82',    den:280, pob:146349  },
+  '02': { sup:'646,22',    den:246, pob:158760  },
+  '03': { sup:'546,62',    den:220, pob:120447  },
+  '04': { sup:'539,24',    den:280, pob:150796  },
+  '05': { sup:'917,55',    den:163, pob:149654  },
+  '06': { sup:'537,47',    den:315, pob:169479  },
+  '07': { sup:'467,92',    den:307, pob:143807  },
+  '08': { sup:'23.783,83', den:11,  pob:257495  },
+  '09': { sup:'4.658,69',  den:27,  pob:126978  },
+  '10': { sup:'2.541,04',  den:100, pob:254161  },
+  '11': { sup:'1.404,83',  den:200, pob:280685  },
+  '12': { sup:'777,77',    den:198, pob:153980  },
+  '13': { sup:'1.496,86',  den:174, pob:260178  },
+  '14': { sup:'610,32',    den:157, pob:96075   },
+  '15': { sup:'1.142,57',  den:205, pob:234075  },
+  '16': { sup:'2.762,40',  den:76,  pob:209541  },
+  '17': { sup:'2.019,43',  den:86,  pob:173183  },
+  '18': { sup:'5.145,38',  den:25,  pob:126519  },
+  '19': { sup:'3.526,27',  den:27,  pob:95233   },
+  '20': { sup:'2.228,99',  den:76,  pob:169990  },
+  '21': { sup:'4.171,63',  den:12,  pob:50539   },
+};
+
+const fmtPob = n => new Intl.NumberFormat('es-ES').format(n);
+
+function normKey(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z]/g,'');
+}
+function segClase(v) {
+  return v >= 7.5 ? 'seg-verde' : v >= 5 ? 'seg-amarillo' : 'seg-rojo';
+}
+
+// Tooltip
+const tooltip = document.getElementById('seg-tooltip');
+function showTip(el, html) {
+  tooltip.innerHTML = html;
+  tooltip.style.display = 'block';
+  const r = el.getBoundingClientRect();
+  const tw = tooltip.offsetWidth;
+  let left = r.left;
+  if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
+  if (left < 8) left = 8;
+  tooltip.style.top  = (r.bottom + 6) + 'px';
+  tooltip.style.left = left + 'px';
+}
+function hideTip() { tooltip.style.display = 'none'; }
+
+// Barrio number: district num × 10 + index+1, zero-padded to 3
+function barrioNum(distNum, i) {
+  return (parseInt(distNum) * 10 + i + 1).toString().padStart(3, '0');
+}
+
+function calcIndicePc(secByKey) {
+  const PESOS = [0.30, 0.20, 0.20, 0.25, 0.05];
+  const getVals = (det, pob) => [
+    det.delitos_personas    * 12 / pob * 10000,
+    det.delitos_patrimonio  * 12 / pob * 10000,
+    det.drogas              * 12 / pob * 10000,
+    det.armas               * 12 / pob * 10000,
+    det.accidentes_victimas * 12 / pob * 10000,
+  ];
+
+  // Recoger los 5 valores per-cápita de cada distrito
+  const entries = DISTRITOS.map(d => {
+    const sec = secByKey[normKey(d.nombre)];
+    const g   = GEODATA[d.num];
+    if (!sec || !g?.pob) return null;
+    return { key: normKey(d.nombre), vals: getVals(sec.detalles, g.pob) };
+  }).filter(Boolean);
+
+  // Normalizar cada métrica entre 0 y 1
+  const norms = entries.map(e => [...e.vals]);
+  for (let i = 0; i < 5; i++) {
+    const col = entries.map(e => e.vals[i]);
+    const mn = Math.min(...col), mx = Math.max(...col);
+    entries.forEach((e, j) => {
+      norms[j][i] = mx === mn ? 0 : (e.vals[i] - mn) / (mx - mn);
+    });
+  }
+
+  // Calcular índice y guardarlo en secByKey
+  entries.forEach((e, j) => {
+    const inseg = norms[j].reduce((s, n, i) => s + n * PESOS[i], 0);
+    secByKey[e.key].indice_pc = Math.round((10 - inseg * 10) * 10) / 10;
+  });
+}
+
+function buildTable(secByKey) {
+  calcIndicePc(secByKey);
+  // Sort by security index descending (fallback: district number)
+  const sorted = [...DISTRITOS].sort((a, b) => {
+    const sa = secByKey[normKey(a.nombre)]?.indice_pc ?? 5;
+    const sb = secByKey[normKey(b.nombre)]?.indice_pc ?? 5;
+    return sb - sa;
+  });
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+
+  sorted.forEach(d => {
+    const g   = GEODATA[d.num] || {};
+    const sec = secByKey[normKey(d.nombre)];
+
+    // --- District row ---
+    const dRow = document.createElement('tr');
+    dRow.className = 'd-row';
+    dRow.dataset.num = d.num;
+
+    // Badge HTML
+    const nul = '<span class="null-val">—</span>';
+    let badgeHTML = nul;
+    let det = null;
+    if (sec) {
+      det = sec.detalles;
+      badgeHTML = `<span class="seg-badge ${segClase(sec.indice)}">${sec.indice.toFixed(1)}</span>`;
+    }
+
+    // Valores normalizados: mensual × 12 meses / población × 1000 hab
+    function norm1k(val) {
+      if (!det || !g.pob) return nul;
+      return ((val * 12) / g.pob * 10000).toFixed(2);
+    }
+
+    dRow.innerHTML = `
+      <td><span class="d-toggle" data-num="${d.num}">▶</span></td>
+      <td><span class="d-num">${d.num}</span></td>
+      <td><span class="d-nombre">${d.nombre}</span></td>
+      <td>${badgeHTML}</td>
+      <td>${sec?.indice_pc != null ? `<span class="seg-badge ${segClase(sec.indice_pc)}">${sec.indice_pc.toFixed(1)}</span>` : nul}</td>
+      <td class="td-right">${det ? det.delitos_personas   : nul}</td>
+      <td class="td-right">${det ? det.delitos_patrimonio : nul}</td>
+      <td class="td-right">${det ? det.drogas             : nul}</td>
+      <td class="td-right">${det ? det.armas              : nul}</td>
+      <td class="td-right">${det ? det.accidentes_victimas: nul}</td>
+      <td class="td-right">${norm1k(det?.delitos_personas)}</td>
+      <td class="td-right">${norm1k(det?.delitos_patrimonio)}</td>
+      <td class="td-right">${norm1k(det?.drogas)}</td>
+      <td class="td-right">${norm1k(det?.armas)}</td>
+      <td class="td-right">${norm1k(det?.accidentes_victimas)}</td>
+      <td class="td-right">${g.pob ? fmtPob(g.pob)        : nul}</td>
+      <td class="td-right">${g.sup ? g.sup + ' Ha'         : nul}</td>
+      <td class="td-right">${g.den != null ? g.den + ' hab./Ha' : nul}</td>`;
+
+    tbody.appendChild(dRow);
+
+    // Badge tooltip (solo el índice desagregado)
+    if (sec) {
+      const tipHTML = `
+        <strong>Seguridad: ${sec.indice.toFixed(1)} / 10</strong>
+        <div class="tip-row" style="margin-top:6px"><span>Personas</span><span>${det.delitos_personas}</span></div>
+        <div class="tip-row"><span>Patrimonio</span><span>${det.delitos_patrimonio}</span></div>
+        <div class="tip-row"><span>Drogas</span><span>${det.drogas}</span></div>
+        <div class="tip-row"><span>Armas</span><span>${det.armas}</span></div>
+        <div class="tip-row"><span>Acc. c/víctimas</span><span>${det.accidentes_victimas}</span></div>
+        <div class="tip-motivo">${sec.motivo}</div>`;
+      const badge = dRow.querySelector('.seg-badge');
+      badge.addEventListener('mouseenter', () => showTip(badge, tipHTML));
+      badge.addEventListener('mouseleave', hideTip);
+    }
+
+    // Toggle click
+    dRow.querySelector('.d-toggle').addEventListener('click', e => {
+      e.stopPropagation();
+      toggleDistrict(d.num);
+    });
+
+    // --- Barrio rows ---
+    d.barrios.forEach((nombre, i) => {
+      const isLast    = i === d.barrios.length - 1;
+      const connector = isLast ? '└──' : '├──';
+      const bNum      = barrioNum(d.num, i);
+
+      const bRow = document.createElement('tr');
+      bRow.className = 'b-row hidden';
+      bRow.dataset.dist   = d.num;
+      bRow.dataset.nombre = nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+      bRow.innerHTML = `
+        <td></td>
+        <td><span class="b-num">${bNum}</span></td>
+        <td colspan="16">
+          <span class="b-tree">
+            <span class="b-connector">${connector}</span>
+            ${nombre}
+          </span>
+        </td>`;
+
+      tbody.appendChild(bRow);
+    });
+  });
+
+  // Stats
+  const total = DISTRITOS.reduce((s, d) => s + d.barrios.length, 0);
+  document.getElementById('stats').textContent =
+    `${DISTRITOS.length} distritos · ${total} barrios`;
+}
+
+function toggleDistrict(num, forceOpen) {
+  const rows   = document.querySelectorAll(`.b-row[data-dist="${num}"]`);
+  const toggle = document.querySelector(`.d-toggle[data-num="${num}"]`);
+  const isOpen = forceOpen !== undefined ? !forceOpen : !toggle.classList.contains('open');
+  rows.forEach(r => r.classList.toggle('hidden', isOpen));
+  toggle.classList.toggle('open', !isOpen);
+}
+
+// Expand / Collapse all
+document.getElementById('btn-expand').addEventListener('click', () => {
+  DISTRITOS.forEach(d => toggleDistrict(d.num, false));
+});
+document.getElementById('btn-collapse').addEventListener('click', () => {
+  DISTRITOS.forEach(d => toggleDistrict(d.num, true));
+});
+
+// Search
+document.getElementById('search').addEventListener('input', function () {
+  const q = this.value.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+  if (!q) {
+    // Restore: collapse all, show all district rows
+    document.querySelectorAll('.d-row').forEach(r => r.classList.remove('hidden'));
+    document.querySelectorAll('.b-row').forEach(r => r.classList.add('hidden'));
+    document.querySelectorAll('.d-toggle').forEach(t => t.classList.remove('open'));
+    return;
+  }
+
+  DISTRITOS.forEach(d => {
+    const dRow  = document.querySelector(`.d-row[data-num="${d.num}"]`);
+    const bRows = document.querySelectorAll(`.b-row[data-dist="${d.num}"]`);
+    const dName = d.nombre.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+    const distMatch = dName.includes(q);
+    let   anyBarrio = false;
+
+    bRows.forEach(r => {
+      const match = distMatch || r.dataset.nombre.includes(q);
+      r.classList.toggle('hidden', !match);
+      if (match) anyBarrio = true;
+    });
+
+    const show = distMatch || anyBarrio;
+    dRow.classList.toggle('hidden', !show);
+    if (show) {
+      const toggle = dRow.querySelector('.d-toggle');
+      toggle.classList.toggle('open', anyBarrio || distMatch);
+    }
+  });
+});
+
+// Load security data then build table
+fetch('./seguridad.json')
+  .then(r => r.json())
+  .then(data => {
+    const byKey = {};
+    data.forEach(d => { byKey[normKey(d.distrito)] = d; });
+    buildTable(byKey);
+  })
+  .catch(() => buildTable({}));
+</script>
+</body>
+</html>

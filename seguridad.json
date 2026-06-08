@@ -1,0 +1,254 @@
+[
+  {
+    "distrito": "HORTALEZA",
+    "indice": 9.5,
+    "detalles": {
+      "delitos_personas": 1,
+      "delitos_patrimonio": 4,
+      "drogas": 26,
+      "armas": 0,
+      "accidentes_victimas": 34
+    },
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+  },
+  {
+    "distrito": "CHAMBERÍ",
+    "indice": 9.4,
+    "detalles": {
+      "delitos_personas": 4,
+      "delitos_patrimonio": 7,
+      "drogas": 7,
+      "armas": 0,
+      "accidentes_victimas": 31
+    },
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y escasa actividad con drogas."
+  },
+  {
+    "distrito": "MORATALAZ",
+    "indice": 9.3,
+    "detalles": {
+      "delitos_personas": 2,
+      "delitos_patrimonio": 20,
+      "drogas": 9,
+      "armas": 0,
+      "accidentes_victimas": 17
+    },
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (20 casos). Puntos positivos: baja criminalidad violenta y escasa actividad con drogas."
+  },
+  {
+    "distrito": "ARGANZUELA",
+    "indice": 9.1,
+    "detalles": {
+      "delitos_personas": 4,
+      "delitos_patrimonio": 3,
+      "drogas": 9,
+      "armas": 1,
+      "accidentes_victimas": 33
+    },
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio y escasa actividad con drogas."
+  },
+  {
+    "distrito": "VICÁLVARO",
+    "indice": 8.9,
+    "detalles": {
+      "delitos_personas": 6,
+      "delitos_patrimonio": 11,
+      "drogas": 5,
+      "armas": 1,
+      "accidentes_victimas": 20
+    },
+    "motivo": "Distrito tranquilo con escasa actividad con drogas."
+  },
+  {
+    "distrito": "BARAJAS",
+    "indice": 8.8,
+    "detalles": {
+      "delitos_personas": 3,
+      "delitos_patrimonio": 3,
+      "drogas": 43,
+      "armas": 2,
+      "accidentes_victimas": 9
+    },
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (43 casos). Puntos positivos: baja criminalidad violenta y pocos delitos contra el patrimonio."
+  },
+  {
+    "distrito": "RETIRO",
+    "indice": 8.8,
+    "detalles": {
+      "delitos_personas": 5,
+      "delitos_patrimonio": 6,
+      "drogas": 6,
+      "armas": 1,
+      "accidentes_victimas": 47
+    },
+    "motivo": "Destaca por: muchos accidentes con víctimas (47). Puntos positivos: escasa actividad con drogas."
+  },
+  {
+    "distrito": "TETUÁN",
+    "indice": 8.8,
+    "detalles": {
+      "delitos_personas": 3,
+      "delitos_patrimonio": 3,
+      "drogas": 18,
+      "armas": 2,
+      "accidentes_victimas": 31
+    },
+    "motivo": "Distrito tranquilo con baja criminalidad violenta y pocos delitos contra el patrimonio."
+  },
+  {
+    "distrito": "LATINA",
+    "indice": 8.7,
+    "detalles": {
+      "delitos_personas": 8,
+      "delitos_patrimonio": 5,
+      "drogas": 16,
+      "armas": 0,
+      "accidentes_victimas": 49
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (8 casos), muchos accidentes con víctimas (49). Puntos positivos: pocos delitos contra el patrimonio."
+  },
+  {
+    "distrito": "MONCLOA - ARAVACA",
+    "indice": 8.4,
+    "detalles": {
+      "delitos_personas": 5,
+      "delitos_patrimonio": 11,
+      "drogas": 40,
+      "armas": 1,
+      "accidentes_victimas": 42
+    },
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (40 casos)."
+  },
+  {
+    "distrito": "CHAMARTÍN",
+    "indice": 8.0,
+    "detalles": {
+      "delitos_personas": 7,
+      "delitos_patrimonio": 8,
+      "drogas": 56,
+      "armas": 1,
+      "accidentes_victimas": 51
+    },
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (56 casos), muchos accidentes con víctimas (51)."
+  },
+  {
+    "distrito": "SALAMANCA",
+    "indice": 7.9,
+    "detalles": {
+      "delitos_personas": 5,
+      "delitos_patrimonio": 26,
+      "drogas": 6,
+      "armas": 2,
+      "accidentes_victimas": 56
+    },
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (26 casos), muchos accidentes con víctimas (56). Puntos positivos: escasa actividad con drogas."
+  },
+  {
+    "distrito": "VILLA DE VALLECAS",
+    "indice": 7.9,
+    "detalles": {
+      "delitos_personas": 11,
+      "delitos_patrimonio": 9,
+      "drogas": 16,
+      "armas": 2,
+      "accidentes_victimas": 28
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (11 casos)."
+  },
+  {
+    "distrito": "VILLAVERDE",
+    "indice": 7.7,
+    "detalles": {
+      "delitos_personas": 9,
+      "delitos_patrimonio": 3,
+      "drogas": 15,
+      "armas": 4,
+      "accidentes_victimas": 22
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (9 casos), alta tenencia de armas (4 casos). Puntos positivos: pocos delitos contra el patrimonio."
+  },
+  {
+    "distrito": "USERA",
+    "indice": 7.6,
+    "detalles": {
+      "delitos_personas": 5,
+      "delitos_patrimonio": 5,
+      "drogas": 49,
+      "armas": 4,
+      "accidentes_victimas": 29
+    },
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (49 casos), alta tenencia de armas (4 casos). Puntos positivos: pocos delitos contra el patrimonio."
+  },
+  {
+    "distrito": "SAN BLAS - CANILLEJAS",
+    "indice": 7.6,
+    "detalles": {
+      "delitos_personas": 7,
+      "delitos_patrimonio": 13,
+      "drogas": 12,
+      "armas": 4,
+      "accidentes_victimas": 33
+    },
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (13 casos), alta tenencia de armas (4 casos)."
+  },
+  {
+    "distrito": "CIUDAD LINEAL",
+    "indice": 6.9,
+    "detalles": {
+      "delitos_personas": 7,
+      "delitos_patrimonio": 13,
+      "drogas": 30,
+      "armas": 5,
+      "accidentes_victimas": 46
+    },
+    "motivo": "Destaca por: muchos delitos contra el patrimonio (13 casos), alta tenencia de armas (5 casos)."
+  },
+  {
+    "distrito": "FUENCARRAL - EL PARDO",
+    "indice": 6.8,
+    "detalles": {
+      "delitos_personas": 1,
+      "delitos_patrimonio": 6,
+      "drogas": 40,
+      "armas": 8,
+      "accidentes_victimas": 41
+    },
+    "motivo": "Destaca por: elevada actividad relacionada con drogas (40 casos), alta tenencia de armas (8 casos). Puntos positivos: baja criminalidad violenta."
+  },
+  {
+    "distrito": "CARABANCHEL",
+    "indice": 6.2,
+    "detalles": {
+      "delitos_personas": 14,
+      "delitos_patrimonio": 24,
+      "drogas": 20,
+      "armas": 4,
+      "accidentes_victimas": 60
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (14 casos), muchos delitos contra el patrimonio (24 casos), alta tenencia de armas (4 casos), muchos accidentes con víctimas (60)."
+  },
+  {
+    "distrito": "PUENTE DE VALLECAS",
+    "indice": 5.3,
+    "detalles": {
+      "delitos_personas": 17,
+      "delitos_patrimonio": 23,
+      "drogas": 63,
+      "armas": 5,
+      "accidentes_victimas": 51
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (17 casos), muchos delitos contra el patrimonio (23 casos), elevada actividad relacionada con drogas (63 casos), alta tenencia de armas (5 casos), muchos accidentes con víctimas (51)."
+  },
+  {
+    "distrito": "CENTRO",
+    "indice": 2.0,
+    "detalles": {
+      "delitos_personas": 30,
+      "delitos_patrimonio": 82,
+      "drogas": 203,
+      "armas": 2,
+      "accidentes_victimas": 47
+    },
+    "motivo": "Destaca por: alta criminalidad contra personas (30 casos), muchos delitos contra el patrimonio (82 casos), elevada actividad relacionada con drogas (203 casos), muchos accidentes con víctimas (47)."
+  }
+]
