@@ -443,7 +443,7 @@ function applyFilters() {
   const rows = document.querySelectorAll('#tbody tr');
   let visible = 0;
   rows.forEach(r => {
-    const gestion = r.dataset.gestion || '';
+    const gestion = r.dataset.gestion || 'pendiente_contactar';
     const portal  = r.dataset.portal;
     const nota    = parseFloat(r.dataset.nota) || 0;
 
