@@ -36,7 +36,7 @@
 
     table {
       width: 100%;
-      min-width: 1600px;
+      min-width: 900px;
       border-collapse: collapse;
       background: #fff;
     }
@@ -220,29 +220,17 @@
   <table id="tbl">
     <thead>
       <tr>
-        <th>Nota</th>
-        <th>Fotos</th>
-        <th>F. Contacto</th>
-        <th>F. Visita</th>
-        <th>Gestión</th>
+        <th>Dirección</th>
         <th class="th-right">Precio</th>
         <th class="th-right">P. Objetivo</th>
-        <th class="th-right">Dto%</th>
-        <th class="th-right">€/m²</th>
-        <th class="th-right">m² (útil/c.)</th>
-        <th>H/B</th>
+        <th>Gestión</th>
+        <th>F. Visita</th>
+        <th class="th-right">m²</th>
+        <th>Hab.</th>
         <th>Planta</th>
-        <th>Orientación</th>
-        <th>Dirección</th>
-        <th>Extras</th>
-        <th>Cert.E</th>
-        <th>Calef.</th>
-        <th>Año</th>
-        <th class="th-right">Gastos com.</th>
-        <th>Estado piso</th>
-        <th>Reforma (visual)</th>
-        <th>Agencia</th>
+        <th>Estado</th>
         <th></th>
+        <th>Notas</th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
@@ -396,9 +384,11 @@ function renderRow(p) {
     extChip('AC', p.aire_acondicionado),
   ].join('');
 
-  const precioObj = p.precio_objetivo
-    ? `<span class="price-obj">${eur(p.precio_objetivo)}</span><span class="price-range">${eur(p.precio_objetivo_min)} – ${eur(p.precio_objetivo_max)}</span>`
-    : '<span class="null-val">—</span>';
+  const precioObj = (() => {
+    if (!p.precio_objetivo) return '<span class="null-val">—</span>';
+    const dto = p.descuento_estimado_pct != null ? ` <span class="dto">-${p.descuento_estimado_pct}%</span>` : '';
+    return `<span class="price-obj">${eur(p.precio_objetivo)}</span>${dto}`;
+  })();
 
   const linksHtml = `
     <div class="td-links">
@@ -409,29 +399,17 @@ function renderRow(p) {
   const comentHtml = hasComent ? ` <span class="comment-icon" title="${esc(p.comentario_personal)}">💬</span>` : '';
 
   return `<tr class="${rowCls}" onclick="location.href='detalle.html?id=${esc(p.id)}'" data-portal="${p.portal||''}" data-nota="${p.puntuacion_general||0}" data-gestion="${g}">
-    <td>${scoreHtml}</td>
-    <td>${fotosHtml}</td>
-    <td>${contactoHtml}</td>
-    <td>${visitaHtml}</td>
-    <td>${gestionBadge(p)}${comentHtml}</td>
+    <td class="wrap">${locHtml}${comentHtml}</td>
     <td class="td-right"><span class="price">${eur(p.precio)}</span></td>
     <td class="td-right">${precioObj}</td>
-    <td class="td-right"><span class="dto">${p.descuento_estimado_pct != null ? p.descuento_estimado_pct + '%' : '<span class="null-val">—</span>'}</span></td>
-    <td class="td-right"><span class="euro-m2">${p.precio_m2 != null ? num(p.precio_m2) : '<span class="null-val">—</span>'}</span></td>
+    <td>${gestionBadge(p)}</td>
+    <td>${visitaHtml}</td>
     <td class="td-right">${m2html}</td>
     <td>${hbHtml}</td>
     <td>${p.planta || '<span class="null-val">—</span>'}</td>
-    <td>${oriHtml}</td>
-    <td class="wrap">${locHtml}</td>
-    <td>${extrasHtml}</td>
-    <td>${certEl(p.certificado_energetico)}</td>
-    <td>${calefFmt(p.calefaccion)}</td>
-    <td>${p.ano_construccion || '<span class="null-val">—</span>'}</td>
-    <td class="td-right">${p.gastos_comunidad != null ? eur(p.gastos_comunidad) + '<small style="color:#9aabb8">/mes</small>' : '<span class="null-val">—</span>'}</td>
     <td>${estadoFmt(p.estado)}</td>
-    <td>${reformaVisualFmt(p.estado_reforma_visual)}</td>
-    <td>${agenciaFmt(p.honorarios_agencia)}</td>
     <td>${linksHtml}</td>
+    <td class="wrap" style="max-width:220px;color:#4b5563;font-size:12px">${p.motivo_descarte ? `<span style="color:#b91c1c">${esc(p.motivo_descarte)}</span>` : p.comentario_personal ? esc(p.comentario_personal) : '<span class="null-val">—</span>'}</td>
   </tr>`;
 }
 
@@ -477,7 +455,7 @@ fetch('./pisos.json')
     });
   })
   .catch(err => {
-    document.getElementById('tbody').innerHTML = `<tr><td colspan="23" style="padding:40px;text-align:center;color:#dc2626">${err.message}<br><small>Sirve los archivos desde un servidor local: <code>python3 -m http.server</code></small></td></tr>`;
+    document.getElementById('tbody').innerHTML = `<tr><td colspan="11" style="padding:40px;text-align:center;color:#dc2626">${err.message}<br><small>Sirve los archivos desde un servidor local: <code>python3 -m http.server</code></small></td></tr>`;
   });
 </script>
 </body>
