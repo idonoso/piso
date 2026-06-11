@@ -98,7 +98,7 @@ Del HTML o texto obtenido, extraer todos los campos posibles. Si un campo no apa
 
 ## Paso 4: Analizar fotos con visión
 
-Cargar como imágenes las primeras **8 URLs** del array `urls_fotos` usando WebFetch en modo imagen (pasar la URL directamente como contenido de imagen al contexto visual).
+Cargar como imágenes **todas las URLs** del array `urls_fotos` usando WebFetch en modo imagen (pasar cada URL directamente como contenido de imagen al contexto visual).
 
 ### 4a. Detectar fotos generadas o mejoradas con IA
 
@@ -113,11 +113,11 @@ Cargar como imágenes las primeras **8 URLs** del array `urls_fotos` usando WebF
 **Si hay fotos con IA**, incluir en `notas_analisis` una alerta prominente:
 > ⚠️ ALERTA FOTOS IA: N de las M fotos analizadas muestran indicios de generación o mejora con IA. El estado real del piso puede diferir significativamente de las imágenes. Se recomienda visita presencial antes de tomar cualquier decisión.
 
-**Penalización automática sobre `puntuacion_fotos`** según ratio de fotos con IA:
-- 1-2 fotos IA de 8: -0.5
-- 3-4 fotos IA de 8: -1.0
-- 5-6 fotos IA de 8: -1.5
-- 7-8 fotos IA de 8: -2.0 (considerar `puntuacion_fotos` como no fiable)
+**Penalización automática sobre `puntuacion_fotos`** según el porcentaje de fotos con IA sobre el total analizado:
+- < 15% con IA: -0.5
+- 15–40% con IA: -1.0
+- 40–65% con IA: -1.5
+- > 65% con IA: -2.0 (considerar `puntuacion_fotos` como no fiable)
 
 ### 4b. Evaluar contenido de las fotos
 
@@ -323,7 +323,7 @@ Ya existe un análisis para este piso (analizado el [fecha_analisis]).
 ¿Deseas sobreescribirlo con el nuevo análisis, o cancelar?
 ```
 
-- "Sobreescribir" → reemplazar el objeto existente por el nuevo
+- "Sobreescribir" → reemplazar el objeto existente por el nuevo, **preservando el valor original de `fecha_encontrado`** si existía en el objeto anterior
 - "Cancelar" → terminar sin modificar el archivo
 
 ---
@@ -351,6 +351,7 @@ Construir el objeto JSON con todos los campos en este orden:
   "url": "...",
   "portal": "...",
   "fecha_analisis": "YYYY-MM-DD",
+  "fecha_encontrado": "YYYY-MM-DD",
   "fecha_contacto": null,
   "fecha_visita": null,
   "descartado": false,
@@ -390,6 +391,8 @@ Construir el objeto JSON con todos los campos en este orden:
 ```
 
 La `fecha_analisis` es la fecha actual en formato `YYYY-MM-DD` (consultar el contexto del sistema para la fecha de hoy).
+
+La `fecha_encontrado` es también la fecha actual la primera vez que se guarda el piso. Si se sobreescribe un análisis existente, copiar el valor original de `fecha_encontrado` del objeto anterior (no actualizar).
 
 Añadir o reemplazar el piso en el array. Ordenar el array por `fecha_analisis` descendente. Escribir el archivo con indentación de 2 espacios.
 

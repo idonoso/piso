@@ -116,6 +116,7 @@
     }
     .badge-nuevo    { background: #dbeafe; color: #1d4ed8; }
     .badge-contacto { background: #fef3c7; color: #92400e; }
+    .badge-programar{ background: #fed7aa; color: #9a3412; }
     .badge-visita   { background: #ede9fe; color: #5b21b6; }
     .badge-desc     { background: #fee2e2; color: #b91c1c; }
     .badge-nodisp   { background: #e5e7eb; color: #4b5563; }
@@ -156,6 +157,7 @@
 
     .date-set { color: #15803d; font-weight: 600; }
     .date-visit { color: #7c3aed; font-weight: 700; }
+    .date-found { color: #94a3b8; font-size: 11px; }
     .date-null { color: #c8cdd3; }
 
     .link-icon {
@@ -194,6 +196,7 @@
 <div class="filters">
   <label><input type="checkbox" class="fg" value="pendiente_contactar" checked> Nuevos</label>
   <label><input type="checkbox" class="fg" value="pendiente_visita" checked> Contactados</label>
+  <label><input type="checkbox" class="fg" value="pendiente_programar_visita" checked> Pdte. programar visita</label>
   <label><input type="checkbox" class="fg" value="visita_programada" checked> Visita programada</label>
   <label><input type="checkbox" class="fg" value="visitado" checked> Visitados</label>
   <label><input type="checkbox" class="fg" value="descartado"> Descartados</label>
@@ -220,11 +223,13 @@
   <table id="tbl">
     <thead>
       <tr>
+        <th class="th-right">Nota</th>
         <th>Dirección</th>
         <th class="th-right">Precio</th>
         <th class="th-right">P. Objetivo</th>
         <th>Gestión</th>
         <th>F. Visita</th>
+        <th>Encontrado</th>
         <th class="th-right">m²</th>
         <th>Hab.</th>
         <th>Planta</th>
@@ -321,8 +326,9 @@ function gestionBadge(p) {
   if (!g) return '<span class="null-val">—</span>';
   const map = {
     pendiente_contactar: ['badge-nuevo',    'Nuevo'],
-    pendiente_visita:    ['badge-contacto', 'Contactado'],
-    visita_programada:   ['badge-visita',   'Visita 📅'],
+    pendiente_visita:         ['badge-contacto',  'Contactado'],
+    pendiente_programar_visita: ['badge-programar', 'Pdte. programar visita'],
+    visita_programada:        ['badge-visita',    'Visita 📅'],
     visitado:            ['badge-visita',   'Visitado'],
     descartado:          ['badge-desc',     'Descartado'],
     no_disponible:       ['badge-nodisp',   'No disponible'],
@@ -344,6 +350,9 @@ function renderRow(p) {
     : '<span class="date-null">—</span>';
   const visitaHtml = p.fecha_visita
     ? `<span class="date-visit">${fmtDate(p.fecha_visita)}</span>`
+    : '<span class="date-null">—</span>';
+  const encontradoHtml = p.fecha_encontrado
+    ? `<span class="date-found">${fmtDate(p.fecha_encontrado)}</span>`
     : '<span class="date-null">—</span>';
 
   const scoreHtml = p.puntuacion_general != null
@@ -399,11 +408,13 @@ function renderRow(p) {
   const comentHtml = hasComent ? ` <span class="comment-icon" title="${esc(p.comentario_personal)}">💬</span>` : '';
 
   return `<tr class="${rowCls}" onclick="location.href='detalle.html?id=${esc(p.id)}'" data-portal="${p.portal||''}" data-nota="${p.puntuacion_general||0}" data-gestion="${g}">
+    <td class="td-right">${scoreHtml}</td>
     <td class="wrap">${locHtml}${comentHtml}</td>
     <td class="td-right"><span class="price">${eur(p.precio)}</span></td>
     <td class="td-right">${precioObj}</td>
     <td>${gestionBadge(p)}</td>
     <td>${visitaHtml}</td>
+    <td>${encontradoHtml}</td>
     <td class="td-right">${m2html}</td>
     <td>${hbHtml}</td>
     <td>${p.planta || '<span class="null-val">—</span>'}</td>
