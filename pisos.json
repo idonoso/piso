@@ -1043,7 +1043,7 @@
     "fecha_analisis": "2026-06-03",
     "fecha_contacto": null,
     "fecha_visita": "2026-06-12",
-    "gestion": "visita_programada",
+    "gestion": "pendiente_programar_visita",
     "descartado": false,
     "motivo_descarte": null,
     "comentario_personal": null,
