@@ -191,7 +191,7 @@
     "fecha_contacto": null,
     "fecha_visita": null,
     "hora_visita": null,
-    "gestion": "pendiente_contactar",
+    "gestion": "descartado",
     "descartado": true,
     "motivo_descarte": "Muy pequeño",
     "comentario_personal": null,
