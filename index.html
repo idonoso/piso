@@ -474,7 +474,21 @@ function applyFilters() {
 fetch('./pisos.json')
   .then(r => { if (!r.ok) throw new Error('No se pudo cargar pisos.json'); return r.json(); })
   .then(data => {
-    allPisos = data.slice().sort((a, b) => (b.puntuacion_general || 0) - (a.puntuacion_general || 0));
+    const gestionOrder = {
+      pendiente_contactar: 0,
+      pendiente_visita: 1,
+      pendiente_programar_visita: 2,
+      visita_programada: 3,
+      visitado: 4,
+      descartado: 5,
+      no_disponible: 6,
+    };
+    allPisos = data.slice().sort((a, b) => {
+      const ga = gestionOrder[a.gestion] ?? 99;
+      const gb = gestionOrder[b.gestion] ?? 99;
+      if (ga !== gb) return ga - gb;
+      return (b.puntuacion_general || 0) - (a.puntuacion_general || 0);
+    });
     document.getElementById('tbody').innerHTML = allPisos.map(renderRow).join('');
     applyFilters();
 
