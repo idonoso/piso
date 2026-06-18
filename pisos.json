@@ -71,6 +71,7 @@
     "fecha_encontrado": "2026-06-17",
     "fecha_contacto": null,
     "fecha_visita": null,
+    "gestion": "pendiente_programar_visita",
     "descartado": false,
     "motivo_descarte": null,
     "comentario_personal": "He llamado, me tiene que llamar el asesor.",
