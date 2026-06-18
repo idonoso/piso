@@ -65,6 +65,18 @@
     }
     tbody tr:hover { background: #f0f4ff; }
 
+    tbody tr.row-nuevo       { background: #eff6ff; }
+    tbody tr.row-nuevo:hover { background: #dbeafe; }
+
+    tbody tr.row-programar       { background: #fff7ed; }
+    tbody tr.row-programar:hover { background: #ffedd5; }
+
+    tbody tr.row-visita       { background: #fefce8; }
+    tbody tr.row-visita:hover { background: #fef9c3; }
+
+    tbody tr.row-visitado       { background: #f0fdf4; }
+    tbody tr.row-visitado:hover { background: #dcfce7; }
+
     tbody tr.descartado { background: #fff5f5; }
     tbody tr.descartado:hover { background: #ffe8e8; }
     tbody tr.descartado td { opacity: 0.8; }
@@ -343,7 +355,13 @@ function renderRow(p) {
   const g = p.gestion || '';
   const hasComent = !!p.comentario_personal;
 
-  const rowCls = g === 'descartado' ? 'descartado' : g === 'no_disponible' ? 'no-disponible' : '';
+  const rowCls = g === 'descartado' ? 'descartado'
+    : g === 'no_disponible'             ? 'no-disponible'
+    : g === 'pendiente_contactar'       ? 'row-nuevo'
+    : g === 'pendiente_programar_visita'? 'row-programar'
+    : g === 'visita_programada'         ? 'row-visita'
+    : g === 'visitado'                  ? 'row-visitado'
+    : '';
 
   const contactoHtml = p.fecha_contacto
     ? `<span class="date-set">${fmtDate(p.fecha_contacto)}</span>`
