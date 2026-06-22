@@ -129,6 +129,32 @@
     "precio_objetivo": 339000,
     "precio_objetivo_min": 328000,
     "precio_objetivo_max": 346000,
+    "costes_compra": {
+      "precio_venta": 349000,
+      "honorarios_agencia_incluidos": true,
+      "itp": {
+        "tipo_pct": 6,
+        "importe": 20940,
+        "nota": "ITP Madrid segunda mano: 6% sobre precio escritura"
+      },
+      "notaria": {
+        "importe_estimado": 850,
+        "nota": "Escritura de compraventa. Estimación según arancel notarial"
+      },
+      "registro_propiedad": {
+        "importe_estimado": 500,
+        "nota": "Inscripción en el Registro de la Propiedad. Estimación según arancel registral"
+      },
+      "gestoria": {
+        "importe_estimado": 400,
+        "nota": "Tramitación de impuestos, inscripción y gestiones. Estimación"
+      },
+      "total_gastos_adicionales": 22690,
+      "total_compra": 371690,
+      "hipoteca_costes_extra": {
+        "nota": "Si hay hipoteca, añadir tasación (~350€). El AJD lo paga el banco desde 2018."
+      }
+    },
     "preguntas_visita": {
       "preguntas": [
         "¿Hay derramas pendientes o aprobadas en la comunidad?",
