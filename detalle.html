@@ -484,6 +484,38 @@ function renderPiso(p) {
     </div>`;
   }
 
+  // Card: Hipoteca
+  if (p.hipoteca) {
+    const h = p.hipoteca;
+    html += `<div class="card">
+      <div class="card-header">Hipoteca</div>
+      <div class="card-body">
+        <div class="info-grid">
+          ${infoRow('Aportación propia', `<strong>${eur(h.aportacion_propia)}</strong>`)}
+          ${infoRow('Capital financiado', `<strong>${eur(h.capital_financiado)}</strong>`)}
+          ${infoRow('Plazo', `${h.plazo_anos} años`)}
+          ${infoRow('Tipo fijo', `<strong>${h.tipo_fijo_pct}%</strong>`)}
+          ${infoRow('LTV', `<span style="color:#059669;font-weight:700">${h.ltv_pct}%</span> <small style="color:#6b7280">(muy bajo, sin problema de financiación)</small>`)}
+        </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:2px solid #e5e7eb;display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end">
+          <div>
+            <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px">Cuota mensual</div>
+            <div style="font-size:24px;font-weight:700;color:#1d4ed8">${eur(h.cuota_mensual)}<span style="font-size:14px;font-weight:400;color:#6b7280">/mes</span></div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px">Total pagado (30 años)</div>
+            <div style="font-size:17px;font-weight:700;color:#374151">${eur(h.total_pagado)}</div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px">Intereses totales</div>
+            <div style="font-size:17px;font-weight:700;color:#dc2626">${eur(h.intereses_totales)}</div>
+          </div>
+        </div>
+        ${h.nota ? `<p style="margin-top:10px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:8px">💡 ${esc(h.nota)}</p>` : ''}
+      </div>
+    </div>`;
+  }
+
   // Card: Características
   html += `<div class="card">
     <div class="card-header">Características</div>

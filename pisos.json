@@ -155,6 +155,17 @@
         "nota": "Si hay hipoteca, añadir tasación (~350€). El AJD lo paga el banco desde 2018."
       }
     },
+    "hipoteca": {
+      "aportacion_propia": 207000,
+      "capital_financiado": 164690,
+      "plazo_anos": 30,
+      "tipo_fijo_pct": 3,
+      "cuota_mensual": 694,
+      "total_pagado": 249962,
+      "intereses_totales": 85272,
+      "ltv_pct": 47.2,
+      "nota": "Aportación cubre precio + todos los gastos (371.690€). LTV muy bajo (47%), sin problema de financiación. Añadir ~350€ de tasación."
+    },
     "preguntas_visita": {
       "preguntas": [
         "¿Hay derramas pendientes o aprobadas en la comunidad?",
