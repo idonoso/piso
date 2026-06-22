@@ -456,6 +456,34 @@ function renderPiso(p) {
     </div>
   </div>`;
 
+  // Card: Costes de compra
+  if (p.costes_compra) {
+    const cc = p.costes_compra;
+    html += `<div class="card">
+      <div class="card-header">Costes de compra</div>
+      <div class="card-body">
+        <div class="info-grid">
+          ${infoRow('Precio venta', `<strong>${eur(cc.precio_venta)}</strong>${cc.honorarios_agencia_incluidos ? ' <small style="color:#6b7280">(agencia incluida)</small>' : ''}`)}
+          ${infoRow('ITP (6%)', `<strong>${eur(cc.itp.importe)}</strong> <small style="color:#6b7280">· ${esc(cc.itp.nota)}</small>`)}
+          ${infoRow('Notaría', `${eur(cc.notaria.importe_estimado)} <small style="color:#6b7280">(est.) · ${esc(cc.notaria.nota)}</small>`)}
+          ${infoRow('Registro propiedad', `${eur(cc.registro_propiedad.importe_estimado)} <small style="color:#6b7280">(est.) · ${esc(cc.registro_propiedad.nota)}</small>`)}
+          ${infoRow('Gestoría', `${eur(cc.gestoria.importe_estimado)} <small style="color:#6b7280">(est.) · ${esc(cc.gestoria.nota)}</small>`)}
+        </div>
+        <div style="margin-top:12px;padding-top:12px;border-top:2px solid #e5e7eb;display:flex;gap:24px;flex-wrap:wrap">
+          <div>
+            <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px">Total gastos adicionales</div>
+            <div style="font-size:17px;font-weight:700;color:#dc2626">${eur(cc.total_gastos_adicionales)}</div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:2px">Total compra</div>
+            <div style="font-size:20px;font-weight:700;color:#059669">${eur(cc.total_compra)}</div>
+          </div>
+        </div>
+        ${cc.hipoteca_costes_extra ? `<p style="margin-top:10px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;padding-top:8px">💡 ${esc(cc.hipoteca_costes_extra.nota)}</p>` : ''}
+      </div>
+    </div>`;
+  }
+
   // Card: Características
   html += `<div class="card">
     <div class="card-header">Características</div>
