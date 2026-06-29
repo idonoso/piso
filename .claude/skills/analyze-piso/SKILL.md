@@ -323,7 +323,7 @@ Ya existe un análisis para este piso (analizado el [fecha_analisis]).
 ¿Deseas sobreescribirlo con el nuevo análisis, o cancelar?
 ```
 
-- "Sobreescribir" → reemplazar el objeto existente por el nuevo, **preservando el valor original de `fecha_encontrado`** si existía en el objeto anterior
+- "Sobreescribir" → reemplazar el objeto existente por el nuevo, **preservando los valores originales de `fecha_encontrado` y `gestion`** si existían en el objeto anterior
 - "Cancelar" → terminar sin modificar el archivo
 
 ---
@@ -354,6 +354,7 @@ Construir el objeto JSON con todos los campos en este orden:
   "fecha_encontrado": "YYYY-MM-DD",
   "fecha_contacto": null,
   "fecha_visita": null,
+  "gestion": "pendiente_contactar",
   "descartado": false,
   "motivo_descarte": null,
   "comentario_personal": null,
