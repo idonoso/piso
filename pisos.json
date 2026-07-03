@@ -7,7 +7,7 @@
     "fecha_encontrado": "2026-07-02",
     "fecha_contacto": null,
     "fecha_visita": "2026-07-03",
-    "gestion": "visita_programada",
+    "gestion": "no_disponible",
     "descartado": false,
     "motivo_descarte": null,
     "comentario_personal": null,
@@ -505,7 +505,7 @@
     "precio_objetivo_min": 368000,
     "precio_objetivo_max": 388000,
     "notas_analisis": "FOTOS (7.5/10)\n6 fotos analizadas — 0 con IA, 6 reales.\n• Salón amplio y muy luminoso con suelo de parqué de espiga, aire acondicionado visible, acceso directo a terraza\n• Terraza de tamaño mediano con vistas al barrio residencial, pavimento de terracota, funcional y soleada\n• Dormitorio espacioso con tarima nueva, luminoso; baño completo con bidé pero de diseño anticuado (años 80)\n• Cocina muy antigua (años 80-90), muebles sin renovar, suelo terracota; pendiente de actualización\n• Jardín comunitario excelente: amplio, cuidado, palmeras y pinos — punto diferencial destacado del conjunto\n\nCARACTERÍSTICAS (9.0/10)\n• Base 5; 4ª planta alta con ascensor: +1.5\n• 85 m² construidos (rango 70-89): +0.5\n• Terraza real confirmada en fotos: +1.0\n• Plaza de garaje incluida en precio: +1.0\n• Estado \"Segunda mano/buen estado\": sin ajuste\n• Sin trastero confirmado: sin ajuste\n• Certificado energético en trámite: sin ajuste\n\nUBICACIÓN (4.5/10)\n• Vinateros, distrito Moratalaz: zona periférica del este de Madrid, tranquila pero con poca demanda y revalorización limitada\n• Excelente conectividad: Metro Artilleros (L9) a 60 m, autobuses 30/32/71 a 100 m, acceso directo a A-3, M-40, M-30\n• Parque Cuña Verde O'Donnell a 600 m; entorno con jardines y bulevares\n\nPRECIO\n• 4.658 €/m² — en línea con la zona (referencia disponible: 4.452 €/m² piso en Fontarrón a reformar)\n• Sin ajuste sobre la puntuación: precio alineado con mercado (diferencia <10%)\n\nCOMPARATIVA (1 piso similar en Moratalaz)\n• Solo 1 piso comparable en la base de datos — comparación no representativa.\n• idealista_111431231: 73m², 3hab, a reformar, 325.000€ (4.452 €/m²)\n\nNEGOCIACIÓN (4%)\nPrecio objetivo: ~380.000 € (rango 368.000 – 388.000 €)\n• Base Madrid periférico: 5%\n• Agencia profesional Inmokronos: -1%\n• Precio alineado con mercado: 0%\n• Estado segunda mano buen estado (sin reforma integral reciente): 0%\n\nPUNTOS FUERTES\n• Plaza de garaje incluida en el precio — diferencial muy valorado en Madrid\n• 4ª planta todo exterior con ascensor, muy luminoso, orientación Sureste\n• Terraza real con vistas, jardín comunitario amplio y cuidado con vigilante de seguridad\n• Metro Artilleros (L9) a solo 60 metros — conectividad excelente\n• Calefacción individual gas con caldera nueva Bosch + AA Daitsu nuevo instalado\n• Ventanas nuevas de climalit y tarima renovada en dormitorios\n\nPUNTOS DÉBILES\n• Solo 1 baño para 3 habitaciones\n• Cocina sin renovar (años 80-90), necesita actualización\n• Decoración general muy desfasada (años 70): suelo espiga antiguo en salón, mobiliario clásico\n• Zona periférica del este de Madrid, baja demanda y revalorización limitada\n• Certificado energético en trámite (probable E-F dado el año 1974 sin reforma integral)",
-    "gestion": "pendiente_contactar"
+    "gestion": "no_disponible"
   },
   {
     "id": "idealista_110485751",
