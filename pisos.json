@@ -364,8 +364,8 @@
     "fecha_analisis": "2026-06-29",
     "fecha_encontrado": "2026-06-29",
     "fecha_contacto": null,
-    "fecha_visita": null,
-    "gestion": "pendiente_contactar",
+    "fecha_visita": "2026-07-04",
+    "gestion": "visita_programada",
     "descartado": false,
     "motivo_descarte": null,
     "comentario_personal": null,
@@ -429,7 +429,42 @@
     "precio_objetivo": 352000,
     "precio_objetivo_min": 340000,
     "precio_objetivo_max": 360000,
-    "notas_analisis": "FOTOS (7.0/10)\n6 fotos analizadas — 0 con IA, 6 reales.\n• Fachada: torre de ladrillo beige años 70, bien conservada, jardines con palmeras al pie del edificio\n• Habitación/estancia vacía muy luminosa, suelo de tarima clara nueva, vistas al barrio desde planta alta; aire acondicionado split\n• Baño renovado: ducha moderna con mampara de cristal, azulejos tipo hidráulico geométrico, mueble blanco actual\n• Cocina datada (años 90): muebles blancos funcionales, azulejos de mármol sintético, suelo terracota — pendiente de reforma integral\n• Pasillo con parqué de espiga original, puertas oscuras clásicas, cables eléctricos colgantes visibles\n\nCARACTERÍSTICAS (5.8/10)\n• Base 5; planta 9ª con ascensor (+1.5)\n• 87 m² útiles — rango 70-89 m² (+0.5)\n• Estado \"A reformar\" (-1.5)\n• Dos trasteros incluidos en precio (+0.3)\n• Sin terraza confirmada: sin ajuste\n• Sin garaje incluido: sin ajuste\n• Certificado energético no indicado: sin ajuste\n\nUBICACIÓN (4.5/10)\n• Fontarrón, distrito Moratalaz: zona periférica del este de Madrid, tranquila pero con baja revalorización histórica\n• Muy buena conectividad: metro Pavones (L1) y autobús en la puerta; acceso directo a A-2, E-5 y M-23\n• Finca privada vallada con zonas verdes y jardines comunitarios bien mantenidos; dos ascensores\n\nPRECIO\n• 4.592 €/m² (sobre 87 m² útiles) — alineado con la zona (media comparativa: 4.393 €/m²; diferencia +4,5%)\n• Sin ajuste sobre puntuación: precio dentro del ±10% de la media de la zona\n\nCOMPARATIVA (3 pisos similares en Moratalaz)\n• Media zona: 4.393 €/m² (rango 4.070–4.658 €/m²)\n• Este piso: 4.592 €/m² — 4,5% más caro que la media (en línea con el mercado, diferencia <10%)\n• idealista_111461449: 86m², 3hab, a reformar, 350.000€ (4.070 €/m²)\n• idealista_111431231: 73m², 3hab, a reformar, 325.000€ (4.452 €/m²)\n• idealista_111491872: 85m², 3hab, buen estado, 395.900€ (4.658 €/m²)\n\nNEGOCIACIÓN (12%)\nPrecio objetivo: ~352.000 € (rango 340.000 – 360.000 €)\n• Base Madrid periférico: 5%\n• Estado \"A reformar\" (reforma integral necesaria): +5%\n• Anunciante particular (no agencia): +2%\n• Precio alineado con zona: 0%\n\nPUNTOS FUERTES\n• Planta 9ª exterior con vistas panorámicas — luminosidad excepcional garantizada\n• Único piso del edificio con dos trasteros incluidos en el precio\n• Baño ya reformado con ducha moderna; tarima nueva en habitaciones\n• Finca privada con dos ascensores, zonas verdes y acceso vallado\n• Transporte excelente: metro Pavones (L1) a pie, autobús en la puerta\n• Gran potencial de revalorización tras reforma integral\n\nPUNTOS DÉBILES\n• Reforma integral necesaria: cocina, posiblemente instalación eléctrica y carpintería\n• Orientación norte — aunque la altura y el exterior compensan la iluminación\n• Edificio de 1972 (>50 años): posibles imprevistos estructurales en reforma\n• Sin garaje incluido\n• Precio/m² algo superior a otros pisos a reformar en la zona (idealista_111461449: 4.070 €/m²)\n• Zona periférica con baja revalorización histórica respecto al centro"
+    "notas_analisis": "FOTOS (7.0/10)\n6 fotos analizadas — 0 con IA, 6 reales.\n• Fachada: torre de ladrillo beige años 70, bien conservada, jardines con palmeras al pie del edificio\n• Habitación/estancia vacía muy luminosa, suelo de tarima clara nueva, vistas al barrio desde planta alta; aire acondicionado split\n• Baño renovado: ducha moderna con mampara de cristal, azulejos tipo hidráulico geométrico, mueble blanco actual\n• Cocina datada (años 90): muebles blancos funcionales, azulejos de mármol sintético, suelo terracota — pendiente de reforma integral\n• Pasillo con parqué de espiga original, puertas oscuras clásicas, cables eléctricos colgantes visibles\n\nCARACTERÍSTICAS (5.8/10)\n• Base 5; planta 9ª con ascensor (+1.5)\n• 87 m² útiles — rango 70-89 m² (+0.5)\n• Estado \"A reformar\" (-1.5)\n• Dos trasteros incluidos en precio (+0.3)\n• Sin terraza confirmada: sin ajuste\n• Sin garaje incluido: sin ajuste\n• Certificado energético no indicado: sin ajuste\n\nUBICACIÓN (4.5/10)\n• Fontarrón, distrito Moratalaz: zona periférica del este de Madrid, tranquila pero con baja revalorización histórica\n• Muy buena conectividad: metro Pavones (L1) y autobús en la puerta; acceso directo a A-2, E-5 y M-23\n• Finca privada vallada con zonas verdes y jardines comunitarios bien mantenidos; dos ascensores\n\nPRECIO\n• 4.592 €/m² (sobre 87 m² útiles) — alineado con la zona (media comparativa: 4.393 €/m²; diferencia +4,5%)\n• Sin ajuste sobre puntuación: precio dentro del ±10% de la media de la zona\n\nCOMPARATIVA (3 pisos similares en Moratalaz)\n• Media zona: 4.393 €/m² (rango 4.070–4.658 €/m²)\n• Este piso: 4.592 €/m² — 4,5% más caro que la media (en línea con el mercado, diferencia <10%)\n• idealista_111461449: 86m², 3hab, a reformar, 350.000€ (4.070 €/m²)\n• idealista_111431231: 73m², 3hab, a reformar, 325.000€ (4.452 €/m²)\n• idealista_111491872: 85m², 3hab, buen estado, 395.900€ (4.658 €/m²)\n\nNEGOCIACIÓN (12%)\nPrecio objetivo: ~352.000 € (rango 340.000 – 360.000 €)\n• Base Madrid periférico: 5%\n• Estado \"A reformar\" (reforma integral necesaria): +5%\n• Anunciante particular (no agencia): +2%\n• Precio alineado con zona: 0%\n\nPUNTOS FUERTES\n• Planta 9ª exterior con vistas panorámicas — luminosidad excepcional garantizada\n• Único piso del edificio con dos trasteros incluidos en el precio\n• Baño ya reformado con ducha moderna; tarima nueva en habitaciones\n• Finca privada con dos ascensores, zonas verdes y acceso vallado\n• Transporte excelente: metro Pavones (L1) a pie, autobús en la puerta\n• Gran potencial de revalorización tras reforma integral\n\nPUNTOS DÉBILES\n• Reforma integral necesaria: cocina, posiblemente instalación eléctrica y carpintería\n• Orientación norte — aunque la altura y el exterior compensan la iluminación\n• Edificio de 1972 (>50 años): posibles imprevistos estructurales en reforma\n• Sin garaje incluido\n• Precio/m² algo superior a otros pisos a reformar en la zona (idealista_111461449: 4.070 €/m²)\n• Zona periférica con baja revalorización histórica respecto al centro",
+    "preguntas_visita": {
+      "preguntas": [
+        "¿Hay derramas pendientes o aprobadas en la comunidad?",
+        "¿La vivienda tiene alguna carga hipotecaria, embargo u otra carga registral?",
+        "¿Ha pasado el edificio la ITE? ¿Estado de fachada y zonas comunes? (el edificio es de 1972)",
+        "¿De qué año es la instalación eléctrica? ¿Tiene cuadro con diferencial y magnetotérmicos? (en fotos se ven cables colgantes en el pasillo)",
+        "¿De qué año es la instalación de fontanería? ¿Son tuberías de cobre, PVC o plomo?",
+        "¿Hay presupuestos de reforma disponibles? ¿Se puede acceder antes del cierre para medir con vistas a la reforma integral?",
+        "¿Cuánto son los gastos de comunidad mensuales?",
+        "¿Cuánto es el IBI anual?",
+        "¿Por qué venden y cuánto tiempo llevan viviendo en el piso?",
+        "¿Las ventanas son las originales de 1972 o han sido cambiadas? ¿Hay algún elemento de amianto conocido en el edificio?",
+        "¿Cuándo estará disponible el certificado energético?",
+        "¿Hay aire acondicionado instalado en todas las estancias o solo donde se ve en las fotos? ¿Hay preinstalación en el resto?",
+        "¿Hay terraza, balcón o algún espacio exterior no mencionado en el anuncio?",
+        "¿Los dos trasteros están incluidos en la escritura o son de uso? ¿Cuánto mide cada uno?",
+        "¿La calefacción central tiene termostato por estancias o es un sistema único? ¿Cuál es el coste medio mensual en invierno?"
+      ],
+      "comprobaciones": [
+        "Revisar a fondo el cuadro eléctrico y los cables colgantes visibles en el pasillo (según fotos): comprobar si hay diferencial y circuitos independientes",
+        "Fotografiar y medir el estado exacto de la cocina (años 90, pendiente de reforma) para presupuestar la reforma integral",
+        "Buscar humedades en techos y esquinas, revisando especialmente el sellado y juntas del baño ya reformado",
+        "Medir las 3 habitaciones con metro o app (anotar largo × ancho de cada una)",
+        "Abrir grifos: comprobar presión del agua y tiempo hasta que sale caliente; revisar visualmente las tuberías bajo el fregadero (edificio de 1972)",
+        "Comprobar los dos trasteros incluidos: ubicación, tamaño real y facilidad de acceso",
+        "Revisar el estado del portal, escaleras comunes, los dos ascensores y la fachada del edificio (más de 50 años)",
+        "Verificar si hay aire acondicionado instalado (se ve un split en las fotos) y en qué estancias, y si hay preinstalación en el resto",
+        "Comprobar el cierre y estado de las ventanas (si son originales de 1972 o se han cambiado) y si aíslan bien",
+        "Escuchar: pedir silencio 1 minuto y anotar ruidos (tráfico, ascensores, cañerías) pese a estar en planta 9",
+        "Revisar el parqué de espiga original del pasillo: estado, tablas sueltas o dañadas",
+        "Comprobar la orientación real y entrada de luz (orientación norte) y si la altura de la planta 9 compensa la falta de sol directo",
+        "Fotografiar todos los elementos con dudas o defectos detectados, especialmente en zonas pendientes de reforma",
+        "Comprobar si hay tendedero o espacio habilitado para tender ropa"
+      ]
+    }
   },
   {
     "id": "idealista_111491872",
