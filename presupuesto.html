@@ -242,6 +242,7 @@ const CATALOGO = [
   addCalidad(item('hg-suelo-mat',    'hab_grande',  'materiales', 'Suelo laminado (material)', 'm²', 18, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
   addCalidad(item('hm-suelo-mat',    'hab_mediana', 'materiales', 'Suelo laminado (material)', 'm²', 14, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
   addCalidad(item('hp-suelo-mat',    'hab_pequena', 'materiales', 'Suelo laminado (material)', 'm²', 10, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+  addCalidad(item('gen-pasillo-suelo-mat', 'general', 'materiales', 'Suelo laminado (material)', 'm²', 6, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true), // Pasillos, ~6m² estimados
 
   // Puertas de interior — una por habitación, baño y cocina (6 en total)
   // Calidades: Económico 60€ / Estándar 100€ / Superior 150€ (por defecto) / Premium 200€
@@ -249,7 +250,7 @@ const CATALOGO = [
   addCalidad(item('hm-puerta',    'hab_mediana', 'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
   addCalidad(item('hp-puerta',    'hab_pequena', 'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
   addCalidad(item('bano1-puerta', 'bano1',       'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
-  addCalidad(item('bano2-puerta', 'bano2',       'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase2'), 2, 'Superior', 150, true),
+  addCalidad(item('bano2-puerta', 'bano2',       'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
   addCalidad(item('cocina-puerta','cocina',      'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
 
   // Suelo cerámico — baños y cocina (mismos precios que el suelo laminado)
@@ -267,19 +268,20 @@ const CATALOGO = [
 
   // Ventana con persiana — todas las habitaciones excepto baños. Salón y cocina llevan ventana doble (2 ud)
   // Calidades: Económico 200€ / Estándar 300€ (por defecto) / Premium 500€
-  item('salon-ventana', 'salon',       'materiales', 'Ventana con persiana', 'ud', 2, [200, 300, 500], 'fase1'),
-  item('cocina-ventana', 'cocina',     'materiales', 'Ventana con persiana', 'ud', 2, [200, 300, 500], 'fase1'),
-  item('hg-ventana',    'hab_grande',  'materiales', 'Ventana con persiana', 'ud', 1, [200, 300, 500], 'fase1'),
-  item('hm-ventana',    'hab_mediana', 'materiales', 'Ventana con persiana', 'ud', 1, [200, 300, 500], 'fase1'),
-  item('hp-ventana',    'hab_pequena', 'materiales', 'Ventana con persiana', 'ud', 1, [200, 300, 500], 'fase1'),
+  item('salon-ventana', 'salon',       'materiales', 'Ventana con persiana', 'ud', 2, [400, 600, 1000], 'fase2'),
+  item('cocina-ventana', 'cocina',     'materiales', 'Ventana con persiana', 'ud', 2, [400, 600, 1000], 'fase2'),
+  item('hg-ventana',    'hab_grande',  'materiales', 'Ventana con persiana', 'ud', 1, [400, 600, 1000], 'fase2'),
+  item('hm-ventana',    'hab_mediana', 'materiales', 'Ventana con persiana', 'ud', 1, [400, 600, 1000], 'fase2'),
+  item('hp-ventana',    'hab_pequena', 'materiales', 'Ventana con persiana', 'ud', 1, [400, 600, 1000], 'fase2'),
 
   // Mueble de baño con grifo incluido — Baño 1 se queda en Superior (400€), Baño 2 en Económico (200€)
   // Calidades: Económico 200€ / Estándar 300€ / Superior 400€ / Premium 500€
   addCalidad(item('bano1-mueble', 'bano1', 'muebles', 'Mueble de baño con grifo', 'ud', 1, [200, 300, 500], 'fase1'), 2, 'Superior', 400, true),
   addCalidad(item('bano2-mueble', 'bano2', 'muebles', 'Mueble de baño con grifo', 'ud', 1, [200, 300, 500], 'fase2', 0), 2, 'Superior', 400, false),
 
-  // Baño 1 — mampara, columna de ducha e inodoro
+  // Baño 1 — mampara, plato de ducha, columna de ducha e inodoro
   item('bano1-mampara',       'bano1', 'materiales', 'Mampara de ducha',   'ud', 1, [200, 400, 600], 'fase1'),       // Económico 200 / Estándar 400 (por defecto) / Premium 600
+  item('bano1-plato-ducha',   'bano1', 'materiales', 'Plato de ducha',     'ud', 1, [200, 300, 400], 'fase1'),       // Económico 200 / Estándar 300 (por defecto) / Premium 400
   item('bano1-columna-ducha', 'bano1', 'muebles', 'Columna de ducha',   'ud', 1, [100, 150, 200], 'fase1'),       // Económico 100 / Estándar 150 (por defecto) / Premium 200
   item('bano1-inodoro',       'bano1', 'muebles', 'Inodoro',            'ud', 1, [100, 200, 300], 'fase1', 2),    // Económico 100 / Estándar 200 / Premium 300 (por defecto)
 
@@ -291,6 +293,12 @@ const CATALOGO = [
   item('cocina-horno',       'cocina', 'muebles', 'Horno',              'ud', 1, [300, 400, 600, 800, 1000], 'fase1', 3), // Económico 300 / Estándar 400 / Superior 600 / Premium 800 (por defecto) / Lujo 1000
   item('cocina-lavadora',    'cocina', 'muebles', 'Lavadora',           'ud', 1, [400], 'fase1'),                        // Precio único: 400
   item('cocina-induccion',   'cocina', 'muebles', 'Placa de inducción', 'ud', 1, [600], 'fase1'),                        // Precio único: 600
+
+  // Puerta acorazada — entrada del piso
+  item('gen-puerta-acorazada', 'general', 'materiales', 'Puerta acorazada', 'ud', 1, [1000], 'fase1'), // Precio único: 1000
+
+  // Encimera de cocina
+  item('cocina-encimera', 'cocina', 'materiales', 'Encimera', 'global', 1, [2000], 'fase1'), // Precio único: 2000
 ];
 
 /* Catálogo de referencia (precios orientativos Madrid 2025) para ir añadiendo
@@ -415,9 +423,11 @@ function lineTotal(it) {
   return st.cantidad * it.calidades[st.calidadIdx].precio;
 }
 function matchesPhaseFilter(row) {
+  return matchesPhaseValue(row.dataset.fase || null);
+}
+function matchesPhaseValue(fase) {
   if (activePhaseFilter === 'todas') return true;
-  const fase = row.dataset.fase || '';
-  if (activePhaseFilter === 'sin') return fase === '';
+  if (activePhaseFilter === 'sin') return !fase;
   return fase === activePhaseFilter;
 }
 
@@ -457,6 +467,7 @@ function buildPhaseBar() {
       activePhaseFilter = btn.dataset.filter;
       document.querySelectorAll('.phase-filter-chip').forEach(b => b.classList.toggle('active', b.dataset.filter === activePhaseFilter));
       document.querySelectorAll('.item-row').forEach(row => { row.style.display = matchesPhaseFilter(row) ? '' : 'none'; });
+      recalcTotales();
     });
   });
 }
@@ -471,6 +482,7 @@ function updatePhaseLabels() {
   FASES.forEach(f => {
     document.querySelectorAll(`option[data-fase-option="${f.id}"]`).forEach(opt => { opt.textContent = f.nombre; });
   });
+  updateTotalLabel();
 }
 
 const TABS = [{ id: 'todos', nombre: 'Todos', icono: '📋' }, ...HABITACIONES];
@@ -635,6 +647,14 @@ function onItemChange(id, patch) {
   recalcTotales();
 }
 
+function updateTotalLabel() {
+  const labelEl = document.querySelector('.total-label');
+  if (!labelEl) return;
+  if (activePhaseFilter === 'todas') labelEl.textContent = 'Total general';
+  else if (activePhaseFilter === 'sin') labelEl.textContent = 'Total (Sin asignar)';
+  else labelEl.textContent = `Total (${FASES.find(f => f.id === activePhaseFilter).nombre})`;
+}
+
 function recalcTotales() {
   let total = 0;
   const roomSubtotals = {};
@@ -645,24 +665,31 @@ function recalcTotales() {
 
   CATALOGO.forEach(it => {
     const t = lineTotal(it);
-    total += t;
-    roomSubtotals[it.habitacion] = (roomSubtotals[it.habitacion] || 0) + t;
-    const key = `${it.habitacion}-${it.categoria}`;
-    catSubtotals[key] = (catSubtotals[key] || 0) + t;
-    const todosKey = `todos-${it.categoria}`;
-    catSubtotals[todosKey] = (catSubtotals[todosKey] || 0) + t;
-    const gKey = groupKey(it.categoria, it.nombre);
-    groupSubtotals[gKey] = (groupSubtotals[gKey] || 0) + t;
     const fase = state[it.id].fase;
+
+    if (matchesPhaseValue(fase)) {
+      total += t;
+      roomSubtotals[it.habitacion] = (roomSubtotals[it.habitacion] || 0) + t;
+      const key = `${it.habitacion}-${it.categoria}`;
+      catSubtotals[key] = (catSubtotals[key] || 0) + t;
+      const todosKey = `todos-${it.categoria}`;
+      catSubtotals[todosKey] = (catSubtotals[todosKey] || 0) + t;
+      const gKey = groupKey(it.categoria, it.nombre);
+      groupSubtotals[gKey] = (groupSubtotals[gKey] || 0) + t;
+    }
+
+    // El resumen de fases (arriba) siempre muestra el total de CADA fase, independientemente del filtro activo
     if (fase) phaseSubtotals[fase] += t; else phaseSubtotals.sin += t;
   });
 
-  Object.keys(groupSubtotals).forEach(key => {
+  const allGroupKeys = new Set(CATALOGO.map(it => groupKey(it.categoria, it.nombre)));
+  allGroupKeys.forEach(key => {
     const el = document.querySelector(`[data-group-subtotal="${key}"]`);
-    if (el) el.textContent = eur(groupSubtotals[key]);
+    if (el) el.textContent = eur(groupSubtotals[key] || 0);
   });
 
   document.getElementById('totalGeneral').textContent = eur(total);
+  updateTotalLabel();
   TABS.forEach(h => {
     const v = h.id === 'todos' ? total : (roomSubtotals[h.id] || 0);
     const tabEl = document.querySelector(`[data-room-tab-subtotal="${h.id}"]`);
