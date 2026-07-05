@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presupuesto Reforma y Amueblamiento</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a2533; font-size: 13px; }
+
+  .page-header {
+    background: #fff;
+    border-bottom: 1px solid #dde2ea;
+    padding: 12px 24px;
+    position: sticky; top: 0; z-index: 300;
+  }
+  .header-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .header-top h1 { font-size: 16px; font-weight: 700; color: #1a2533; flex: 1; min-width: 220px; }
+  .back-btn, .reset-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none; font-size: 12px; font-weight: 500;
+    padding: 5px 12px; border-radius: 6px; border: 1px solid #dbeafe;
+    background: #f0f4ff; color: #2563eb; cursor: pointer;
+  }
+  .back-btn:hover { background: #dbeafe; }
+  .reset-btn { border-color: #fecaca; background: #fef2f2; color: #dc2626; }
+  .reset-btn:hover { background: #fee2e2; }
+
+  .total-box { display: flex; align-items: baseline; gap: 10px; margin-top: 10px; }
+  .total-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #7a8899; }
+  .total-amount { font-size: 26px; font-weight: 800; color: #059669; }
+
+  .phase-bar {
+    background: #fff; border-bottom: 1px solid #dde2ea; padding: 8px 24px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    position: sticky; z-index: 250;
+  }
+  .phase-group {
+    display: flex; align-items: center; gap: 6px;
+    background: #f5f7fa; border: 1px solid #e2e6ec; border-radius: 8px; padding: 4px 10px;
+  }
+  .phase-name-input {
+    border: none; background: transparent; font-size: 12px; font-weight: 600;
+    color: #1a2533; width: 66px; padding: 2px 0;
+  }
+  .phase-name-input:focus { outline: 1px solid #93c5fd; border-radius: 4px; }
+  .phase-subtotal { font-size: 12px; font-weight: 700; color: #5b21b6; white-space: nowrap; }
+  .phase-noasign {
+    font-size: 12px; color: #6b7a8d; font-weight: 600;
+    background: #f0f2f5; padding: 5px 10px; border-radius: 8px; white-space: nowrap;
+  }
+  .phase-filters { display: flex; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+  .phase-filter-chip {
+    font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 12px;
+    border: 1px solid #d0d8e4; background: #fff; color: #5a6a7a; cursor: pointer;
+  }
+  .phase-filter-chip:hover { background: #f0f4ff; }
+  .phase-filter-chip.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+
+  .room-tabs {
+    background: #fff; border-bottom: 1px solid #dde2ea; padding: 8px 24px;
+    display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
+    position: sticky; z-index: 200;
+  }
+  .room-tab {
+    display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+    padding: 7px 14px; border-radius: 20px; border: 1px solid #d0d8e4;
+    background: #f5f7fa; color: #5a6a7a; font-size: 12px; font-weight: 600; cursor: pointer;
+  }
+  .room-tab:hover { background: #eef1f6; }
+  .room-tab .tab-subtotal { font-size: 11px; font-weight: 700; color: #7a8899; }
+  .room-tab.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+  .room-tab.active .tab-subtotal { color: #dbeafe; }
+
+  .content-wrap { width: 100%; margin: 20px 0; padding: 0 24px 40px; }
+
+  .room-panel { display: none; }
+  .room-panel.active { display: block; }
+
+  .budget-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; }
+  @media (max-width: 1100px) { .budget-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) { .budget-grid { grid-template-columns: 1fr; } }
+
+  .empty-state {
+    grid-column: 1 / -1; background: #fff; border: 1px dashed #d0d8e4; border-radius: 10px;
+    padding: 32px; text-align: center; color: #9aabb8; font-size: 13px;
+  }
+
+  .card { background: #fff; border: 1px solid #dde2ea; border-radius: 10px; overflow: hidden; }
+  .card-header {
+    padding: 10px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; border-bottom: 1px solid #dde2ea;
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .card-header.cat-materiales { background: #f5f7fa; color: #6b7a8d; }
+  .card-header.cat-mano-obra  { background: #fef3c7; color: #92400e; }
+  .card-header.cat-muebles    { background: #ede9fe; color: #5b21b6; }
+  .card-header .cat-subtotal { font-size: 12px; }
+  .card-body { padding: 6px 16px 10px; }
+
+  .item-row {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 8px 0; border-bottom: 1px solid #f0f2f5;
+  }
+  .item-row:last-child { border-bottom: none; }
+  .item-row.disabled { opacity: 0.45; }
+  .item-row-top { display: flex; align-items: center; gap: 8px; }
+  .item-row input[type=checkbox] { cursor: pointer; width: 15px; height: 15px; flex-shrink: 0; }
+  .item-name-wrap { flex: 1; min-width: 0; }
+  .item-name { font-size: 12.5px; font-weight: 500; color: #1a2533; }
+  .item-unit { font-size: 10.5px; color: #9aabb8; font-weight: 500; }
+  .item-room-badge {
+    display: inline-block; font-size: 10px; font-weight: 600; color: #6b7a8d;
+    background: #eef1f6; padding: 1px 7px; border-radius: 8px; margin-left: 6px;
+  }
+
+  .item-group { border: 1px solid #eef0f4; border-radius: 8px; margin: 8px 0; overflow: hidden; }
+  .item-group:first-child { margin-top: 0; }
+  .item-group:last-child { margin-bottom: 0; }
+  .item-group-header {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    padding: 7px 10px; background: #f8f9fb; border-bottom: 1px solid #eef0f4;
+  }
+  .item-group-name { font-size: 12px; font-weight: 700; color: #5a6a7a; }
+  .item-group-total { font-size: 13px; font-weight: 800; color: #059669; white-space: nowrap; }
+  .item-group-rows { padding: 0 10px; }
+  .item-group-rows .item-row:last-child { border-bottom: none; }
+
+  .row2 { display: flex; gap: 8px; flex-wrap: wrap; padding-left: 23px; }
+  .qty-input, .quality-select, .phase-select {
+    flex: 1; min-width: 92px; padding: 4px 6px; border: 1px solid #d0d8e4; border-radius: 5px;
+    font-size: 11.5px; background: #fff; color: #1a2533;
+  }
+  .qty-input { text-align: right; }
+  .qty-input:disabled { background: #f5f7fa; color: #9aabb8; }
+  .line-total { font-size: 13px; font-weight: 700; color: #1a2533; text-align: right; white-space: nowrap; flex-shrink: 0; }
+  .line-total.off { color: #c8cdd3; text-decoration: line-through; font-weight: 600; }
+
+  .room-subtotal-bar {
+    margin-top: 16px; background: #fff; border: 1px solid #dde2ea; border-radius: 10px;
+    padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  }
+  .room-subtotal-bar .rs-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #7a8899; }
+  .room-subtotal-bar .rs-amount { font-size: 22px; font-weight: 800; color: #059669; }
+
+  @media (max-width: 480px) {
+    .row2 { padding-left: 0; }
+  }
+
+  @media (max-width: 560px) {
+    .header-top h1 { font-size: 15px; }
+    .total-box { margin-top: 8px; }
+    .total-amount { font-size: 22px; }
+    .phase-filters { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-top">
+    <h1>Presupuesto Reforma y Amueblamiento</h1>
+    <a class="back-btn" href="index.html">← Volver a pisos</a>
+    <button type="button" class="reset-btn" id="resetBtn">Restablecer valores por defecto</button>
+  </div>
+  <div class="total-box">
+    <span class="total-label">Total general</span>
+    <span class="total-amount" id="totalGeneral">0 €</span>
+  </div>
+</div>
+
+<div class="phase-bar" id="phaseBar"></div>
+
+<div class="room-tabs" id="roomTabs"></div>
+
+<div class="content-wrap" id="contentWrap"></div>
+
+<script>
+const HABITACIONES = [
+  { id: 'general',     nombre: 'General / Toda la casa', icono: '🏠' },
+  { id: 'salon',       nombre: 'Salón',                   icono: '🛋️' },
+  { id: 'cocina',      nombre: 'Cocina',                  icono: '🍳' },
+  { id: 'bano1',       nombre: 'Baño 1',                  icono: '🚿' },
+  { id: 'bano2',       nombre: 'Baño 2',                  icono: '🛁' },
+  { id: 'hab_grande',  nombre: 'Habitación grande',       icono: '🛏️' },
+  { id: 'hab_mediana', nombre: 'Habitación mediana',      icono: '🛏️' },
+  { id: 'hab_pequena', nombre: 'Habitación pequeña',      icono: '🛏️' },
+];
+
+const CATEGORIAS = [
+  { id: 'materiales', nombre: 'Materiales' },
+  { id: 'mano_obra',  nombre: 'Mano de obra' },
+  { id: 'muebles',    nombre: 'Muebles' },
+];
+
+const FASES_DEFAULT = () => ([
+  { id: 'fase1', nombre: 'Fase 1' },
+  { id: 'fase2', nombre: 'Fase 2' },
+  { id: 'fase3', nombre: 'Fase 3' },
+]);
+let FASES = FASES_DEFAULT();
+
+function item(id, habitacion, categoria, nombre, unidad, cantidadDefault, precios, faseDefault, calidadDefault) {
+  let calidades;
+  if (precios.length === 1) {
+    calidades = [{ nombre: 'Estándar', precio: precios[0] }];
+  } else if (precios.length === 5) {
+    calidades = [
+      { nombre: 'Económico', precio: precios[0] },
+      { nombre: 'Estándar',  precio: precios[1] },
+      { nombre: 'Superior',  precio: precios[2] },
+      { nombre: 'Premium',   precio: precios[3] },
+      { nombre: 'Lujo',      precio: precios[4] },
+    ];
+  } else {
+    calidades = [
+      { nombre: 'Económico', precio: precios[0] },
+      { nombre: 'Estándar',  precio: precios[1] },
+      { nombre: 'Premium',   precio: precios[2] },
+    ];
+  }
+  return {
+    id, habitacion, categoria, nombre, unidad, cantidadDefault,
+    activoDefault: true,
+    faseDefault: faseDefault || null,
+    calidades,
+    calidadDefault: calidadDefault != null ? calidadDefault : (calidades.length > 1 ? 1 : 0),
+  };
+}
+
+// Inserta un nivel de calidad extra en la posición indicada (0-index) de un ítem ya creado con item().
+function addCalidad(it, index, nombre, precio, setDefault) {
+  it.calidades.splice(index, 0, { nombre, precio });
+  if (setDefault) it.calidadDefault = index;
+  return it;
+}
+
+const CATALOGO = [
+  // Suelo laminado (Fase 1) — ~70m² repartidos entre salón y las 3 habitaciones, excluye baños y cocina
+  // Calidades: Económico 10€ / Estándar 12€ / Superior 15€ (por defecto) / Premium 20€
+  addCalidad(item('salon-suelo-mat', 'salon',       'materiales', 'Suelo laminado (material)', 'm²', 28, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+  addCalidad(item('hg-suelo-mat',    'hab_grande',  'materiales', 'Suelo laminado (material)', 'm²', 18, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+  addCalidad(item('hm-suelo-mat',    'hab_mediana', 'materiales', 'Suelo laminado (material)', 'm²', 14, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+  addCalidad(item('hp-suelo-mat',    'hab_pequena', 'materiales', 'Suelo laminado (material)', 'm²', 10, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+
+  // Puertas de interior — una por habitación, baño y cocina (6 en total)
+  // Calidades: Económico 60€ / Estándar 100€ / Superior 150€ (por defecto) / Premium 200€
+  addCalidad(item('hg-puerta',    'hab_grande',  'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
+  addCalidad(item('hm-puerta',    'hab_mediana', 'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
+  addCalidad(item('hp-puerta',    'hab_pequena', 'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
+  addCalidad(item('bano1-puerta', 'bano1',       'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
+  addCalidad(item('bano2-puerta', 'bano2',       'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase2'), 2, 'Superior', 150, true),
+  addCalidad(item('cocina-puerta','cocina',      'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
+
+  // Suelo cerámico — baños y cocina (mismos precios que el suelo laminado)
+  // Calidades: Económico 10€ / Estándar 12€ / Superior 15€ (por defecto) / Premium 20€
+  addCalidad(item('bano1-suelo-mat',  'bano1',  'materiales', 'Suelo cerámico (material)', 'm²', 5, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+  addCalidad(item('bano2-suelo-mat',  'bano2',  'materiales', 'Suelo cerámico (material)', 'm²', 4, [10, 12, 20], 'fase2'), 2, 'Superior', 15, true),
+  addCalidad(item('cocina-suelo-mat', 'cocina', 'materiales', 'Suelo cerámico (material)', 'm²', 9, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+
+  // Azulejos de pared — baños y cocina. m² = perímetro asumido × 2.5m de altura
+  // Baño 1 (~2x2.5m, perímetro 9m) = 22.5m² | Baño 2 (~2x2m, perímetro 8m) = 20m² | Cocina (~3x3m, perímetro 12m) = 30m²
+  // Calidades: Económico 10€ / Estándar 12€ / Superior 15€ (por defecto) / Premium 20€
+  addCalidad(item('bano1-azulejos-mat',  'bano1',  'materiales', 'Azulejos (material)', 'm²', 22.5, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+  addCalidad(item('bano2-azulejos-mat',  'bano2',  'materiales', 'Azulejos (material)', 'm²', 20,   [10, 12, 20], 'fase2'), 2, 'Superior', 15, true),
+  addCalidad(item('cocina-azulejos-mat', 'cocina', 'materiales', 'Azulejos (material)', 'm²', 30,   [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
+
+  // Ventana con persiana — todas las habitaciones excepto baños. Salón y cocina llevan ventana doble (2 ud)
+  // Calidades: Económico 200€ / Estándar 300€ (por defecto) / Premium 500€
+  item('salon-ventana', 'salon',       'materiales', 'Ventana con persiana', 'ud', 2, [200, 300, 500], 'fase1'),
+  item('cocina-ventana', 'cocina',     'materiales', 'Ventana con persiana', 'ud', 2, [200, 300, 500], 'fase1'),
+  item('hg-ventana',    'hab_grande',  'materiales', 'Ventana con persiana', 'ud', 1, [200, 300, 500], 'fase1'),
+  item('hm-ventana',    'hab_mediana', 'materiales', 'Ventana con persiana', 'ud', 1, [200, 300, 500], 'fase1'),
+  item('hp-ventana',    'hab_pequena', 'materiales', 'Ventana con persiana', 'ud', 1, [200, 300, 500], 'fase1'),
+
+  // Mueble de baño con grifo incluido — Baño 1 se queda en Superior (400€), Baño 2 en Económico (200€)
+  // Calidades: Económico 200€ / Estándar 300€ / Superior 400€ / Premium 500€
+  addCalidad(item('bano1-mueble', 'bano1', 'muebles', 'Mueble de baño con grifo', 'ud', 1, [200, 300, 500], 'fase1'), 2, 'Superior', 400, true),
+  addCalidad(item('bano2-mueble', 'bano2', 'muebles', 'Mueble de baño con grifo', 'ud', 1, [200, 300, 500], 'fase2', 0), 2, 'Superior', 400, false),
+
+  // Baño 1 — mampara, columna de ducha e inodoro
+  item('bano1-mampara',       'bano1', 'materiales', 'Mampara de ducha',   'ud', 1, [200, 400, 600], 'fase1'),       // Económico 200 / Estándar 400 (por defecto) / Premium 600
+  item('bano1-columna-ducha', 'bano1', 'muebles', 'Columna de ducha',   'ud', 1, [100, 150, 200], 'fase1'),       // Económico 100 / Estándar 150 (por defecto) / Premium 200
+  item('bano1-inodoro',       'bano1', 'muebles', 'Inodoro',            'ud', 1, [100, 200, 300], 'fase1', 2),    // Económico 100 / Estándar 200 / Premium 300 (por defecto)
+
+  // Muebles de cocina (paquete completo) — precio dado (1000€) usado como Estándar
+  item('cocina-muebles', 'cocina', 'muebles', 'Muebles de cocina', 'global', 1, [700, 1000, 1400], 'fase1'), // Económico 700 / Estándar 1000 (por defecto) / Premium 1400
+
+  // Electrodomésticos de cocina
+  item('cocina-frigorifico', 'cocina', 'muebles', 'Frigorífico',        'ud', 1, [300, 400, 600, 800, 1000], 'fase1', 2), // Económico 300 / Estándar 400 / Superior 600 (por defecto) / Premium 800 / Lujo 1000
+  item('cocina-horno',       'cocina', 'muebles', 'Horno',              'ud', 1, [300, 400, 600, 800, 1000], 'fase1', 3), // Económico 300 / Estándar 400 / Superior 600 / Premium 800 (por defecto) / Lujo 1000
+  item('cocina-lavadora',    'cocina', 'muebles', 'Lavadora',           'ud', 1, [400], 'fase1'),                        // Precio único: 400
+  item('cocina-induccion',   'cocina', 'muebles', 'Placa de inducción', 'ud', 1, [600], 'fase1'),                        // Precio único: 600
+];
+
+/* Catálogo de referencia (precios orientativos Madrid 2025) para ir añadiendo
+   elementos poco a poco con item(id, habitacion, categoria, nombre, unidad, cantidadDefault, [eco, estandar, premium]):
+
+// General / Toda la casa
+item('gen-ventanas',      'general', 'materiales', 'Ventanas PVC + climalit', 'ud', 8, [250, 400, 600]),
+item('gen-puerta',        'general', 'materiales', 'Puerta de entrada blindada', 'ud', 1, [500, 900, 1500]),
+item('gen-aire',          'general', 'materiales', 'Aire acondicionado (splits, instalado)', 'ud', 3, [500, 800, 1200]),
+item('gen-tabiques',      'general', 'mano_obra', 'Tirar tabiques / redistribución', 'm²', 12, [20, 30, 45]),
+item('gen-electricidad',  'general', 'mano_obra', 'Instalación eléctrica completa', 'global', 1, [3500, 5500, 8000]),
+item('gen-fontaneria',    'general', 'mano_obra', 'Instalación de fontanería completa', 'global', 1, [2500, 4000, 6000]),
+item('gen-escombros',     'general', 'mano_obra', 'Gestión de escombros y limpieza final', 'global', 1, [400, 700, 1200]),
+item('gen-proyecto',      'general', 'mano_obra', 'Proyecto técnico y dirección de obra', 'global', 1, [800, 1500, 2500]),
+item('gen-pintura-mo',    'general', 'mano_obra', 'Pintura zonas comunes, mano de obra', 'm²', 15, [8, 11, 15]),
+item('gen-recibidor',     'general', 'muebles', 'Mueble recibidor + espejo', 'ud', 1, [80, 200, 450]),
+
+// Salón (~24m²)
+item('salon-suelo-mat',    'salon', 'materiales', 'Suelo laminado (material)', 'm²', 24, [12, 18, 28]),
+item('salon-pintura-mat',  'salon', 'materiales', 'Pintura (material)', 'm²', 60, [3, 5, 8]),
+item('salon-suelo-mo',     'salon', 'mano_obra', 'Instalación de suelo', 'm²', 24, [8, 12, 18]),
+item('salon-pintura-mo',   'salon', 'mano_obra', 'Pintura, mano de obra', 'm²', 60, [8, 11, 15]),
+item('salon-sofa',         'salon', 'muebles', 'Sofá 3 plazas', 'ud', 1, [350, 800, 1800]),
+item('salon-mesa-centro',  'salon', 'muebles', 'Mesa de centro', 'ud', 1, [60, 150, 350]),
+item('salon-mueble-tv',    'salon', 'muebles', 'Mueble TV', 'ud', 1, [80, 200, 450]),
+item('salon-iluminacion',  'salon', 'muebles', 'Iluminación (techo + apliques)', 'ud', 2, [40, 90, 200]),
+item('salon-cortinas',     'salon', 'muebles', 'Cortinas / estores', 'm lineal', 4, [25, 45, 80]),
+
+// Cocina (~9m²)
+item('cocina-suelo-mat',        'cocina', 'materiales', 'Baldosa / suelo porcelánico (material)', 'm²', 9, [15, 25, 40]),
+item('cocina-alicatado-mat',    'cocina', 'materiales', 'Alicatado pared (material)', 'm²', 15, [15, 22, 35]),
+item('cocina-encimera',         'cocina', 'materiales', 'Encimera', 'm lineal', 3.5, [80, 180, 400]),
+item('cocina-fregadero',        'cocina', 'materiales', 'Fregadero + grifo', 'ud', 1, [60, 150, 350]),
+item('cocina-alicatado-mo',     'cocina', 'mano_obra', 'Alicatado, mano de obra', 'm²', 15, [15, 20, 28]),
+item('cocina-instalacion-mueb', 'cocina', 'mano_obra', 'Instalación de muebles de cocina', 'global', 1, [400, 700, 1200]),
+item('cocina-fontaneria',       'cocina', 'mano_obra', 'Fontanería cocina', 'global', 1, [250, 400, 600]),
+item('cocina-electricidad',     'cocina', 'mano_obra', 'Electricidad cocina (tomas, horno, campana)', 'global', 1, [300, 500, 800]),
+item('cocina-muebles',          'cocina', 'muebles', 'Muebles de cocina (bajos + altos)', 'm lineal', 6, [350, 600, 1100]),
+item('cocina-horno',            'cocina', 'muebles', 'Horno', 'ud', 1, [150, 300, 600]),
+item('cocina-vitro',            'cocina', 'muebles', 'Vitrocerámica / inducción', 'ud', 1, [150, 350, 700]),
+item('cocina-campana',          'cocina', 'muebles', 'Campana extractora', 'ud', 1, [80, 180, 400]),
+item('cocina-frigorifico',      'cocina', 'muebles', 'Frigorífico', 'ud', 1, [300, 600, 1200]),
+item('cocina-lavavajillas',     'cocina', 'muebles', 'Lavavajillas', 'ud', 1, [250, 450, 800]),
+
+// Baño 1 (~5m² suelo, 16m² pared)
+item('bano1-baldosa-mat',   'bano1', 'materiales', 'Baldosa suelo (material)', 'm²', 5, [15, 25, 40]),
+item('bano1-alicatado-mat', 'bano1', 'materiales', 'Alicatado pared (material)', 'm²', 16, [15, 22, 35]),
+item('bano1-sanitario',     'bano1', 'materiales', 'Sanitario (inodoro)', 'ud', 1, [120, 220, 450]),
+item('bano1-plato-ducha',   'bano1', 'materiales', 'Plato de ducha', 'ud', 1, [150, 300, 600]),
+item('bano1-mampara',       'bano1', 'materiales', 'Mampara de ducha', 'ud', 1, [150, 280, 500]),
+item('bano1-lavabo',        'bano1', 'materiales', 'Lavabo + mueble bajo lavabo', 'ud', 1, [150, 350, 700]),
+item('bano1-griferia',      'bano1', 'materiales', 'Grifería (lavabo + ducha)', 'ud', 2, [60, 120, 250]),
+item('bano1-alicatado-mo',  'bano1', 'mano_obra', 'Alicatado + solado, mano de obra', 'm²', 21, [15, 20, 28]),
+item('bano1-fontaneria',    'bano1', 'mano_obra', 'Fontanería baño', 'global', 1, [350, 600, 900]),
+item('bano1-electricidad',  'bano1', 'mano_obra', 'Electricidad baño', 'global', 1, [150, 250, 400]),
+item('bano1-espejo',        'bano1', 'muebles', 'Espejo + iluminación', 'ud', 1, [40, 90, 180]),
+
+// Baño 2 (~4m² suelo, 13m² pared)
+item('bano2-baldosa-mat',   'bano2', 'materiales', 'Baldosa suelo (material)', 'm²', 4, [15, 25, 40]),
+item('bano2-alicatado-mat', 'bano2', 'materiales', 'Alicatado pared (material)', 'm²', 13, [15, 22, 35]),
+item('bano2-sanitario',     'bano2', 'materiales', 'Sanitario (inodoro)', 'ud', 1, [120, 220, 450]),
+item('bano2-plato-ducha',   'bano2', 'materiales', 'Plato de ducha', 'ud', 1, [150, 300, 600]),
+item('bano2-mampara',       'bano2', 'materiales', 'Mampara de ducha', 'ud', 1, [150, 280, 500]),
+item('bano2-lavabo',        'bano2', 'materiales', 'Lavabo + mueble bajo lavabo', 'ud', 1, [150, 350, 700]),
+item('bano2-griferia',      'bano2', 'materiales', 'Grifería (lavabo + ducha)', 'ud', 2, [60, 120, 250]),
+item('bano2-alicatado-mo',  'bano2', 'mano_obra', 'Alicatado + solado, mano de obra', 'm²', 17, [15, 20, 28]),
+item('bano2-fontaneria',    'bano2', 'mano_obra', 'Fontanería baño', 'global', 1, [350, 600, 900]),
+item('bano2-electricidad',  'bano2', 'mano_obra', 'Electricidad baño', 'global', 1, [150, 250, 400]),
+item('bano2-espejo',        'bano2', 'muebles', 'Espejo + iluminación', 'ud', 1, [40, 90, 180]),
+
+// Habitación grande (~15m²)
+item('hg-suelo-mat',    'hab_grande', 'materiales', 'Suelo laminado (material)', 'm²', 15, [12, 18, 28]),
+item('hg-pintura-mat',  'hab_grande', 'materiales', 'Pintura (material)', 'm²', 45, [3, 5, 8]),
+item('hg-suelo-mo',     'hab_grande', 'mano_obra', 'Instalación de suelo', 'm²', 15, [8, 12, 18]),
+item('hg-pintura-mo',   'hab_grande', 'mano_obra', 'Pintura, mano de obra', 'm²', 45, [8, 11, 15]),
+item('hg-armario',      'hab_grande', 'muebles', 'Armario empotrado', 'm lineal', 2.5, [300, 550, 900]),
+item('hg-cama',         'hab_grande', 'muebles', 'Cama + colchón (matrimonio)', 'ud', 1, [350, 700, 1500]),
+item('hg-mesillas',     'hab_grande', 'muebles', 'Mesillas de noche', 'ud', 2, [40, 90, 200]),
+
+// Habitación mediana (~11m²)
+item('hm-suelo-mat',    'hab_mediana', 'materiales', 'Suelo laminado (material)', 'm²', 11, [12, 18, 28]),
+item('hm-pintura-mat',  'hab_mediana', 'materiales', 'Pintura (material)', 'm²', 33, [3, 5, 8]),
+item('hm-suelo-mo',     'hab_mediana', 'mano_obra', 'Instalación de suelo', 'm²', 11, [8, 12, 18]),
+item('hm-pintura-mo',   'hab_mediana', 'mano_obra', 'Pintura, mano de obra', 'm²', 33, [8, 11, 15]),
+item('hm-armario',      'hab_mediana', 'muebles', 'Armario empotrado', 'm lineal', 2, [300, 550, 900]),
+item('hm-cama',         'hab_mediana', 'muebles', 'Cama + colchón (matrimonio pequeño)', 'ud', 1, [300, 600, 1200]),
+item('hm-mesillas',     'hab_mediana', 'muebles', 'Mesillas de noche', 'ud', 2, [40, 90, 200]),
+
+// Habitación pequeña (~8m²)
+item('hp-suelo-mat',    'hab_pequena', 'materiales', 'Suelo laminado (material)', 'm²', 8, [12, 18, 28]),
+item('hp-pintura-mat',  'hab_pequena', 'materiales', 'Pintura (material)', 'm²', 24, [3, 5, 8]),
+item('hp-suelo-mo',     'hab_pequena', 'mano_obra', 'Instalación de suelo', 'm²', 8, [8, 12, 18]),
+item('hp-pintura-mo',   'hab_pequena', 'mano_obra', 'Pintura, mano de obra', 'm²', 24, [8, 11, 15]),
+item('hp-armario',      'hab_pequena', 'muebles', 'Armario empotrado', 'm lineal', 1.5, [300, 550, 900]),
+item('hp-cama',         'hab_pequena', 'muebles', 'Cama + colchón (individual)', 'ud', 1, [150, 300, 600]),
+item('hp-mesilla',      'hab_pequena', 'muebles', 'Mesilla de noche', 'ud', 1, [40, 90, 200]),
+item('hp-escritorio',   'hab_pequena', 'muebles', 'Escritorio (estudio)', 'ud', 1, [80, 180, 350]),
+*/
+
+let state = {};
+function estadoInicial() {
+  const s = {};
+  CATALOGO.forEach(it => {
+    s[it.id] = { activo: it.activoDefault, cantidad: it.cantidadDefault, calidadIdx: it.calidadDefault, fase: it.faseDefault };
+  });
+  return s;
+}
+state = estadoInicial();
+
+let activeRoom = 'todos';
+let activePhaseFilter = 'fase1';
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+function eur(n) {
+  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n || 0);
+}
+function lineTotal(it) {
+  const st = state[it.id];
+  if (!st.activo) return 0;
+  return st.cantidad * it.calidades[st.calidadIdx].precio;
+}
+function matchesPhaseFilter(row) {
+  if (activePhaseFilter === 'todas') return true;
+  const fase = row.dataset.fase || '';
+  if (activePhaseFilter === 'sin') return fase === '';
+  return fase === activePhaseFilter;
+}
+
+function buildDOM() {
+  buildPhaseBar();
+  buildRoomTabs();
+  buildRoomPanels();
+  recalcTotales();
+  document.querySelectorAll('.item-row').forEach(row => { row.style.display = matchesPhaseFilter(row) ? '' : 'none'; });
+  updateLayout();
+}
+
+function buildPhaseBar() {
+  const groupsHtml = FASES.map(f => `
+    <div class="phase-group">
+      <input type="text" class="phase-name-input" data-fase="${f.id}" value="${esc(f.nombre)}">
+      <span class="phase-subtotal" data-fase-subtotal="${f.id}">0 €</span>
+    </div>`).join('');
+  const sinHtml = `<div class="phase-noasign">Sin asignar: <span data-fase-subtotal="sin">0 €</span></div>`;
+  const filterIds = ['todas', ...FASES.map(f => f.id), 'sin'];
+  const filtersHtml = `<div class="phase-filters">` + filterIds.map(id => {
+    const label = id === 'todas' ? 'Todas' : id === 'sin' ? 'Sin asignar' : FASES.find(f => f.id === id).nombre;
+    return `<button type="button" class="phase-filter-chip${activePhaseFilter === id ? ' active' : ''}" data-filter="${id}">${esc(label)}</button>`;
+  }).join('') + `</div>`;
+
+  document.getElementById('phaseBar').innerHTML = groupsHtml + sinHtml + filtersHtml;
+
+  document.querySelectorAll('.phase-name-input').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const fase = FASES.find(f => f.id === e.target.dataset.fase);
+      fase.nombre = e.target.value;
+      updatePhaseLabels();
+    });
+  });
+  document.querySelectorAll('.phase-filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activePhaseFilter = btn.dataset.filter;
+      document.querySelectorAll('.phase-filter-chip').forEach(b => b.classList.toggle('active', b.dataset.filter === activePhaseFilter));
+      document.querySelectorAll('.item-row').forEach(row => { row.style.display = matchesPhaseFilter(row) ? '' : 'none'; });
+    });
+  });
+}
+
+function updatePhaseLabels() {
+  document.querySelectorAll('.phase-filter-chip').forEach(btn => {
+    const id = btn.dataset.filter;
+    if (id === 'todas') { btn.textContent = 'Todas'; return; }
+    if (id === 'sin') { btn.textContent = 'Sin asignar'; return; }
+    btn.textContent = FASES.find(f => f.id === id).nombre;
+  });
+  FASES.forEach(f => {
+    document.querySelectorAll(`option[data-fase-option="${f.id}"]`).forEach(opt => { opt.textContent = f.nombre; });
+  });
+}
+
+const TABS = [{ id: 'todos', nombre: 'Todos', icono: '📋' }, ...HABITACIONES];
+
+function buildRoomTabs() {
+  const html = TABS.map(h => `
+    <button type="button" class="room-tab${h.id === activeRoom ? ' active' : ''}" data-room="${h.id}">
+      <span>${h.icono} ${esc(h.nombre)}</span>
+      <span class="tab-subtotal" data-room-tab-subtotal="${h.id}">0 €</span>
+    </button>`).join('');
+  document.getElementById('roomTabs').innerHTML = html;
+  document.querySelectorAll('.room-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeRoom = btn.dataset.room;
+      document.querySelectorAll('.room-tab').forEach(b => b.classList.toggle('active', b.dataset.room === activeRoom));
+      document.querySelectorAll('.room-panel').forEach(p => p.classList.toggle('active', p.dataset.room === activeRoom));
+    });
+  });
+}
+
+function renderItemRow(it, opts) {
+  opts = opts || {};
+  const st = state[it.id];
+  const qualityOptions = it.calidades.map((c, i) =>
+    `<option value="${i}" ${i === st.calidadIdx ? 'selected' : ''}>${esc(c.nombre)} (${eur(c.precio)})</option>`
+  ).join('');
+  const phaseOptions = `<option value="">Sin asignar</option>` + FASES.map(f =>
+    `<option value="${f.id}" data-fase-option="${f.id}" ${st.fase === f.id ? 'selected' : ''}>${esc(f.nombre)}</option>`
+  ).join('');
+  const unitLabel = it.unidad === 'global' ? '' : ` <span class="item-unit">(${esc(it.unidad)})</span>`;
+  const roomLabel = opts.showRoom && !opts.nested
+    ? ` <span class="item-room-badge">${esc(HABITACIONES.find(h => h.id === it.habitacion).nombre)}</span>`
+    : '';
+  const nameHtml = opts.nested
+    ? `<span class="item-name">${esc(HABITACIONES.find(h => h.id === it.habitacion).nombre)}</span>${unitLabel}`
+    : `<span class="item-name">${esc(it.nombre)}</span>${unitLabel}${roomLabel}`;
+  return `
+    <div class="item-row${st.activo ? '' : ' disabled'}" data-id="${it.id}" data-fase="${st.fase || ''}">
+      <div class="item-row-top">
+        <input type="checkbox" class="item-check" ${st.activo ? 'checked' : ''}>
+        <div class="item-name-wrap">${nameHtml}</div>
+        <div class="line-total${st.activo ? '' : ' off'}" data-line-total="${it.id}">${eur(lineTotal(it))}</div>
+      </div>
+      <div class="row2">
+        <input type="number" class="qty-input" min="0" step="0.5" value="${st.cantidad}" ${it.unidad === 'global' ? 'disabled' : ''}>
+        <select class="quality-select">${qualityOptions}</select>
+        <select class="phase-select">${phaseOptions}</select>
+      </div>
+    </div>`;
+}
+
+function groupKey(cat, nombre) { return `${cat}::${nombre}`; }
+
+function renderItemGroup(cat, nombre, items) {
+  if (items.length === 1) return renderItemRow(items[0], { showRoom: true });
+  const total = items.reduce((s, it) => s + lineTotal(it), 0);
+  const rowsHtml = items.map(it => renderItemRow(it, { showRoom: true, nested: true })).join('');
+  return `
+    <div class="item-group">
+      <div class="item-group-header">
+        <span class="item-group-name">${esc(nombre)}</span>
+        <span class="item-group-total" data-group-subtotal="${esc(groupKey(cat, nombre))}">${eur(total)}</span>
+      </div>
+      <div class="item-group-rows">${rowsHtml}</div>
+    </div>`;
+}
+
+function buildTodosPanelHtml() {
+  const cardsHtml = CATEGORIAS.map(cat => {
+    const items = CATALOGO.filter(it => it.categoria === cat.id);
+    if (!items.length) return '';
+    const groups = [];
+    const groupIndexByName = {};
+    items.forEach(it => {
+      if (!(it.nombre in groupIndexByName)) {
+        groupIndexByName[it.nombre] = groups.length;
+        groups.push({ nombre: it.nombre, items: [] });
+      }
+      groups[groupIndexByName[it.nombre]].items.push(it);
+    });
+    const rowsHtml = groups.map(g => renderItemGroup(cat.id, g.nombre, g.items)).join('');
+    const catClass = 'cat-' + cat.id.replace('_', '-');
+    return `
+      <div class="card">
+        <div class="card-header ${catClass}">
+          <span>${cat.nombre}</span>
+          <span class="cat-subtotal" data-cat-subtotal="todos-${cat.id}">0 €</span>
+        </div>
+        <div class="card-body">${rowsHtml}</div>
+      </div>`;
+  }).join('');
+  const gridHtml = cardsHtml || `<div class="empty-state">Sin elementos añadidos todavía.</div>`;
+  return `
+    <div class="room-panel${activeRoom === 'todos' ? ' active' : ''}" data-room="todos">
+      <div class="budget-grid">${gridHtml}</div>
+      <div class="room-subtotal-bar">
+        <span class="rs-label">Total general</span>
+        <span class="rs-amount" data-room-subtotal="todos">0 €</span>
+      </div>
+    </div>`;
+}
+
+function buildRoomPanels() {
+  const roomsHtml = HABITACIONES.map(h => {
+    const cardsHtml = CATEGORIAS.map(cat => {
+      const items = CATALOGO.filter(it => it.habitacion === h.id && it.categoria === cat.id);
+      if (!items.length) return '';
+      const rowsHtml = items.map(it => renderItemRow(it)).join('');
+      const catClass = 'cat-' + cat.id.replace('_', '-');
+      return `
+        <div class="card">
+          <div class="card-header ${catClass}">
+            <span>${cat.nombre}</span>
+            <span class="cat-subtotal" data-cat-subtotal="${h.id}-${cat.id}">0 €</span>
+          </div>
+          <div class="card-body">${rowsHtml}</div>
+        </div>`;
+    }).join('');
+    const gridHtml = cardsHtml || `<div class="empty-state">Sin elementos añadidos todavía en ${esc(h.nombre)}.</div>`;
+    return `
+      <div class="room-panel${h.id === activeRoom ? ' active' : ''}" data-room="${h.id}">
+        <div class="budget-grid">${gridHtml}</div>
+        <div class="room-subtotal-bar">
+          <span class="rs-label">Subtotal ${esc(h.nombre)}</span>
+          <span class="rs-amount" data-room-subtotal="${h.id}">0 €</span>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('contentWrap').innerHTML = buildTodosPanelHtml() + roomsHtml;
+
+  CATALOGO.forEach(it => {
+    document.querySelectorAll(`.item-row[data-id="${it.id}"]`).forEach(row => {
+      row.querySelector('.item-check').addEventListener('change', e => onItemChange(it.id, { activo: e.target.checked }));
+      row.querySelector('.qty-input').addEventListener('input', e => onItemChange(it.id, { cantidad: parseFloat(e.target.value) || 0 }));
+      row.querySelector('.quality-select').addEventListener('change', e => onItemChange(it.id, { calidadIdx: parseInt(e.target.value, 10) }));
+      row.querySelector('.phase-select').addEventListener('change', e => onItemChange(it.id, { fase: e.target.value || null }));
+    });
+  });
+}
+
+function onItemChange(id, patch) {
+  Object.assign(state[id], patch);
+  const it = CATALOGO.find(x => x.id === id);
+  const st = state[id];
+  const lt = lineTotal(it);
+  document.querySelectorAll(`.item-row[data-id="${id}"]`).forEach(row => {
+    row.classList.toggle('disabled', !st.activo);
+    row.dataset.fase = st.fase || '';
+    const checkbox = row.querySelector('.item-check');
+    if (checkbox.checked !== st.activo) checkbox.checked = st.activo;
+    const qtyInput = row.querySelector('.qty-input');
+    if (document.activeElement !== qtyInput && parseFloat(qtyInput.value) !== st.cantidad) qtyInput.value = st.cantidad;
+    const qualitySelect = row.querySelector('.quality-select');
+    if (parseInt(qualitySelect.value, 10) !== st.calidadIdx) qualitySelect.value = st.calidadIdx;
+    const phaseSelect = row.querySelector('.phase-select');
+    if ((phaseSelect.value || null) !== st.fase) phaseSelect.value = st.fase || '';
+    const ltEl = row.querySelector('.line-total');
+    ltEl.textContent = eur(lt);
+    ltEl.classList.toggle('off', !st.activo);
+    row.style.display = matchesPhaseFilter(row) ? '' : 'none';
+  });
+  recalcTotales();
+}
+
+function recalcTotales() {
+  let total = 0;
+  const roomSubtotals = {};
+  const catSubtotals = {};
+  const groupSubtotals = {};
+  const phaseSubtotals = { sin: 0 };
+  FASES.forEach(f => { phaseSubtotals[f.id] = 0; });
+
+  CATALOGO.forEach(it => {
+    const t = lineTotal(it);
+    total += t;
+    roomSubtotals[it.habitacion] = (roomSubtotals[it.habitacion] || 0) + t;
+    const key = `${it.habitacion}-${it.categoria}`;
+    catSubtotals[key] = (catSubtotals[key] || 0) + t;
+    const todosKey = `todos-${it.categoria}`;
+    catSubtotals[todosKey] = (catSubtotals[todosKey] || 0) + t;
+    const gKey = groupKey(it.categoria, it.nombre);
+    groupSubtotals[gKey] = (groupSubtotals[gKey] || 0) + t;
+    const fase = state[it.id].fase;
+    if (fase) phaseSubtotals[fase] += t; else phaseSubtotals.sin += t;
+  });
+
+  Object.keys(groupSubtotals).forEach(key => {
+    const el = document.querySelector(`[data-group-subtotal="${key}"]`);
+    if (el) el.textContent = eur(groupSubtotals[key]);
+  });
+
+  document.getElementById('totalGeneral').textContent = eur(total);
+  TABS.forEach(h => {
+    const v = h.id === 'todos' ? total : (roomSubtotals[h.id] || 0);
+    const tabEl = document.querySelector(`[data-room-tab-subtotal="${h.id}"]`);
+    const barEl = document.querySelector(`[data-room-subtotal="${h.id}"]`);
+    if (tabEl) tabEl.textContent = eur(v);
+    if (barEl) barEl.textContent = eur(v);
+  });
+  CATEGORIAS.forEach(cat => {
+    TABS.forEach(h => {
+      const el = document.querySelector(`[data-cat-subtotal="${h.id}-${cat.id}"]`);
+      if (el) el.textContent = eur(catSubtotals[`${h.id}-${cat.id}`] || 0);
+    });
+  });
+  FASES.forEach(f => {
+    const el = document.querySelector(`[data-fase-subtotal="${f.id}"]`);
+    if (el) el.textContent = eur(phaseSubtotals[f.id]);
+  });
+  const sinEl = document.querySelector('[data-fase-subtotal="sin"]');
+  if (sinEl) sinEl.textContent = eur(phaseSubtotals.sin);
+}
+
+function updateLayout() {
+  const headerH = document.querySelector('.page-header').offsetHeight;
+  const phaseBarEl = document.querySelector('.phase-bar');
+  phaseBarEl.style.top = headerH + 'px';
+  const roomTabsEl = document.querySelector('.room-tabs');
+  roomTabsEl.style.top = (headerH + phaseBarEl.offsetHeight) + 'px';
+}
+window.addEventListener('resize', updateLayout);
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if (!confirm('¿Restablecer todos los valores a los valores por defecto? Se perderán los cambios de esta sesión.')) return;
+  state = estadoInicial();
+  FASES = FASES_DEFAULT();
+  activePhaseFilter = 'fase1';
+  activeRoom = 'todos';
+  buildDOM();
+});
+
+buildDOM();
+</script>
+</body>
+</html>
