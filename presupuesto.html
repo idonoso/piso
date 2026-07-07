@@ -244,6 +244,13 @@ const CATALOGO = [
   addCalidad(item('hp-suelo-mat',    'hab_pequena', 'materiales', 'Suelo laminado (material)', 'm²', 10, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true),
   addCalidad(item('gen-pasillo-suelo-mat', 'general', 'materiales', 'Suelo laminado (material)', 'm²', 6, [10, 12, 20], 'fase1'), 2, 'Superior', 15, true), // Pasillos, ~6m² estimados
 
+  // Pintura (material) — 60 litros repartidos entre salón y las 3 habitaciones (excluye baños y cocina), misma proporción que el suelo laminado (28/18/14/10 de 70m²)
+  // Calidades: Económico 4€/L / Estándar 6€/L / Superior 8€/L (por defecto) / Premium 10€/L
+  addCalidad(item('salon-pintura-mat', 'salon',       'materiales', 'Pintura (material)', 'litro', 24,   [4, 6, 10], 'fase1'), 2, 'Superior', 8, true),
+  addCalidad(item('hg-pintura-mat',    'hab_grande',  'materiales', 'Pintura (material)', 'litro', 15.4, [4, 6, 10], 'fase1'), 2, 'Superior', 8, true),
+  addCalidad(item('hm-pintura-mat',    'hab_mediana', 'materiales', 'Pintura (material)', 'litro', 12,   [4, 6, 10], 'fase1'), 2, 'Superior', 8, true),
+  addCalidad(item('hp-pintura-mat',    'hab_pequena', 'materiales', 'Pintura (material)', 'litro', 8.6,  [4, 6, 10], 'fase1'), 2, 'Superior', 8, true),
+
   // Puertas de interior — una por habitación, baño y cocina (6 en total)
   // Calidades: Económico 60€ / Estándar 100€ / Superior 150€ (por defecto) / Premium 200€
   addCalidad(item('hg-puerta',    'hab_grande',  'materiales', 'Puerta de interior', 'ud', 1, [60, 100, 200], 'fase1'), 2, 'Superior', 150, true),
@@ -301,6 +308,27 @@ const CATALOGO = [
 
   // Encimera de cocina
   item('cocina-encimera', 'cocina', 'materiales', 'Encimera', 'global', 1, [2000], 'fase1'), // Precio único: 2000
+
+  // Remates generales (toda la casa)
+  item('gen-remates', 'general', 'mano_obra', 'Remates', 'global', 1, [1000], 'fase1'), // Precio único: 1000
+
+  // Televisión — salón
+  item('salon-tv', 'salon', 'muebles', 'Televisión', 'ud', 1, [600, 800, 1000, 2000, 3000], 'fase1', 2), // Económico 600 / Estándar 800 / Superior 1000 (por defecto) / Premium 2000 / Lujo 3000
+
+  // Sofá — salón
+  item('salon-sofa', 'salon', 'muebles', 'Sofá', 'ud', 1, [1000, 1500, 2000], 'fase1'), // Económico 1000 / Estándar 1500 (por defecto) / Premium 2000
+
+  // Mueble TV — salón
+  addCalidad(item('salon-mueble-tv', 'salon', 'muebles', 'Mueble TV', 'ud', 1, [300, 500, 1000], 'fase1'), 2, 'Superior', 700, true), // Económico 300 / Estándar 500 / Superior 700 (por defecto) / Premium 1000
+
+  // Mesa de centro — salón
+  item('salon-mesa-centro', 'salon', 'muebles', 'Mesa de centro', 'ud', 1, [100], 'fase1'), // Precio único: 100
+
+  // Mesa auxiliar — salón
+  item('salon-mesa-auxiliar', 'salon', 'muebles', 'Mesa auxiliar', 'ud', 1, [50], 'fase1'), // Precio único: 50
+
+  // Iluminación — salón
+  item('salon-iluminacion', 'salon', 'muebles', 'Iluminación', 'global', 1, [300], 'fase1'), // Precio único: 300
 ];
 
 /* Catálogo de referencia (precios orientativos Madrid 2025) para ir añadiendo
