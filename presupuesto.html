@@ -355,6 +355,23 @@ const CATALOGO = [
 
   // Armario — habitación principal
   addCalidad(item('hg-armario', 'hab_grande', 'muebles', 'Armario', 'ud', 1, [800], 'fase1'), 1, 'Premium', 1000, false), // Estándar 800 (por defecto) / Premium 1000
+
+  // Cómoda — habitación principal
+  item('hg-comoda', 'hab_grande', 'muebles', 'Cómoda', 'ud', 1, [200], 'fase1'), // Precio único: 200
+
+  // Mesillas de noche — habitación principal
+  item('hg-mesilla', 'hab_grande', 'muebles', 'Mesilla de noche', 'ud', 2, [30], 'fase1'), // Precio único: 30/ud
+
+  // Iluminación — habitación principal
+  item('hg-iluminacion', 'hab_grande', 'muebles', 'Iluminación', 'global', 1, [100], 'fase1'), // Precio único: 100
+
+  // Complementos — general (toda la casa)
+  item('gen-complementos', 'general', 'muebles', 'Complementos', 'global', 1, [1000], 'fase1'), // Precio único: 1000
+
+  // Mesa escritorio e iluminación — habitación 2 (mediana)
+  item('hm-escritorio',   'hab_mediana', 'muebles', 'Mesa escritorio', 'ud', 1, [300], 'fase1'), // Precio único: 300
+  item('hm-iluminacion',  'hab_mediana', 'muebles', 'Iluminación', 'global', 1, [100], 'fase1'), // Precio único: 100
+  item('hm-silla-escritorio', 'hab_mediana', 'muebles', 'Silla de escritorio', 'ud', 1, [200], 'fase1'), // Precio único: 200
 ];
 
 /* Catálogo de referencia (precios orientativos Madrid 2025) para ir añadiendo
