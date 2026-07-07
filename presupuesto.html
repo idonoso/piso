@@ -325,10 +325,36 @@ const CATALOGO = [
   item('salon-mesa-centro', 'salon', 'muebles', 'Mesa de centro', 'ud', 1, [100], 'fase1'), // Precio único: 100
 
   // Mesa auxiliar — salón
-  item('salon-mesa-auxiliar', 'salon', 'muebles', 'Mesa auxiliar', 'ud', 1, [50], 'fase1'), // Precio único: 50
+  item('salon-mesa-auxiliar', 'salon', 'muebles', 'Mesa auxiliar', 'ud', 2, [50], 'fase1'), // Precio único: 50
 
   // Iluminación — salón
   item('salon-iluminacion', 'salon', 'muebles', 'Iluminación', 'global', 1, [300], 'fase1'), // Precio único: 300
+
+  // Rodapiés (material) — 100 metros lineales repartidos entre todas las habitaciones de la casa, proporcional al tamaño de cada estancia
+  // Precio único: 7€/m
+  item('salon-rodapie-mat',  'salon',       'materiales', 'Rodapiés (material)', 'm lineal', 30, [7], 'fase1'),
+  item('hg-rodapie-mat',     'hab_grande',  'materiales', 'Rodapiés (material)', 'm lineal', 19, [7], 'fase1'),
+  item('hm-rodapie-mat',     'hab_mediana', 'materiales', 'Rodapiés (material)', 'm lineal', 15, [7], 'fase1'),
+  item('hp-rodapie-mat',     'hab_pequena', 'materiales', 'Rodapiés (material)', 'm lineal', 11, [7], 'fase1'),
+  item('bano1-rodapie-mat',  'bano1',       'materiales', 'Rodapiés (material)', 'm lineal', 5,  [7], 'fase1'),
+  item('bano2-rodapie-mat',  'bano2',       'materiales', 'Rodapiés (material)', 'm lineal', 4,  [7], 'fase1'),
+  item('cocina-rodapie-mat', 'cocina',      'materiales', 'Rodapiés (material)', 'm lineal', 10, [7], 'fase1'),
+  item('gen-rodapie-mat',    'general',     'materiales', 'Rodapiés (material)', 'm lineal', 6,  [7], 'fase1'), // Pasillos
+
+  // Mesa de comedor — salón
+  item('salon-mesa-comedor', 'salon', 'muebles', 'Mesa de comedor', 'ud', 1, [300], 'fase1'), // Precio único: 300
+
+  // Sillas — salón
+  item('salon-sillas', 'salon', 'muebles', 'Sillas', 'ud', 4, [60], 'fase1'), // Precio único: 60/ud
+
+  // Cama + cabecero — habitación principal
+  item('hg-cama-cabecero', 'hab_grande', 'muebles', 'Cama + cabecero', 'ud', 1, [500], 'fase1'), // Precio único: 500
+
+  // Colchón — habitación principal
+  item('hg-colchon', 'hab_grande', 'muebles', 'Colchón', 'ud', 1, [600, 800, 1000], 'fase1'), // Económico 600 / Estándar 800 (por defecto) / Premium 1000
+
+  // Armario — habitación principal
+  addCalidad(item('hg-armario', 'hab_grande', 'muebles', 'Armario', 'ud', 1, [800], 'fase1'), 1, 'Premium', 1000, false), // Estándar 800 (por defecto) / Premium 1000
 ];
 
 /* Catálogo de referencia (precios orientativos Madrid 2025) para ir añadiendo
